@@ -1,0 +1,23 @@
+//
+// see: http://csswizardry.com/2013/04/shame-css/
+//
+.inspector {
+  height: 50vh;
+  overflow-y: auto;
+  padding: 0 1em;
+  color: @grayDark;
+}
+
+[role="button"] {
+  cursor: pointer;
+}
+//
+// To any unfortunate soul that happens upon the following hack... please forgive me...
+//
+// NOTE: find a better place for this, perhaps in shared styles,
+// and get rid of the id (moved from the overly-strict "outer" directory)
+
+.home.page {
+  .backface-visibility(hidden);
+  .home-practice svg[class*="logo"] { .backface-visibility(hidden); }
+}

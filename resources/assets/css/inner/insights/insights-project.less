@@ -1,0 +1,199 @@
+.insights-branch-picker {
+  select {
+    .fancy-select(@arrow-margin: 34px; @color: inherit);
+
+    // We should probably set the width another way but for now it works
+    max-width: 140px;
+    padding-right: 32px;
+    direction: rtl;
+
+    border: 1px solid @grayLighter;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+
+    &:invalid {
+      color: @grayLight;
+    }
+
+    option {
+      .text-overflow();
+    }
+
+    @media (max-width: @screen-sm-max) {
+      margin-top: 12px;
+      direction: ltr;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      min-width: 100%;
+      margin-top: 12px;
+      direction: ltr;
+    }
+  }
+}
+
+.insights-project {
+  margin-top: 15px;
+
+  .insights-metadata-header {
+    .flexy;
+
+    .insights-metadata {
+      .flex(1 0 1px);
+
+      padding: 15px;
+      margin-right: 15px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      dt {
+        .small-emphasis;
+
+        font-weight: 500;
+        text-transform: uppercase;
+        color: @gray;
+      }
+
+      dl {
+        margin-bottom: 0;
+        font-size: @fontSizeLarger;
+
+        .btn {
+          float: right;
+          padding: 5px;
+          height: 30px;
+          width: 30px;
+          background-color: @blueLight;
+          border-color: @blueLight;
+
+          &:hover {
+            box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.20), 0px 1px 3px 0px rgba(0,0,0,0.10);
+          }
+
+          i {
+            margin-left: 0;
+            vertical-align: bottom;
+            color: white;
+            opacity: 1;
+          }
+        }
+      }
+
+      @media (max-width: @screen-xs-max) {
+        .flex(0);
+
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: @screen-xs-max) {
+      .flex-direction(column);
+      .flex-wrap(nowrap);
+    }
+  }
+
+  .card {
+    padding: 0;
+
+    .card-header {
+      border-bottom: 1px solid @grayLightest;
+      padding: 15px;
+
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+
+    .card-body {
+      padding: 20px 15px 15px;
+
+      &.fixed {
+        height: 360px;
+      }
+
+      &.failed-tests {
+        min-height: 100px;
+      }
+    }
+  }
+
+  // line chart styles
+
+  .c3 path,
+  .c3 line {
+    stroke: @grayLight;
+  }
+
+  .c3-chart-lines path.c3-line-Median-Build-Time {
+    stroke-width: 2;
+  }
+
+  .c3-chart-lines circle {
+    r: 4px;
+  }
+
+  .c3-chart-lines circle._expanded_ {
+    r: 6px;
+  }
+
+  .c3 path.domain {
+    stroke: @gray;
+    stroke-width: 2;
+  }
+
+  .c3-axis {
+    fill: @grayLight;
+  }
+
+  /*-- Tooltip --*/
+
+  .c3-tooltip {
+    border-collapse: initial;
+    border-spacing: 0;
+    background-color: @grayDark;
+    empty-cells: show;
+    box-shadow: none;
+    opacity: 0.9;
+    padding: 10px;
+  }
+
+  .c3-tooltip tr {
+    border: 1px solid grayLighter;
+  }
+
+  .c3-tooltip th {
+    background-color: @grayDark;
+    font-size: @fontSizeSmaller;
+    padding: 2px 5px;
+    text-align: left;
+    color: #fff;
+  }
+
+  .c3-tooltip td {
+    font-size: @fontSizeSmaller;
+    padding: 3px 6px;
+    background-color: @grayDark;
+    border-left: none;
+    color: #fff;
+  }
+
+  .c3-tooltip td > span {
+    display: none;
+  }
+
+  .c3-tooltip td.name {
+    font-weight: 400;
+    text-transform: lowercase;
+  }
+
+  .c3-tooltip td.name::after {
+    content: ":";
+  }
+
+  .c3-tooltip td.value {
+    text-align: right;
+  }
+}

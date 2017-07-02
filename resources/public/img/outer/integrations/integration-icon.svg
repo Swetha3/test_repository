@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="161px" height="48px" viewBox="0 0 161 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1 (8751) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 128 + Oval 102 + Oval 103</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="circleci" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="circleci---deploy" sketch:type="MSArtboardGroup" transform="translate(-617.000000, -322.000000)">
+            <g id="Path-128-+-Oval-102-+-Oval-103" sketch:type="MSLayerGroup" transform="translate(617.000000, 326.000000)">
+                <path d="M18.3437428,14.3193783 C18.3437428,14.3193783 47.6367187,-20.789063 81.421875,19.3281251 C115.207031,59.4453131 140.974305,26.4740658 140.974305,26.4740658" id="Path-128" stroke="#FCFCFC" stroke-width="8" opacity="0.49609375" sketch:type="MSShapeGroup"></path>
+                <path d="M12.5,32 C19.4035594,32 25,26.4035594 25,19.5 C25,12.5964406 19.4035594,7 12.5,7 C5.59644063,7 0,12.5964406 0,19.5 C0,26.4035594 5.59644063,32 12.5,32 Z M12.3333333,24.8333333 C15.3708995,24.8333333 17.8333333,22.3708995 17.8333333,19.3333333 C17.8333333,16.2957672 15.3708995,13.8333333 12.3333333,13.8333333 C9.29576721,13.8333333 6.83333333,16.2957672 6.83333333,19.3333333 C6.83333333,22.3708995 9.29576721,24.8333333 12.3333333,24.8333333 Z" id="Oval-102" fill="#FCFCFC" sketch:type="MSShapeGroup"></path>
+                <path d="M148.5,32 C155.403559,32 161,26.4035594 161,19.5 C161,12.5964406 155.403559,7 148.5,7 C141.596441,7 136,12.5964406 136,19.5 C136,26.4035594 141.596441,32 148.5,32 Z M148.333333,24.8333333 C151.370899,24.8333333 153.833333,22.3708995 153.833333,19.3333333 C153.833333,16.2957672 151.370899,13.8333333 148.333333,13.8333333 C145.295767,13.8333333 142.833333,16.2957672 142.833333,19.3333333 C142.833333,22.3708995 145.295767,24.8333333 148.333333,24.8333333 Z" id="Oval-103" fill="#FCFCFC" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

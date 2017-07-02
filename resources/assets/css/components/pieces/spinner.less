@@ -1,0 +1,13 @@
+.ns("frontend.components.pieces.spinner", {
+  .ui("spinner", {
+    .flexy(center, center);
+    height: 100%;
+
+    > svg {
+      width: @spinnerSize;
+      height: @spinnerSize;
+      .animation(clockwise 450ms infinite cubic-bezier(0.42, 0, 0.58, 1));
+      fill: @grayLighter;
+    }
+  });
+});

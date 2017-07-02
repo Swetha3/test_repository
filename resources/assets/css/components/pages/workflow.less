@@ -1,0 +1,30 @@
+.ns("frontend.components.pages.workflow", {
+  .ui("RunList", {
+    > .page-info {
+      margin: 10px 0;
+
+      > .run-numbers {
+        font-weight: 500;
+      }
+
+      // When empty, reserve normal vertical space.
+      &:empty::before {
+        content: "\0000a0";
+      }
+    }
+
+    > .list-pager {
+      .flexy;
+      .justify-content(space-between);
+      margin: 1em 0;
+
+      > span {
+        color: @grayLighter;
+      }
+
+      > a {
+        color: @blueDarkest;
+      }
+    }
+  });
+});

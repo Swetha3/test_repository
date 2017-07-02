@@ -1,0 +1,102 @@
+.ns("frontend.components.pieces.job", {
+  .ui("Requires", {
+    font-size: @fontSizeSmaller;
+
+    > .heading {
+      color: @grayLight;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    > .requirements {
+      list-style: none;
+      padding-left: 0;
+
+      > .requirement {
+        color: @grayLight;
+      }
+    }
+  });
+
+  .ui("Job", {}, {
+    .el("content", {
+      @spacing: 8px;
+
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background-color: @whiten;
+
+      &.selected {
+        background-color: @white;
+        box-shadow: 0 3px 6px 0 rgba(0,0,0,0.23), 0 3px 6px 0 rgba(0,0,0,0.16);
+
+        &:hover {
+          box-shadow: 0 3px 6px 0 rgba(0,0,0,0.23), 0 3px 6px 0 rgba(0,0,0,0.16);
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 6px 6px 0 rgba(0,0,0,0.26), 0 10px 20px 0 rgba(0,0,0,0.19);
+      }
+
+      > .job-card-inner {
+        > .body {
+          padding: @spacing;
+
+          > .status-name {
+            .flexy(center);
+
+            > .status {
+              margin-right: @spacing;
+              padding: @spacing;
+            }
+          }
+
+          > .approval, > .requires {
+            // Align with job name.
+            padding-left: @spacing + @frontend-components-pieces-status--width + @spacing + @spacing;
+            padding-right: @spacing;
+          }
+
+          > .approval + .requires {
+            padding-top: @spacing;
+          }
+        }
+
+        > .job-metadata {
+          @build-padding: 12px;
+          @build-item-inner-border: 1px solid rgba(0, 0, 0, 0.1);
+
+          > .metadata-row {
+            .flexy(row, flex-end);
+            border-top: @build-item-inner-border;
+
+            > .metadata-item {
+              .flex(0 0 50%);
+              .flexy(center);
+
+              font-size: @fontSizeSmaller;
+              padding: @spacing;
+
+              &:not(:first-child) {
+                border-left: @build-item-inner-border;
+              }
+
+              > i {
+                font-size: @fontSizeLarge;
+                height: 19px; // magic number to make all the things the same height
+                width: 18px;
+                margin-right: @spacing;
+                margin-left: 0;
+                padding-top: 1px;
+                color: @grayLighter;
+                max-width: @fontSizeLarge;
+                display: inline;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    });
+  });
+});

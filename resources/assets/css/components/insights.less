@@ -1,0 +1,70 @@
+.ns("frontend.components.insights", {
+  .ui("build-status-bar-chart", {
+    @tick-color: #999999;
+
+    height: 100%;
+    margin: 0 auto;
+
+    > svg {
+      width: 100%;
+      height: 100%;
+
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #999;
+        shape-rendering: crispEdges;
+      }
+
+      .grid-lines line.horizontal {
+        stroke: #e5e5e5;
+        stroke-opacity: 0.7;
+        shape-rendering: crispEdges;
+      }
+
+      rect {
+        &.success {
+          fill: #42c88a;
+        }
+
+        &.failed {
+          fill: #ed5c5c;
+        }
+
+        &.canceled {
+          fill: #999999;
+        }
+
+        &.queue {
+          fill: #e6d9f2;
+        }
+      }
+
+      .legend text {
+        fill: @grayDarker;
+      }
+
+      .y-axis {
+        .tick {
+          line {
+            visibility: hidden;
+          }
+
+          text {
+            fill: @tick-color;
+            font-size: 10px;
+          }
+        }
+
+        > path.domain {
+          visibility: hidden;
+        }
+      }
+
+      .axis line,
+      .grid-lines line.horizontal {
+        stroke-width: .6;
+      }
+    }
+  });
+});

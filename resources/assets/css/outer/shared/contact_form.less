@@ -1,0 +1,88 @@
+form.contact {
+  .validation-message-container,
+  .notice {
+    overflow: hidden;
+    transition: height 0.5s;
+  }
+
+  .validation-message {
+    display: none;
+    margin-top: 4px;
+
+    font-size: @font-size-small;
+    font-weight: bold;
+    color: @redLight;
+    letter-spacing: .5px;
+    text-align: left;
+  }
+
+  &.show-validations {
+    input, textarea {
+      &:invalid {
+        border-color: @redLight;
+      }
+    }
+
+    .validation-message {
+      display: block;
+    }
+  }
+
+  .notice {
+    .error { color: @errorText; }
+    .success { color: @successText; }
+
+    margin: 0 0 15px;
+
+    text-align: center;
+  }
+
+  .morphing-button {
+    @height: 60px;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+
+    .ico > svg {
+      width: @height;
+      height: @height;
+      position: absolute;
+      top: 0;
+      @half-height: @height/2;
+      left: ~"calc(50% - @{half-height})";
+      z-index: -1;
+
+      path {
+        fill: @green;
+      }
+    }
+
+    button[type=submit] {
+      height: @height;
+      transition: opacity 300ms, width 300ms 300ms, color 100ms 400ms;
+
+      &[disabled] {
+        color: transparent;
+        width: @height;
+        opacity: 0;
+        transition: color 100ms, width 300ms 100ms, opacity 300ms 400ms;
+      }
+    }
+  }
+
+  .success-message {
+    margin-top: 1em;
+    // This should be @font-size-large to match the .input-lgs, but their
+    // @font-size-large is defined relative to a base size of 14px while
+    // @font-size-large in this context (.outer) has been redefined relative to
+    // a base size of 16px.
+    font-size: @fontSizeLarge;
+
+    opacity: 0;
+    transition: opacity 300ms;
+
+    &.success {
+      opacity: 1;
+    }
+  }
+}

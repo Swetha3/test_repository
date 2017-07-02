@@ -1,0 +1,74 @@
+.ns("frontend.components.pages.team", {
+  .ui("main-content", {
+    .flexy();
+    margin-top: 15px;
+
+    > .sidebar {
+      width: 285px;
+      margin-right: 15px;
+    }
+
+    > .main {
+      flex-grow: 1;
+    }
+
+    .el("action", {
+      > span {
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
+    });
+  });
+
+  .teams-empty-state-content {
+    // teams rendered inside a collection of card
+    // which gives it a 15px margin -15px margin is
+    // added to compensate that.
+    margin: -15px 50px 50px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > .placeholder-img {
+      width: 100%;
+      // limit width of image to actual width to avoid enlarging
+      max-width: 1020px;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      display: none;
+    }
+  }
+
+  .ui("invite-teammates-modal", {}, {
+    .el("body", {
+
+      @body-height: 27vh;
+
+      > .empty-placeholder {
+        height: @body-height;
+      }
+
+      > .members-table {
+        overflow: auto;
+        max-height: @body-height;
+        margin-top: 1em;
+      }
+    });
+
+    .el("email-field", {
+      padding: 5px 0;
+    });
+
+    .el("username", {
+      > img.invite-gravatar {
+        max-height: 1.7em;
+        width: auto;
+        border-radius: 50%;
+      }
+    });
+  });
+});

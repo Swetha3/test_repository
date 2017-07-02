@@ -1,0 +1,1213 @@
+@bezier-fadein: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+@bezier-transform: cubic-bezier(0.39, 0.575, 0.565, 1);
+
+@prolog-open-duration: 500ms; // default 500ms
+@prolog-open-delay: (@prolog-open-duration / 10);
+
+@prolog-light-on-dark: #aaa;
+
+@home-drawing-offset: 5px;
+
+@prolog-h1-font: 72px;
+@prolog-h1-line: @prolog-h1-font;
+@prolog-h3-font: 20px;
+@prolog-h3-line: (@prolog-h3-font * 1.5); // 30px
+@prolog-h5-font: 16px;
+@prolog-h5-line: (@prolog-h5-font * 1.5); // 24px
+
+@prolog-cover-fadein: 500ms; // default 500ms
+@prolog-cover-fadeout: (@prolog-cover-fadein / 2);
+
+@purpose-drawings-width: 34%; // default 34%
+
+@zindex-home-cover: 10; // These should move to a less file in charge of managing z-indexes
+@zindex-home-nav:          (@zindex-home-cover + 2);
+@zindex-home-top-shelf:    (@zindex-home-cover + 1);
+@zindex-home-avatars:      (@zindex-home-cover + 2);
+@zindex-home-slogans:      (@zindex-home-cover + 2);
+@zindex-home-bottom-shelf: (@zindex-home-cover + 2);
+@zindex-home-action:       (@zindex-home-cover + 2);
+
+@empx: 16px;
+@lipx: 24px;
+
+@tools-brands:
+  ruby, #CC342D,
+  rails, #CC342D,
+  python, #3776ab,
+  javascript, #FFCD0A,
+  java, #E76F00,
+  php, #6A9AD1,
+  clojure, #91dc47,
+  django, #092e20,
+  node, #8CC84B,
+  safari, #1280f3,
+  chrome, #db4437,
+  firefox, #E66000,
+  casper, #000000,
+  selenium, #2bb033,
+  phantom, #4ad5db,
+  rabbit, #ff6600,
+  beanstalkd, #000000,
+  resque, #CE1211,
+  capistrano, #52C1DB,
+  amazon, #FCB034,
+  rackspace, #CE1330,
+  joyent, #FF6600,
+  heroku, #430098,
+  engineyard, #E92429,
+  nodejitsu, #333333,
+  fabric, #FECB4A,
+  docker, #3b8cb3,
+  mysql, #e97b00,
+  postgres, #336792,
+  mongo, #49A748,
+  redis, #D82A20,
+  riak, #F8981D,
+  sqlite, #0f80cc,
+  elasticsearch, #84AC4F,
+  cassandra, #1287B1;
+
+// These should be listed in the order they appear on the page.
+@customers-brands:
+  shopify, #96bf48,
+  // intercom, #8bdaff,
+  circleci, @blueDark,
+  kickstarter, #2BDE73,
+  gocardless, #3A6190,
+  sincerely, #eb000a;
+
+@home-article-width: 100%;
+@purpose-h1-width: 700px;
+@practice-h1-width: 900px;
+@potential-h1-width: 800px;
+
+@home-nav-logo: @lipx;
+@home-action-width: (@tile * 3);
+@home-action-height: @tile;
+
+@home-drawings-speed: 500ms;
+@home-drawings-cascade: (@home-drawings-speed / 15);
+@home-drawings-bounce: cubic-bezier(.55,-0.55,.55,2.33);
+
+@practice-tool-size: 50px;
+@practice-tool-grow: 1.2;
+@practice-tool-speed: 400ms;
+@practice-tool-timing: ease-in-out;
+@practice-tool-weight: 3;
+
+@practice-hover-shadow: drop-shadow(0 13px 3px fade(@black, 13));
+
+@practice-logo-height: @lipx;
+
+@quote-avatar-size: (@tile / 2);
+@quote-speed: 500ms;
+
+@home-color-last-cta: @blue;
+@home-margin-footer: @empx;
+
+@mobile-scale-factor: 0.8;
+@home-section-height: 100vh;
+
+// .scaled-header (@font-size, @line-height) {
+//   font-size: @font-size;
+//   line-height: @line-height;
+
+//   @media (max-width: @screen-sm-max) {
+//     font-size: (@font-size * @mobile-scale-factor);
+//     line-height: (@line-height * @mobile-scale-factor);
+//   }
+// }
+
+.scaled-page (@page-height: @home-section-height) {
+  min-height: @page-height;
+
+  @media (min-width: @screen-md-min) {
+    height: @page-height;
+  }
+}
+
+.home {
+
+  &.page {
+    font-size: 1.1428572em; // 16px
+    line-height: 1.5em; // 24px
+
+    // h1 {
+    //   .scaled-header(@prolog-h1-font, @prolog-h1-line);
+    //   font-weight: 300;
+    // }
+
+    // h3 {
+    //   .scaled-header(@prolog-h3-font, @prolog-h3-line);
+    //   font-weight: normal;
+    // }
+
+    // h5 {
+    //   .scaled-header(@prolog-h5-font, @prolog-h5-line);
+    //   font-weight: normal;
+    //   margin: 1em 0;
+    // }
+  }
+
+  a {
+
+    &:hover {
+      i {
+        path {
+          stroke: @linkColorHover;
+          transition: stroke 200ms;
+        }
+      }
+    }
+
+    &:not(:hover) {
+      color: @black;
+    }
+
+    i {
+      path {
+        stroke: @grayDark;
+        stroke-width: 8;
+      }
+    }
+  }
+}
+.home-nav {
+  .animation(prolog-down @prolog-open-duration @bezier-fadein @prolog-open-duration both);
+  .box-sizing(border-box);
+  .vertGradient(fade(@white, 0), fade(@white, 0));
+  position: fixed;
+  z-index: @zindex-home-nav; // ducks under prolog content intentionally
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: @tile;
+  background-size: 100% 0;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid fade(@black, 13);
+  overflow: hidden;
+  &.logo-visible {
+    .promo {
+      top: -100%;
+      opacity: 0;
+    }
+    .logo-circleci {
+      left: 0;
+      opacity: 1;
+      pointer-events: auto;
+      transition+: left @prolog-cover-fadein;
+      transition+: opacity @prolog-cover-fadein (@prolog-cover-fadeout / 2);
+    }
+  }
+  &.cta-visible {
+    &:not(.cta-invisible) {
+      .login {
+        opacity: 0;
+      }
+      .action {
+        right: 0;
+        opacity: 1;
+        pointer-events: auto;
+        transition+: right @prolog-cover-fadein;
+        transition+: opacity @prolog-cover-fadein (@prolog-cover-fadeout / 2);
+      }
+    }
+  }
+  &.bkg-visible {
+    .vertGradient(@white, @white);
+    background-size: 100% 100%;
+    &:not(.bkg-invisible) {
+      box-shadow: 1px 2px fade(@black, 08);
+      border-color: @white;
+    }
+  }
+  &.bkg-invisible {
+    background-position: top center;
+  }
+  a {
+    .flexy(center);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition+: top @prolog-cover-fadeout;
+    transition+: left @prolog-cover-fadeout;
+    transition+: right @prolog-cover-fadeout;
+    transition+: opacity @prolog-cover-fadeout;
+  }
+  .promo,
+  .login, .return {
+    opacity: 1;
+    &:not(:hover) {
+      color: @grayLight;
+    }
+  }
+  .promo {
+    left: 0;
+    padding: 0 1.5em;
+  }
+  .login, .return {
+    right: 0;
+    padding: 0 1.5em;
+  }
+  .logo-circleci {
+    left: @tile;
+    padding: 0 1.5em;
+    opacity: 0;
+    pointer-events: none;
+    figure {
+      margin: 0;
+      width: 6em;
+      height: 1.5em;
+    }
+    svg {
+      height: 100%;
+      fill: @grayLighter;
+    }
+  }
+  .action {
+    .flexy(center, center);
+    right: @tile;
+    top: ~"calc(50% - 1.5em)";
+    height: auto;
+    font-size: .875em;
+    color: @black;
+    margin: 0 1.5em;
+    padding: .5em 1em;
+    background: @white;
+    border: 1px solid @gray;
+    border-radius: (@home-action-height / 2);
+    pointer-events: none;
+    opacity: 0;
+
+    @media (min-width: @screen-md-min) {
+      white-space: nowrap;
+    }
+
+    &:hover {
+      color: @white;
+      background: @gray;
+      transition: 100ms;
+    }
+  }
+}
+
+.home-prolog,
+.home-epilog {
+  .flexy(center, center, column);
+  .scaled-page();
+
+  position: relative;
+  overflow: hidden;
+
+  a.home-action {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+    line-height: 26px;
+    min-width: 256px;
+    min-height: 53px;
+    padding: 12px 36px 12px 36px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    color: #fff;
+    border-color: #292;
+    border-radius: 36px;
+    background-color: #292;
+
+    &:hover {
+      text-decoration: none;
+      color: #fff;
+      border-color: rgba(34, 153, 34, .8);
+      background-color: rgba(34, 153, 34, .8);
+    }
+  }
+}
+.home-prolog {
+  // adjustment for header
+  .scaled-page(~"calc(100vh - 70px)");
+
+  background: @grayDark;
+  color: @prolog-light-on-dark;
+  a:not([role="button"]) {
+    color: @gray;
+    transition: color 300ms;
+    i {
+      path {
+        stroke: @gray;
+        stroke-width: 8;
+        transition: stroke 300ms;
+      }
+    }
+    &:hover {
+      color: @linkColorHover;
+      transition: color 200ms;
+      i {
+        path {
+          stroke: @linkColorHover;
+          transition: stroke 200ms;
+        }
+      }
+    }
+  }
+  .home-bottom-shelf {
+    z-index: @zindex-home-bottom-shelf;
+  }
+  // opening animations
+  .avatar-circle          { .animation(prolog-logo @prolog-open-duration @bezier-fadein); }
+  .context:nth-of-type(1) { .animation(prolog-up @prolog-open-duration @bezier-fadein (@prolog-open-delay * 1) both); }
+  .context:nth-of-type(2) { .animation(prolog-up @prolog-open-duration @bezier-fadein (@prolog-open-delay * 2) both); }
+  .home-bottom-shelf      { .animation(prolog-up @prolog-open-duration @bezier-fadein @prolog-open-duration both); }
+}
+
+.home-top-shelf {
+  .order(1);
+  position: relative;
+  z-index: @zindex-home-top-shelf;
+  height: @tile;
+  margin-bottom: auto;
+}
+
+.home-avatars {
+  .flexy(center, center);
+  .order(2);
+  position: relative;
+  z-index: @zindex-home-avatars;
+  .avatars {
+    position: relative;
+    width: @tile;
+    height: @tile;
+  }
+  i.ico {
+    svg {
+      width: @tile;
+      height: @tile;
+    }
+    path {
+      fill: @white;
+      transition: @prolog-cover-fadeout;
+    }
+  }
+  .avatar-circle {
+    width: @tile;
+    height: @tile;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: @prolog-cover-fadeout;
+    transition-timing-function: @bezier-transform;
+  }
+  .avatar-github {
+    position: absolute;
+    top: (-@tile / 4);
+    left: (-@tile / 4);
+    background: @white;
+    border-radius: (@tile / 2);
+    opacity: 0;
+    transition: (@prolog-cover-fadeout / 2);
+    &:before,
+    &:after {
+      .box-sizing(border-box);
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border: 1px solid @grayBoxBorder;
+      border-radius: 5px;
+    }
+    &:before {
+      top: -10px;
+      left: -10px;
+    }
+    &:after {
+      top: (@tile / 2);
+      left: (@tile / 2);
+      background: @white;
+    }
+  }
+}
+
+.home-slogans {
+  .order(3);
+  position: relative;
+  z-index: @zindex-home-slogans;
+  text-align: center;
+  margin: @tile 0;
+  max-width: 100%;
+
+  @media (max-width: @screen-sm-max) {
+    margin: (@tile / 3) 0;
+  }
+
+  h1,
+  h3 {
+    @media (min-width: @screen-md-min) {
+      white-space: nowrap;
+    }
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  .slogan {
+    position: relative;
+    color: transparent;
+    &:before,
+    &:after {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      transition-timing-function: @bezier-transform;
+    }
+    &:before {
+      content: attr(itemprop);
+      top: 0;
+      transition+: opacity @prolog-cover-fadeout (@prolog-cover-fadeout / 2);
+      transition+: top (@prolog-cover-fadeout * 1.5) (@prolog-cover-fadeout / 2);
+    }
+    &:after {
+      content: attr(alt);
+      opacity: 0;
+      transition: (@prolog-cover-fadeout / 2);
+    }
+    &.top-line {
+      margin-bottom: 0;
+    }
+    &.bottom-line {
+      margin-top: 0;
+    }
+  }
+
+  .proverb {
+    min-height: @prolog-h1-font;
+    margin: 0 0 ((@tile * 2) - (@prolog-h1-line + (@prolog-h3-line * 2)));
+
+    &:before {
+      color: @grayBoxBorder;
+    }
+
+    &:after {
+      top: @prolog-h1-font;
+      color: @grayDark;
+    }
+  }
+
+  .context {
+    min-height: @prolog-h3-line;
+
+    &:before,
+    &:after {
+      color: @prolog-light-on-dark;
+    }
+
+    &:after {
+      top: @prolog-h3-line;
+    }
+  }
+}
+.home-bottom-shelf {
+  .flexy(center, center);
+  .order(5);
+  position: relative;
+  height: @tile;
+  margin-top: auto;
+  z-index: auto;
+  a {
+    .flexy();
+    margin: 0;
+    padding: 1em 3em;
+  }
+  .chevron-down {
+    width: .89em;
+    height: .89em;
+    margin: 0 1ex;
+  }
+}
+
+.home-action {
+  @action-font-size: 20px;
+
+  .box-sizing(border-box);
+  .flexy(center, center);
+  .order(4);
+  position: relative;
+  z-index: @zindex-home-action;
+  color: @grayDark;
+  font-size: @action-font-size;
+  background: @white;
+  width: @home-action-width;
+  min-height: @home-action-height;
+  border: 1px solid @white;
+  border-radius: (@home-action-height / 2);
+
+  @media (max-width: @screen-sm-max) {
+    font-size: @action-font-size * @mobile-scale-factor;
+    min-height: @home-action-height * @mobile-scale-factor;
+  }
+
+  // Button
+  &:hover {
+    color: @white;
+    background: @grayDark;
+    border-color: @grayBoxBorder;
+  }
+}
+
+.home-purpose {
+  .flexy(column);
+  .scaled-page();
+
+  background: @whiten;
+  box-shadow: 0 1px 3px fade(@black, 5) inset;
+  overflow: hidden;
+  h1 {
+    max-width: @purpose-h1-width;
+  }
+  .draw-new {
+    text {
+      transition: (@home-drawings-speed / 2) (@home-drawings-speed / 2);
+      transition-timing-function: @bezier-fadein;
+    }
+    g,
+    rect,
+    path,
+    circle {
+      .transform-origin(center);
+    }
+  }
+  .draw-filler {
+    fill: @grayBoxBorder;
+  }
+  .draw-status-background {
+    rect,
+    circle {
+      fill: @grayBoxBorder;
+      transition: @home-drawings-speed;
+      transition-timing-function: @home-drawings-bounce;
+    }
+    .background-left   {
+      .translate(25px, 0);
+    }
+    .background-center {
+      .transform(translate(0,0); scale(0,1));
+    }
+    .background-right  {
+      .translate(-25px, 0);
+    }
+  }
+  .draw-status-icon {
+    .translate(25px, 0);
+    opacity: 0;
+    transition: @home-drawings-speed;
+    transition-timing-function: @home-drawings-bounce;
+    .draw-status-turn {
+      .rotate(0deg);
+    }
+    .draw-status-circle {
+      .scale(1, 1);
+      transition: @home-drawings-speed;
+      transition-timing-function: @home-drawings-bounce;
+    }
+    .draw-status-check {
+      .scale(0, 0);
+      transition: @home-drawings-speed;
+      transition-timing-function: @home-drawings-bounce;
+      fill: @white;
+    }
+  }
+  .draw-status-text {
+    path {
+      .scale(0, 0);
+      opacity: 0;
+      transition: @home-drawings-speed;
+      transition-timing-function: @home-drawings-bounce;
+    }
+  }
+  &.animate {
+    .draw-new {
+      text {
+        fill: @green;
+        transition: (@home-drawings-speed * 2) @home-drawings-speed;
+      }
+    }
+    .draw-status-background {
+      rect,
+      circle {
+        fill: @green;
+        transition-delay: (@home-drawings-speed / 2);
+        .transform(translate(0,0); scale(1,1));
+      }
+    }
+    .draw-status-icon {
+      .translate(0, 0);
+      transition-delay: ((@home-drawings-speed / 2) + @home-drawings-cascade);
+      opacity: 1;
+      .draw-status-circle {
+        .scale(0, 0);
+        transition-delay: @home-drawings-speed;
+      }
+      .draw-status-check {
+        .scale(1, 1);
+        transition-delay: (@home-drawings-speed + @home-drawings-cascade);
+      }
+    }
+    .draw-status-text {
+      path {
+        .scale(1, 1);
+        opacity: 1;
+        &:nth-child(6) { transition-delay: ((@home-drawings-speed / 2) + (@home-drawings-cascade * 1)); }
+        &:nth-child(5) { transition-delay: ((@home-drawings-speed / 2) + (@home-drawings-cascade * 2)); }
+        &:nth-child(4) { transition-delay: ((@home-drawings-speed / 2) + (@home-drawings-cascade * 3)); }
+        &:nth-child(3) { transition-delay: ((@home-drawings-speed / 2) + (@home-drawings-cascade * 4)); }
+        &:nth-child(2) { transition-delay: ((@home-drawings-speed / 2) + (@home-drawings-cascade * 5)); }
+        &:nth-child(1) { transition-delay: ((@home-drawings-speed / 2) + (@home-drawings-cascade * 6)); }
+      }
+    }
+  }
+}
+.home-purpose-content {
+  .order(1);
+  .flexy(center, center, row);
+
+  @media (max-width: @screen-xs-max) {
+    .flexy(center, center, column-reverse);
+  }
+}
+
+.home-drawings {
+  .flex(0, 0, @purpose-drawings-width);
+  .flexy(center, flex-end);
+  .scaled-page();
+
+  position: relative;
+
+  margin: auto 0;
+  overflow: hidden;
+
+  figure {
+    @width: 1600px; // default 1600px
+    .flex(0, 0, @width);
+    position: relative;
+    width: @width;
+    height: (@width / 1.6);
+    background: @white;
+    border: 1px solid @grayBoxBorder;
+    border-radius: 5px;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-user-select: none;
+    &:nth-child(-n+2) {
+      position: absolute;
+    }
+    &:nth-child(1) {
+      right: (@home-drawing-offset * 2);
+      bottom: (-@home-drawing-offset * 2);
+    }
+    &:nth-child(2) {
+      right: @home-drawing-offset;
+      bottom: -@home-drawing-offset;
+    }
+  }
+
+  @media (max-width: @screen-xs-max) {
+    @drawing-margin: 20px;
+    width: 100%;
+
+    // left & right here indicate whether the drawing comes in from the given side.
+    &.drawing-left {
+      margin-right: @drawing-margin;
+    }
+
+    &.drawing-right {
+      margin-left: @drawing-margin;
+    }
+  }
+}
+
+.home-articles {
+  .flex(0, 0, (100% - @purpose-drawings-width));
+  .flexy(center, center, column);
+
+  padding: 0 1em;
+
+  article {
+    max-width: @home-article-width;
+  }
+
+  p {
+    color: @gray;
+  }
+
+  .shopify-link {
+    .flexy();
+
+    &:hover {
+      svg {
+        stroke: @blueLight;
+        margin-left: 1ex;
+      }
+    }
+
+    svg {
+      stroke: @grayDark;
+      stroke-width: 8;
+      margin-left: .5ex;
+      transition: margin 100ms ease-in-out;
+    }
+  }
+}
+
+.home-practice {
+  .flexy(column);
+  .scaled-page();
+
+  padding: 0 (@tile / 2);
+  background: @white;
+  box-shadow: 0 -1px 3px fade(@black, 5);
+  overflow: hidden;
+
+  article {
+    .flex(1, 1, @home-article-width);
+    .flexy(column);
+    max-width: @home-article-width;
+    margin: 0 auto;
+  }
+
+  h1 {
+    max-width: @practice-h1-width;
+  }
+  .home-top-shelf,
+  .home-bottom-shelf {
+    .order(0);
+  }
+}
+.practice-tools {
+  .flex(1, 1, 0);
+  .flexy();
+
+  article {
+    .justify-content(flex-end);
+  }
+
+  @media (max-width: @screen-sm-max) {
+    // magic number, no real rhyme or reason except that it
+    // allows the text on the upper side of the tools to render on-screen.
+    min-height: 215px;
+  }
+}
+
+.supported-tools {
+  position: relative;
+  padding: (@tile / 2) 0;
+  overflow: visible;
+  z-index: 2;
+  &:not(:last-child) {
+    margin-bottom: (-@tile * 3);
+  }
+  &.active {
+    .supported-tool {
+      &:hover,
+      &.hover {
+        &:before {
+          opacity: 1;
+          transition: (@practice-tool-speed / 2) (@practice-tool-speed / 2) @practice-tool-timing;
+        }
+      }
+    }
+  }
+  &:not(.active) {
+    z-index: 1;
+    figure {
+      margin-top: (@tile * 3);
+      opacity: 0;
+      transition+: opacity (@practice-tool-speed / 2) @bezier-fadein;
+      transition+: margin @practice-tool-speed @bezier-transform;
+    }
+  }
+}
+
+.supported-tools-upper,
+.supported-tools-lower {
+  .flexy();
+  width: 100%;
+  margin-bottom: (@tile - (@practice-tool-size * @practice-tool-grow));
+}
+
+.supported-tools-upper {
+  .supported-tool {
+    .loop-cascade(@counter) when (@counter > 0) {
+      .loop-cascade((@counter - 1));
+      @random: `Math.random()`;
+      &:nth-of-type(@{counter}) { figure { transition-delay: round(@home-drawings-cascade * (@random * 5));}}
+    } .loop-cascade(12);
+    &:before {
+      top: -2em;
+    }
+  }
+}
+
+.supported-tools-lower {
+  .supported-tool {
+    .loop-cascade(@counter) when (@counter > 0) {
+      .loop-cascade((@counter - 1));
+      @random: `Math.random()`;
+      &:nth-of-type(@{counter}) { figure { transition-delay: round(@home-drawings-cascade * (@random * 5));}}
+    } .loop-cascade(12);
+    &:before {
+      bottom: -2em;
+    }
+  }
+}
+
+.supported-tool {
+  .color-stroke(@a; @c: length(@a); @x: -1; @y: 0) when (@c > (length(@a) / 2)) {
+    .color-stroke(@a; (@c - 1); (@x - 1); (@y - 1));
+    @n: extract(@a, (@c + @x));
+    .tool-logo-@{n} {stroke: extract(@a, (@c + @y));}
+  }.color-stroke(@tools-brands);
+  position: relative;
+  margin: 0;
+  fill: none;
+  display: block;
+  padding-right: 1em;
+  width: (@practice-tool-size * @practice-tool-grow);
+  height: (@practice-tool-size * @practice-tool-grow);
+  &:before {
+    .box-sizing(border-box);
+    .translate(-50%, 0);
+    content: attr(alt);
+    position: absolute;
+    left: 50%;
+    min-width: 100%;
+    opacity: 0;
+    color: @gray;
+    text-align: center;
+    text-transform: capitalize;
+    padding-right: 1em;
+    transition: @practice-tool-speed @practice-tool-timing;
+  }
+  &:not(:hover) {
+    &:not(.hover) {
+      svg {
+        .filter(none);
+        width: @practice-tool-size;
+        height: @practice-tool-size;
+        stroke: @grayBoxBorder;
+        stroke-width: @practice-tool-weight;
+        transition: @practice-tool-speed @practice-tool-timing;
+      }
+    }
+  }
+  figure {
+    margin: 0;
+    transition+: opacity @practice-tool-speed @bezier-fadein;
+    transition+: margin @practice-tool-speed @bezier-transform;
+  }
+  svg {
+    .filter(@practice-hover-shadow);
+    width: (@practice-tool-size * @practice-tool-grow);
+    height: (@practice-tool-size * @practice-tool-grow);
+    stroke-width: (@practice-tool-weight + 1);
+    stroke-linecap: round;
+    stroke-linejoin: bevel;
+    transition: (@practice-tool-speed / 2) 0ms @practice-tool-timing;
+  }
+}
+
+.practice-articles {
+  .flex(0, 0, auto);
+  .flexy();
+  article {
+    .justify-content(center);
+  }
+  p {
+    color: @gray;
+  }
+  a:not(:hover) {
+    color: @black;
+  }
+}
+
+.practice-customers {
+  article {
+    .justify-content(flex-start);
+  }
+}
+
+.customers-brands {
+
+  .selected-quote(@a; @c: length(@a); @y: 0; @c2: (@c / 2)) when (@c > (length(@a) / 2)) {
+
+    .selected-quote(@a; (@c - 1); (@y - 1); (@c2 - 1));
+    @i: (@c2 - 1);
+
+    &.selected-@{i} {
+
+      .customers-brand:nth-of-type(@{c2}) {
+
+        svg {
+          fill: extract(@a, (@c + @y));
+        }
+
+        &:before, &:after {
+          opacity: 1;
+          transition: opacity (@quote-speed / 2) (@quote-speed / 2);
+        }
+      }
+
+      .margin(@c2) when (@c2 > 1) {
+        & + .quote-card {
+          @media (min-width: @screen-xs-min) {
+            margin-left: (@tile * @i);
+          }
+        }
+      } .margin(@c2);
+    }
+
+  }
+
+  // .selected-quote(@customers-brands);
+
+  .flexy(flex-end);
+  flex-wrap: wrap;
+
+  width: 100%;
+
+  figure {
+    margin: 0;
+  }
+}
+
+.customers-brand {
+  .flexy();
+  margin-top: 1em;
+
+  position: relative;
+
+  .color-fill(@a; @c: length(@a); @x: -1; @y: 0) when (@c > (length(@a) / 2)) {
+    .color-fill(@a; (@c - 1); (@x - 1); (@y - 1));
+    @n: extract(@a, (@c + @x));
+    .logo-@{n} {fill: extract(@a, (@c + @y));}
+  }.color-fill(@customers-brands);
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    top: 100%;
+    left: 50%;
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    pointer-events: none;
+    transition: opacity 0ms;
+  }
+
+  @media (min-width: @screen-sm-min) {
+    &:before {
+      border-bottom-color: @grayBoxBorder;
+      border-width: .5em;
+      margin-left: -.5em;
+    }
+
+    &:after {
+      border-bottom-color: @white;
+      border-width: .5em;
+      margin-left: -.5em;
+      margin-top: 1px;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-right: 1em;
+  }
+
+  &:not(:hover) {
+    svg {
+      .scale(1, 1);
+      .filter(none);
+      fill: @grayBoxBorder;
+      transition: @practice-tool-speed @practice-tool-timing;
+    }
+  }
+
+  svg {
+    .scale(@practice-tool-grow, @practice-tool-grow);
+    .filter(@practice-hover-shadow);
+    max-width: (@tile * 2);
+    height: @practice-logo-height;
+    transition: (@practice-tool-speed / 2) @practice-tool-timing;
+  }
+}
+
+.quote-card {
+  .box-sizing(border-box);
+  .flexy(flex-start, center, column);
+  color: @grayLight;
+  max-width: (@tile * 7);
+  min-height: (@tile * 3);
+  margin-top: 1em;
+  margin-left: 0;
+  padding: 1em;
+  border: 1px solid @grayBoxBorder;
+  border-radius: 5px;
+  transition: @quote-speed;
+  p {
+    position: relative;
+    margin: auto 0 auto 1em;
+    &:before {
+      content: open-quote;
+      left: -.8ex;
+    }
+    &:after {
+      content: close-quote;
+    }
+    &:before,
+    &:after {
+      position: absolute;
+      quotes: '“' '”';
+      font-size: 1.25em;
+    }
+  }
+  footer {
+    .box-sizing(border-box);
+    .flexy();
+    .justify-content(flex-end);
+    font-size: .75em;
+    line-height: 1.5em;
+    width: 100%;
+    padding: 0 1em;
+  }
+  img {
+    width: @quote-avatar-size;
+    height: @quote-avatar-size;
+    margin-right: 1em;
+    border-radius: @quote-avatar-size;
+  }
+}
+
+.home-potential {
+  @number-of-actions: 8;
+  @number-of-outputs: 9;
+  .flexy(column);
+  .scaled-page();
+
+  background: @whiten;
+  box-shadow: 0 1px 3px fade(@black, 5) inset;
+  overflow: hidden;
+  .home-drawings {
+    .justify-content(flex-start);
+  }
+  h1 {
+    max-width: @potential-h1-width;
+  }
+  figure {
+    &:nth-child(1) { left: (@home-drawing-offset * 2); }
+    &:nth-child(2) { left: @home-drawing-offset; }
+  }
+  .draw-action,
+  .draw-output {
+    g {
+      .transform-origin(center);
+      transition+: all (@home-drawings-speed / 2) @bezier-transform;
+      transition+: opacity (@home-drawings-speed / 3) @bezier-fadein;
+    }
+  }
+  .draw-action {
+    .loop-cascade(@counter) when (@counter > 0) {
+      .loop-cascade((@counter - 1));
+      &:nth-of-type(@{counter}) { g { transition-delay: (@home-drawings-cascade * @counter);}}
+    } .loop-cascade(@number-of-actions);
+  }
+  .draw-output {
+    g {
+      .loop-cascade(@counter) when (@counter > 0) {
+        .loop-cascade((@counter - 1));
+        &:nth-of-type(@{counter}) { transition-delay: ((@home-drawings-cascade * @number-of-actions) + (@home-drawings-cascade * @counter));}
+      } .loop-cascade(@number-of-outputs);
+    }
+  }
+  &:not(.animate) {
+    .draw-action,
+    .draw-output {
+      g {
+        .translate(0, (@tile / 2));
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.home-potential-content {
+  .order(1);
+  .flexy(center, center, row);
+
+  @media (max-width: @screen-xs-max) {
+    .flexy(center, center, column);
+  }
+}
+
+.home-potential-bullets {
+  .flexy();
+  flex-wrap: wrap;
+
+  @media (min-width: @screen-sm-min) {
+    .flexy(center, center, row);
+  }
+
+  li {
+    margin-bottom: 1em;
+  }
+}
+
+.home-epilog {
+  background: @grayDark;
+  color: @prolog-light-on-dark;
+
+  .home-avatars {
+    i.ico path { fill: fade(@grayDark, 0); }
+  }
+
+  .home-slogans {
+    .proverb:before { color: @white; }
+    .context:before { color: fade(@white, 50); }
+    a {
+      color: transparent;
+      border-bottom: 1px solid @home-color-last-cta;
+      transition+: border 200ms;
+      transition+: background 200ms;
+      transition+: opacity @prolog-cover-fadeout @prolog-cover-fadein ease-in-out;
+      &:hover,
+      &:focus {
+        background: @home-color-last-cta;
+        border: 2px solid @home-color-last-cta;
+        outline: none;
+      }
+      &:active {
+        background: @blueDark;
+        border: 2px solid @blueDark;
+        transition: 0ms;
+      }
+    }
+  }
+
+  .home-bottom-shelf {
+    .box-sizing(border-box);
+    .flex-direction(column);
+    width: 100%;
+    a:not(:hover) {
+      color: @grayLight;
+      path {
+        stroke: @blue;
+      }
+    }
+    h5 {
+      color: @grayDark;
+    }
+  }
+}
+

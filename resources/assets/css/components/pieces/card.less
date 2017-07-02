@@ -1,0 +1,32 @@
+.ns("frontend.components.pieces.card", {
+  @card-padding: 15px;
+
+  .ui("full-bleed", {
+    background: @white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+  });
+
+  .ui("padding", {
+    padding: @card-padding;
+  });
+
+  .ui("header", {
+    .flexy(center, space-between);
+    padding: @card-padding;
+    border-bottom: 1px solid @grayLighter;
+
+    > .title {
+      font-size: @fontSizeLarge;
+      line-height: 24px;
+    }
+  });
+
+  .ui("collection", {
+    > .item {
+      margin-bottom: @card-padding;
+    }
+    > .item:last-child {
+      margin-bottom: 0;
+    }
+  });
+});

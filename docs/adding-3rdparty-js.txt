@@ -1,0 +1,24 @@
+We use bower to manage js dependencies, so 1) add to bower.json,
+then 'bower install' will download it to resources/components
+
+Then, do you need it on every page, or just load as necessary?
+
+1) everywhere, add to resources/assets/js/common.js.stefon
+
+2) load as needed look at how we load stripe's js (using
+goog.net.jsloader) in frontend.stripe/load-checkout
+
+You have to worry about advanced compilation mode when using 3rd party
+js. If you don't have (and don't want to write) an externs file for
+the library in question, you can sometimes use aget to get the fn,
+then call it, so where you would have written:
+
+(-> js/d3 (.select "somearg")) 
+
+instead
+
+((aget js/d3 "select") "somearg")
+
+chaining won't always work nicely though (js sometimes expects
+different 'this' arg than clojurescript provides) so externs file is
+to be preferred.

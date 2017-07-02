@@ -1,0 +1,555 @@
+@build-padding: 12px;
+@build-item-inner-border: 1px solid rgba(0, 0, 0, 0.1);
+
+.first-run-hint {
+  padding-right: 1em;
+}
+
+.dashboard {
+  a {
+    color: @blueDarkest;
+  }
+
+  .alert {
+    margin: 0 -15px 10px -15px;
+  }
+
+  .pay-now-button {
+    button {
+      .button_outline(@blue, (@tile / 3));
+    }
+  }
+}
+
+.dashboard-top-menu {
+  .flexy();
+  .justify-content(flex-end);
+  margin: 0 15px;
+  padding: 10px 0;
+
+  .dashboard-top-menu {
+    width: 100%;
+  }
+}
+
+.toggle-all-builds {
+  .flexy;
+  font-size: @aside-font-size;
+  margin-right: @main-body-padding;
+
+  input[type=radio] {
+    display: none;
+  }
+
+  label {
+    width: @toggle-aside-width;
+    height: @toggle-aside-height;
+    margin: 0;
+
+    line-height: @toggle-aside-height;
+    font-weight: normal;
+    color: @grayDark;
+    text-align: center;
+
+    border-radius: 3px;
+    cursor: pointer;
+
+    &.checked {
+      background-color: rgba(0,0,0, 0.1);
+    }
+
+    &.disabled {
+      background-color: rgba(0,0,0, 0);
+      color: @grayLight;
+      cursor: default;
+    }
+  }
+}
+
+.no-projects-block {
+  margin-top: 15px;
+
+  .getting-started {
+    h2 {
+      margin-top: 0;
+    }
+
+    button {
+      margin-top: 15px;
+    }
+
+    .new-badge::after {
+      background-color: @blueLightest;
+      color: @blueDark;
+      margin-right: 5px;
+      padding: 5px;
+      border-radius: 8px;
+      content: 'NEW';
+      font-size: 9px;
+      font-weight: bold;
+    }
+
+    .org-projects-container {
+      margin: 20px 0 10px;
+      border: 1px solid @grayLighter;
+      border-bottom: none;
+
+      .org-projects {
+
+        h2 {
+          margin-bottom: 0;
+          cursor: pointer;
+
+          > img {
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            margin: 0 10px;
+          }
+
+          > .selected-explaination {
+            font-size: 14px;
+            color: #999;
+            margin-left: 10px;
+          }
+        }
+
+        .maybe-border-bottom {
+          padding: 10px 15px;
+          border-bottom: 1px solid @grayLighter;
+        }
+
+        .projects-container {
+          padding: 20px 40px;
+
+          .checkbox:not(:first-child) {
+            margin: 0 0 10px;
+          }
+
+          i {
+            margin: 0 5px 0 0;
+          }
+
+          .projects {
+
+            &.eight-projects, &.twelve-projects {
+              @media (min-width: @screen-sm-max) {
+                -moz-column-count: 2;
+                -moz-columns: 2;
+                -webkit-columns: 2;
+                columns: 2;
+              }
+
+              &.twelve-projects {
+                @media (min-width: @screen-md-max) {
+                  -moz-column-count: 3;
+                  -moz-columns: 3;
+                  -webkit-columns: 3;
+                  columns: 3;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .explanation {
+      padding-top: 10px;
+    }
+  }
+
+  .add-projects-button-link {
+    margin-left: 10px;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.recent-time {
+  white-space: nowrap;
+  font-family: @monoFontFamily;
+  font-size: @codeFontSize;
+  min-width: 55px;
+
+  a {
+    text-align: center;
+  }
+}
+
+.recent-log {
+  word-break: break-all;
+}
+
+.recent-builds-pager {
+  .flexy();
+  .justify-content(space-between);
+
+  margin: 1em;
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a.disabled {
+    color: @grayLighter;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  i.newer {
+    margin-right: 6px;
+  }
+
+  i.older {
+    margin-left: 6px;
+  }
+}
+
+.build {
+  .flexy;
+  .row;
+
+  margin-bottom: 4px;
+  background-color: @white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .tooltip {
+    // Turn off Bootstrap's fade-in.
+    opacity: 1;
+
+    .tooltip-arrow {
+      display: none;
+    }
+
+    .tooltip-inner {
+      color: #fff;
+      line-height: 1em;
+      background: @grayDark;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 16px;
+      transform: scale(1.1);
+    }
+  }
+
+  @media (max-width: @screen-md-max) {
+    .flex-direction(column);
+    .flex-wrap(nowrap);
+    min-width: 285px;
+    margin-bottom: 8px;
+  }
+}
+
+.status-area {
+  .flex(0 0 130px);
+  padding: 7px (@build-padding / 2);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+
+  a:hover {
+    text-decoration: none !important;
+  }
+
+  .build-action {
+    .flexy(center);
+    margin-top: 5px;
+    vertical-align: middle;
+
+    > button {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+
+      color: @grayDark;
+
+      > .button-icon {
+        // Specific margins are a firefox hack:
+        // Since it doesn't support flexbox properly in buttons,
+        // we have to do a bit of manual positioning.
+        margin: 0 7px 1px 4px;
+        height: 17px;
+        width: 17px;
+        color: gray;
+      }
+
+      > span.button-text {
+        .flex(1 0 auto);
+        text-align: left;
+        font-size: @fontSizeSmaller;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @media (max-width: @screen-md-max) {
+    width: 100%;
+    .flex(0 0 auto);
+    border-right: 0;
+    border-bottom: @build-item-inner-border;
+  }
+}
+
+.build-info {
+  .flex(1 0 auto);
+  padding: (@build-padding / 2) @build-padding;
+  border-right: @build-item-inner-border;
+  line-height: 1.8;
+
+  > .build-info-container > .workflow-info {
+    .flexy(center, flex-start); 
+    margin-bottom: 1em;
+
+    > .workflows-icon {
+      .flex(0 0 16px);
+      margin-right: 0.5em;
+      color: @grayLight;
+    }
+
+    > a {
+      color: inherit;
+    }
+  }
+
+  .recent-commit-msg {
+    // TODO: Make these fiddly margins unnecessary.
+    margin-top: 6px;
+    margin-bottom: 2px;
+
+    color: @gray;
+    font-size: @fontSizeSmaller;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    // TODO: Instead of this, use flexboxes to make the .recent-commit-msg
+    // take up the remaining space.
+    @media (max-width: @screen-lg-min) {
+      max-width: 440px;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 440px;
+    }
+
+    @media (min-width: 1400px) {
+      max-width: 640px;
+    }
+  }
+
+  @media (max-width: @screen-md-max) {
+    .flexy(center, space-between);
+    width: 100%;
+    border-right: 0;
+    border-bottom: @build-item-inner-border;
+  }
+}
+
+.build-info-header {
+  .flexy;
+  .justify-content(space-between);
+  .flex-wrap(wrap);
+}
+
+.build-engine {
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  font-size: @fontSizeSmaller;
+  font-weight: 500;
+
+  .platform {
+    color: @blueDark;
+    letter-spacing: 1px;
+    font-family: @monoFontFamily;
+  }
+
+  &.screen-md-up {
+    @media (max-width: @screen-md-max) {
+      display: none;
+    }
+  }
+
+  &.screen-md-down {
+    @media (min-width: @screen-md-max) {
+      display: none;
+    }
+  }
+}
+
+.contextual-identifier {
+  font-size: @baseFontSize;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  a {
+    color: @grayDarker;
+  }
+
+  // TODO: Instead of this, use flexboxes to make the .contextual-identifier
+  // take up the remaining space.
+  @media (max-width: @screen-lg-min) {
+    max-width: 440px;
+  }
+
+  @media (min-width: @screen-lg-min) {
+    max-width: 440px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 640px;
+  }
+}
+
+.dashboard-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  opacity: 0.4;
+}
+
+@avatar-size: 20px;
+.recent-user {
+  display: inline-block;
+
+  width: @avatar-size;
+  height: @avatar-size;
+
+  margin-right: 8px;
+
+  .material-icons {
+    margin-left: 0;
+  }
+
+  .dashboard-icon {
+    width: @avatar-size;
+    height: @avatar-size;
+    margin: 0;
+
+    vertical-align: bottom;
+
+    border-radius: 50%;
+    opacity: 1;
+  }
+}
+
+.recent-time {
+  font-family: @sansSerifFontFamily;
+  color: @grayDark;
+}
+
+.recent-log {
+  font-family: @monoFontFamily;
+  word-break: normal;
+}
+
+.metadata {
+  .flexy(column);
+  border-right: 2px solid transparent;
+  width: 214px;
+
+  @media (max-width: @screen-md-max) {
+    width: 100%;
+    border-right: none;
+  }
+
+  .metadata-row {
+    .flexy(row, flex-end);
+    padding-left: @build-padding;
+    padding-right: @build-padding;
+
+    &:first-of-type {
+      margin-top: 3px;
+    }
+
+    @media (max-width: @screen-md-max) {
+      border-bottom: @build-item-inner-border;
+      padding: 0;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    .metadata-item {
+      .flexy(center);
+      .flex(1 0 auto);
+      padding-top: 5px;
+      padding-bottom: 3px;
+
+      font-size: @fontSizeSmaller;
+
+      &:last-child {
+        .flex(0 0 40%);
+      }
+
+      .ago {
+        margin-left: 3px;
+      }
+
+      @media (max-width: @screen-md-max) {
+        padding: 8px;
+
+        &:last-child {
+          .flex(0 0 50%);
+          border-left: @build-item-inner-border;
+        }
+      }
+
+      &.start-time,
+      &.duration,
+      &.pull-requests,
+      &.revision {
+        i, svg {
+          font-size: @fontSizeLarge;
+          height: 19px; // magic number to make all the things the same height
+          width: 18px;
+          margin-right: 8px;
+          margin-left: 0;
+          padding-top: 1px;
+          color: @grayLighter;
+          max-width: @fontSizeLarge;
+          display: inline;
+          text-align: center;
+        }
+      }
+
+      &.pull-requests,
+      &.revision {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-family: @monoFontFamily;
+      }
+    }
+  }
+}
+
+.build.succeeded .metadata {
+  border-color: @green;
+}
+
+.build.failed .metadata {
+  border-color: @red;
+}
+
+.build.running .metadata {
+  border-color: @blueLight;
+}
+
+.build.stopped .metadata {
+  border-color: @grayLight;
+}
+
+.build.waiting .metadata {
+  border-color: @purple;
+}

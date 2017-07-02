@@ -1,0 +1,65 @@
+.ns("frontend.components.pieces.tabs", {
+  .ui("tab-row", {
+    .flexy();
+
+    padding-left: 0; // Override default ul/ol
+    overflow-x: auto;
+
+    > li {
+      display: block;
+      flex-grow: 1;
+
+      color: @grayDark;
+
+      background: @grayLightest;
+      border-right: 1px solid @grayLighter;
+
+      > .content, > a > .content {
+        padding: 15px;
+
+        > .tab-label {
+          vertical-align: middle;
+        }
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: @grayDarker;
+        background-color: @whiten;
+
+        > .tab-icon {
+          color: @grayDark;
+        }
+      }
+
+      &.active {
+        background: @white;
+        font-weight: 500;
+
+        > .tab-icon {
+          color: @grayDark;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      > .content .tab-icon {
+        margin-right: 1ex;
+        margin-left: 0;
+
+        color: @grayLight;
+      }
+
+      // TODO: This style belongs to a future icon component, not the tab row.
+      i.fa.fa-bitbucket {
+        font-size: @fontSizeLarge;
+      }
+    }
+  });
+});

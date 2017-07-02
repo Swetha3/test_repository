@@ -1,0 +1,86 @@
+.invoice-data {
+  .current-balance {
+    #invoice-popover-hack {
+      margin-left: 6px;
+      margin-right: 6px;
+    }
+  }
+}
+
+.plans {
+
+  // 14 day free trial button
+  a.btn {
+    width: 160px;
+    font-weight: 600;
+    line-height: 22px;
+    padding: 5px 14px 7px 14px;
+  }
+
+  #payment-form {
+    background-color: @color;
+    border-radius: 5px;
+    padding-top: 12px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    #warning {
+      width: 290px;
+    }
+    #charge-button {
+      margin-left: 120px;
+    }
+  }
+
+  @color: #DDF4FB;
+  @radius: 5px;
+
+  .grandfather {
+    font-weight: normal;
+    font-size: 0.7em;
+  }
+}
+
+.plan-header {
+  h1 {
+    margin-top: 4px;
+    font-weight: 500;
+  }
+}
+
+.osx-plans {
+  margin-bottom: 2em;
+
+  .plan-selection {
+    .flexy(flex-start space-between);
+
+    img {
+      width: 215px;
+    }
+
+    .selected {
+      border: 2px solid @green;
+    }
+
+    .unselected {
+      border: 1px solid @grayLighter;
+    }
+  }
+}
+
+@media (min-width: 1250px) {
+  .plan-header {
+    .flexy(flex-start space-between);
+  }
+
+  .split-plan-block {
+    .flex(1, 0, 0);
+
+    &:last-child {
+      margin-left: 15px;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+[
+  ;; all of the resources we need to build the app
+  ;; PLUS the app code compiled in advanced mode
+
+  "common.js.stefon"
+
+  "../../public/cljs/production/frontend.js"
+  "setup-frontend.coffee"
+]

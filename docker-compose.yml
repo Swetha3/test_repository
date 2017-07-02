@@ -1,0 +1,12 @@
+version: '2'
+services:
+  frontend:
+    build: .
+    ports:
+      - "4443:14443"
+    volumes:
+      - .:/frontend
+      - ~/.m2:/root/.m2
+    environment:
+      CIRCLE_FRONTEND_ENV: docker
+      CIRCLE_BACKEND_HOST: "dev.circlehost:8080"

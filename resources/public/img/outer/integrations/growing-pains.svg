@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="67px" height="64px" viewBox="0 0 67 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1 (8751) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 130</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#E5DDFF" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.21 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path id="path-3" d="M117.357096,38.6443369 C116.779935,37.696571 116.965064,36.315306 117.770612,35.5591779 L128.246633,25.7258477 C129.457096,24.5896449 131.106674,24.8347533 131.933829,26.2781314 L134.869224,31.4003661 C135.695143,32.8415868 136.821334,32.7558896 137.388352,31.1987707 L148.386656,0.995718209 C148.952014,-0.556840553 149.729659,-0.518950637 150.128057,1.09854357 L160.479195,43.1240893 L169.320289,17.9398488 C170.051319,15.8574761 171.165991,15.8820733 171.809414,17.9929417 L177.726268,37.4042755 C178.209105,38.988312 177.372244,40.807521 175.858349,41.4670418 L176.103841,41.3600947 C174.58938,42.0198621 173.002206,41.2701239 172.554349,39.6696413 L170.868789,33.6460594 C170.422919,32.0526804 169.660183,32.0493331 169.169619,33.6243028 L161.473363,58.3333223 C160.980807,59.9146855 160.237173,59.8891229 159.817689,58.2962734 L149.07596,17.5081097 L138.357287,42.6850733 C137.709602,44.206414 136.460644,44.2982161 135.582605,42.9136835 L129.940493,34.0169343 C129.055763,32.6218516 127.299553,32.3383582 126.013195,33.3875617 L119.647284,38.5798442 C118.787708,39.2809473 117.623517,39.0818325 117.045842,38.1332217 L117.357096,38.6443369 Z"></path>
+    </defs>
+    <g id="circleci" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="circleci---deploy" sketch:type="MSArtboardGroup" transform="translate(-669.000000, -748.000000)" filter="url(#filter-2)">
+            <g id="No-growing-pains-+-Start-doing-things-r-+-Path-130" sketch:type="MSLayerGroup" transform="translate(555.000000, 749.000000)">
+                <g id="Path-130">
+                    <use fill="none" sketch:type="MSShapeGroup" xlink:href="#path-3"></use>
+                    <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-3"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,140 @@
+.animation(...) {
+  -webkit-animation: @arguments;
+          animation: @arguments;
+}
+
+@keyframes clockwise {
+  0%   {  .rotate(0);}
+  100% {.rotate(359);}
+}
+@-webkit-keyframes clockwise {
+  0%   {  .rotate(0);}
+  100% {.rotate(359);}
+}
+
+@keyframes prolog-logo {
+  0%   {opacity: 0; .translate(-16px, -16px);}
+  100% {opacity: 1; .translate(0, 0);}
+}
+@-webkit-keyframes prolog-logo {
+  0%   {opacity: 0; .translate(-16px, -16px);}
+  100% {opacity: 1; .translate(0, 0);}
+}
+@keyframes prolog-up {
+  0%   {opacity: 0; .translate(0, 16px);}
+  100% {opacity: 1; .translate(0, 0);}
+}
+@-webkit-keyframes prolog-up {
+  0%   {opacity: 0; .translate(0, 16px);}
+  100% {opacity: 1; .translate(0, 0);}
+}
+@keyframes prolog-action {
+  0%   {opacity: 0; .scale(0.9, 0.9);}
+  100% {opacity: 1; .scale(1.0, 1.0);}
+}
+@-webkit-keyframes prolog-action {
+  0%   {opacity: 0; .scale(0.8, 0.8);}
+  100% {opacity: 1; .scale(1.0, 1.0);}
+}
+@keyframes prolog-down {
+  0%   {opacity: 0; .translate(0, -16px);}
+  100% {opacity: 1; .translate(0, 0);}
+}
+@-webkit-keyframes prolog-down {
+  0%   {opacity: 0; .translate(0, -16px);}
+  100% {opacity: 1; .translate(0, 0);}
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, -5%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes zoomBigIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes zoomBigOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
+}
+
+.animated {
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+}
+
+// Container actions transitions
+
+.build-steps-animator {
+  position: relative;
+  overflow-x: hidden;
+}
+
+@steps-transition-rate: 0.225s;
+
+.steps-ltr-enter {
+  position: absolute;
+  opacity: 0.01;
+  transform: translateX(-100%);
+
+  &.steps-ltr-enter-active {
+    opacity: 1;
+    transform: translateX(0%);
+    transition: opacity @steps-transition-rate ease-in-out, transform @steps-transition-rate ease-in-out;
+  }
+}
+
+.steps-ltr-leave {
+  opacity: 1;
+  transform: translateX(0%);
+
+  &.steps-ltr-leave-active {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity @steps-transition-rate ease-in-out, transform @steps-transition-rate ease-in-out;
+  }
+}
+
+.steps-rtl-enter {
+  position: absolute;
+  opacity: 0.01;
+  transform: translateX(100%);
+
+  &.steps-rtl-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity @steps-transition-rate ease-in-out, transform @steps-transition-rate ease-in-out;
+  }
+}
+
+.steps-rtl-leave {
+  opacity: 1;
+  transform: translateX(0%);
+
+  &.steps-rtl-leave-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity @steps-transition-rate ease-in-out, transform @steps-transition-rate ease-in-out;
+  }
+}

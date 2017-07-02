@@ -1,0 +1,27 @@
+.rotate(...) {
+  .prefixer(transform; ~"rotate(@{arguments}deg)"; webkit);
+}
+.scale(@x; @y: @x) {
+  .prefixer(transform, scale(@x, @y), webkit);
+}
+.scale3d(@x; @y: @x; @z: 1) {
+  .prefixer(transform, scale3d(@x, @y, @z), webkit);
+}
+.translate(@x; @y: @x) {
+  .prefixer(transform, translate(@x, @y), webkit);
+}
+.translate3d(@x; @y: @x; @z: 1) {
+  .prefixer(transform, translate3d(@x, @y, @z), webkit);
+}
+.translateZ(...) {
+  .prefixer(transform, translateZ(@arguments), webkit);
+}
+.transform-origin(...) {
+  .prefixer(transform-origin, @arguments, webkit);
+}
+.transform(...) {
+  .for(@arguments); .-each(@argument) {
+      -webkit-transform+_: @argument;
+              transform+_: @argument;
+  }
+}

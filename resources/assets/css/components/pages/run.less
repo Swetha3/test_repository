@@ -1,0 +1,73 @@
+.ns("frontend.components.pages.run", {
+  .ui("job-cards-row", {
+    .flexy();
+    display: flex;
+    flex-wrap: wrap;
+
+    padding-bottom: 25px;
+    margin-top: -25px;
+
+    > .item {
+      margin-right: 5px;
+      margin-left: 5px;
+      flex-grow: 1;
+      flex-shrink: 0;
+      margin-bottom: 10px;
+      }
+  });
+
+  .ui("Page", {}, {
+    .el("main-content", {
+      margin-left: auto;
+      margin-right: auto;
+      width: 1200px;
+      min-width: 512px;
+      padding-top: 16px;
+
+      @media (max-width: 1800px) {
+        width: 100%;
+        min-width: 512px;
+      }
+
+      @media (max-width: @screen-xs-max) {
+        width: 100%;
+        min-width: 100%;
+      }
+
+      > .jobs {
+
+        transform: translate3d(0,0,0);
+        transition: transform .3s;
+
+        @media (max-width: @screen-md-max) {
+          margin-right: 0;
+        }
+
+        > .jobs-header > .hr-title {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 20px;
+          height: auto;
+          margin-top: 40px;
+          margin-bottom: 40px;
+          text-align: left;
+          color: @grayDark;
+          border-bottom: 2px solid;
+          border-color: #ddd;
+
+          > span {
+            position: relative;
+            top: -10px;
+            padding: 2px 10px;
+            border-radius: 2px;
+            background-color: @whiteBackground;
+          }
+        }
+      }
+      
+      > .alert {
+        margin-top: 1em;
+      }
+    });
+  });
+});

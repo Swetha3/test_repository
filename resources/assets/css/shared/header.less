@@ -1,0 +1,433 @@
+#logo {
+  display: block;
+  & > svg {
+    fill: @grayDark;
+    margin-top: -2px;
+  }
+}
+
+.license-banner {
+  .flexy(center);
+
+  height: @tile;
+  padding: 0 20px;
+
+  color: @white;
+  background: @blueDarkest;
+
+  .indicator {
+    height: @fontSizeLarge;
+    margin-right: 20px;
+    padding: 0 13px;
+
+    font-size: @fontSizeSmaller;
+    line-height: @fontSizeLarge; // Height of indicator, to center vertically.
+
+    border-radius: @border-radius-base;
+    color: @white;
+    background-color: #ed5c5c;
+  }
+
+  &.expiry-current .indicator {
+    color: @grayDark;
+    background-color: @grayLightest;
+  }
+
+
+  .message {
+    .flex(1 0 auto);
+    font-size: @fontSizeLarge;
+  }
+
+  .stat {
+    font-size: @baseFontSize;
+    text-transform: uppercase;
+
+    .count {
+      // The span here is the space after .count, which looks better if it's the
+      // same size as the .count.
+      &, & + span {
+        font-size: @fontSizeLarge;
+      }
+    }
+  }
+
+  .contact-sales {
+    padding: 0 30px;
+    height: 40px;
+    margin-left: 40px;
+
+    font-size: @fontSizeLarge;
+    font-weight: bold;
+    line-height: 40px;
+
+    border-radius: 20px;
+    color: inherit;
+    background-color: @blueDark;
+
+    &:hover {
+      color: inherit;
+      background-color: @blue;
+    }
+  }
+}
+
+#statuspage-bar {
+  @dismiss-icon-size: 14px;
+
+  position: relative;
+
+  .flexy(center, space-between);
+
+  height: 40px;
+  min-height: 40px;
+
+  &.none {
+    display: none;
+    height: 0px;
+    padding: 0px;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  .dismiss-banner {
+    width: @dismiss-icon-size;
+    height: @dismiss-icon-size;
+
+    svg {
+      stroke: @grayDark;
+      stroke-width: 10px;
+    }
+  }
+
+  .status-page-color(@color, @background-color) {
+    visibility: visible;
+    padding: 15px;
+    background-color: @background-color;
+    color: @color;
+    h4 { color: @color; }
+    a  { color: @color; }
+  }
+
+  &.minor {
+    .status-page-color(@statuspage-text-color, @statuspage-minor-bg);
+  }
+
+  &.major,
+  &.critical {
+    .status-page-color(@statuspage-text-color, @statuspage-major-bg);
+  }
+
+  h4 {
+    font-weight: 500;
+  }
+
+  h4, p {
+    overflow: hidden;
+    margin: 0;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    text-overflow: ellipsis;
+  }
+
+  .statuspage-content {
+    .flex(0 0 ~"calc(100% - @{dismiss-icon-size})");
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.environment {
+  .flexy(center, center);
+  position: fixed;
+  color: @white;
+  bottom: 0;
+  right: 120px;
+  width: @tile * 1.5;
+  height: 3em;
+  border-radius: 4px 4px 0 0;
+  z-index: 9001; // see intercom hack in shame.less
+  background: @orange;
+
+  &.env-production {
+    background: @red;
+  }
+
+  &.env-staging {
+    background: @orange;
+  }
+
+  &.env-development {
+    background: @blueLight;
+  }
+
+  &.env-test {
+    background: @green;
+  }
+}
+
+.head-admin {
+  @color: fade(@white, 50);
+  background: @grayDarker;
+  color: @color;
+
+  &:not(.open) {
+    display: none;
+  }
+
+  &.expanded {
+    .admin-tools {
+      .metrics {
+        cursor: n-resize;
+      }
+    }
+  }
+  a {
+    color: @color;
+    &:hover {
+      color: @white;
+    }
+  }
+
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  .admin-tools {
+    height: @tile;
+    line-height: 200%;
+    &.expanded {
+      height: auto;
+    }
+    .metrics {
+      .flexy(center);
+      .user-select(none);
+      padding: 0 1em;
+      cursor: s-resize;
+      font-size: @baseFontSize * 1.5;
+      color: @white;
+      strong {
+        font-size: @fontSizeSmaller;
+        color: @color;
+        text-transform: uppercase;
+        margin: 0 1em 0 3px;
+      }
+    }
+  }
+  .options {
+    margin-left: 1em;
+    a {
+      &:not(:first-child) {
+        &:before {
+          content: '/';
+          color: @color;
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+  .admin-stats {
+    margin: 0 1em 1em;
+    table {
+      width: 100%;
+    }
+    th {
+      text-align: left;
+      &.number {
+        text-align: right;
+      }
+    }
+    td.number {
+      text-align: right;
+    }
+    tbody {
+      tr {
+        &:hover {
+          background: fadeout(@color, 34);
+        }
+      }
+    }
+  }
+}
+
+.navbar {
+
+  &, .btn, .dropdown-menu > li > a {
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+}
+
+.navbar-nav > li > a.signup-link {
+    color: @white;
+    width: 110px;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    border-radius: 20px;
+    margin: 15px;
+
+    &:hover {
+        color: @grayDark;
+    }
+}
+
+.subnav {
+  min-height: 0;
+  top: 70px;
+  z-index: 999;
+
+  .navbar-nav {
+    @media (min-width: @screen-sm-min) {
+      margin-left: 113px; // circle logo + padding
+    }
+
+    > li > a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.outer-header {
+
+  .navbar {
+    margin-bottom: 0;
+  }
+
+  .hamburger-menu {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .demo-label {
+
+  /* Matching format to header style in: */
+  /* resources/components/bootstrap/less/... nav.less, navbar.less */
+  /* Variables compiled from "../shared/variables.less" */
+
+    position: relative;
+    display: block;
+    padding: @navbar-padding-vertical @nav-link-padding;
+  }
+
+  @media (max-width: @screen-sm-min) {
+    .dropdown-menu {
+      border: none;
+      box-shadow: none;
+      display: block;
+      float: none;
+      font-size: 14px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      text-align: left;
+    }
+    .hamburger-menu {
+      color: @black;
+      display: block;
+      left: 10px;
+      position: absolute;
+      top: 20px;
+    }
+    .menu-item {
+      background-color: @white !important;
+      border: 1px solid #dddddd;
+      border-bottom: 0;
+      &.sub {
+        padding: 10px 0 10px 40px !important;
+        height: 40px;
+      }
+      &.active {
+        color: @blue
+      }
+    }
+    .navbar-container {
+      &.closed {
+        display: none;
+      }
+      &.open {
+        display: block;
+        margin-top: -10px;
+        .fa-caret-down {
+          display: none;
+        }
+      }
+      .navbar-nav {
+        margin: 0 -30px;
+        &.back-to-app {
+          display: none;
+        }
+      }
+    }
+    .navbar-header {
+      margin: 0 auto;
+      width: 128px;
+    }
+    .mobile-nav {
+      display: block;
+      color: @black;
+      position: absolute;
+      top: 25px;
+      right: 10px;
+      &.signup {
+        color: @green;
+      }
+    }
+    .signup-link {
+      display: none;
+    }
+    .subnav {
+      .navbar-nav {
+        margin: 5px -20px;
+        width: 100vw;
+
+        .list-item {
+          display: inline-block;
+        }
+        .menu-item {
+          border: none;
+          padding: 5px 8px;
+        }
+      }
+    }
+  }
+}
+
+[data-component="frontend.components.header/osx-usage-warning-banner"] {
+  .flexy(center, space-between, row);
+  font-weight: 300;
+  font-size: 13px;
+  background-color: @statuspage-minor-bg;
+
+  .usage-message {
+    .flexy();
+
+    .icon {
+      padding-right: 10px;
+    }
+
+    .usage {
+      font-weight: 400;
+    }
+
+    .plan-link {
+      font-weight: 400;
+    }
+  }
+
+  .dismiss {
+    cursor: pointer;
+  }
+}
+

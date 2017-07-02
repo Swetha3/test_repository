@@ -1,0 +1,325 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+// We apply global styles to our a elements, but only if they don't have the
+// class .exception or .btn. An a.exception should get no global styles, buttons
+// get styled by Bootstrap.
+a:not(.exception):not(.btn) {
+  color: @blueDark;
+  .transition(all .2s ease-in);
+  i {
+    .transition(all .1s ease-in);
+  }
+}
+
+// Override Bootstrap to make sure that a.exception elements get no global
+// styles.
+a.exception {
+  &,
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: inherit;
+    text-decoration: initial;
+    outline: initial;
+    outline-offset: initial;
+  }
+}
+
+.app-main {
+  .flex(1 1 auto);
+  // See note in resources/assets/css/inner/inner.less about `height: 0;` on
+  // `.below-top`. This is the same, but for the `.main's` width.
+  width: 0;
+}
+
+.main-head {
+  .flex(0 0 auto);
+
+  .follow-project {
+    margin-left: 20px;
+  }
+}
+
+// FIXME: this should be added to the button component
+.btn-icon {
+  height: 30px;
+  width: 30px;
+  min-width: 30px;
+  border-radius: 3px;
+
+  background-color: @grayLightest;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+
+  position: relative;
+
+  &:hover {
+    background-color: @whiten;
+
+    img,
+    img svg,
+    i {
+      color: @gray;
+    }
+  }
+
+  img,
+  img svg,
+  i {
+    height: 18px;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+}
+
+.main-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-display .main-body {
+    height: 100%;
+}
+
+.main-body {
+  .flex(auto);
+  overflow-x: auto;
+  overflow-y: scroll;
+
+  input:not(.dumb) {
+     @height: 3em;
+     &[type="text"],
+     &[type="search"],
+     &[type="email"] {
+       .smart_label(@height, (@height / 2));
+     }
+   }
+
+   textarea:not(.dumb) {
+     .smart_label(13em, 3px);
+   }
+
+  .empty-placeholder {
+    @reserved-height: (@tile * 2);
+
+    .flexy(center, center);
+    height: ~"calc(100vh - @{reserved-height})";
+  }
+}
+
+.main-foot {
+  padding: @footerItemSize 0;
+  border-top: 1px @grayLighter solid;
+  margin-top: auto;
+  .logo {
+    display: block;
+    height: @footerItemSize;
+    width: @footerItemSize;
+    background-image: url("@{imgPath}/logomark.svg");
+    background-size: @footerItemSize;
+    background-position: center left;
+    background-repeat: no-repeat;
+  }
+}
+
+input:not(.dumb) {
+  @height: 3em;
+  &[type="text"],
+  &[type="password"],
+  &[type="search"],
+  &[type="email"] {
+    .smart_label(@height, (@height / 2));
+  }
+}
+
+textarea:not(.dumb) {
+  .smart_label(13em, 3px);
+}
+
+button [spinner], button [data-spinner]{
+  width:  @baseLineHeight;
+  height: @baseLineHeight;
+  vertical-align: top;
+}
+
+.fa.fa-spin {
+  -moz-animation: spin 1s infinite linear;
+  -o-animation: spin 1s infinite linear;
+  -webkit-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+}
+
+.octicon,
+.material-icons {
+  // FIXME: We shouldn't give these styles everywhere. Look for OVERRIDE--ICON-STYLE.
+  font-size: 18px;
+  color: @grayLight;
+  margin-left: 1ex;
+  vertical-align: middle;
+}
+
+.center{
+  display: block;
+  margin: 0 auto;
+}
+
+.center-text{
+  text-align: center;
+}
+
+.contact-us {
+  button {
+    display: block;
+    width: 100px;
+  }
+}
+
+.card {
+  @card-padding: 15px;
+  // A border-bottom would prevent margins from collapsing out of the bottom of
+  // the .card, but a box-shadow does not. We want to extend the bottom of the
+  // .card to include any margins, as the browser normally would with a border.
+  // Clearfixing accomplishes this.
+  .clearfix;
+
+  padding: @card-padding;
+  margin-bottom: @card-padding;
+
+  background: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+
+  hr {
+    margin: 10px 0;
+  }
+
+  h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+    margin-top: 0px;
+  }
+
+  &.detailed {
+    padding: 0;
+
+    .details {
+      padding: @card-padding;
+    }
+
+    h1:first-child,
+    h2:first-child,
+    h3:first-child,
+    h4:first-child,
+    h5:first-child,
+    h6:first-child {
+      display: block;
+      margin: 0;
+      padding: @card-padding;
+      border-bottom: 1px solid @grayLightest;
+    }
+
+    hr {
+      margin: @card-padding 0;
+    }
+  }
+}
+
+.om-instrumentation {
+  figure {
+    margin: 0;
+  }
+
+  .admin-stats {
+    .animation(admin-slide-down 200ms ease-in-out);
+    width: 100%;
+    color: white;
+    background-color: black;
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  table {
+    font-family: monaco;
+    font-size: 12px;
+    width: calc(100% - 2em);
+    margin: 0 1em 1em;
+    th, td { text-align: left; }
+    tr:not(:last-child) { border-bottom: 1px dashed fade(white, 10%); }
+    .number { text-align: right; }
+  }
+}
+
+.alert {
+  a.close {
+    color: @grayDarker !important;
+    &:hover {
+      color: @grayDarkest !important;
+      text-decoration: none !important;
+    }
+  }
+}
+
+@keyframes admin-slide-down {
+  0%   { .translate(0, -100%);}
+  100% { .translate(0, 0);}
+}
+
+@-webkit-keyframes admin-slide-down {
+  0%   { .translate(0, -100%);}
+  100% { .translate(0, 0);}
+}
+
+.wrap-words {
+  white-space: pre-wrap;
+}
+
+@media (max-width: 543px) {
+  .hidden-xs-down {
+    display: none !important;
+  }
+}
+
+@media (min-width: 544px) {
+  .hidden-sm-up {
+    display: none !important;
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .hidden-sm-down {
+    display: none !important;
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .hidden-md-up {
+    display: none !important;
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .hidden-md-down {
+    display: none !important;
+  }
+}
+
+// Override some arcaic bootstrap styles
+// we were overriding them on most of our ol's and ul's individually anyways
+ul,
+ol {
+  margin-top: auto;
+  margin-bottom: auto;
+  ul,
+  ol {
+    margin-bottom: auto;
+  }
+}

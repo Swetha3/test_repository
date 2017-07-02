@@ -1,0 +1,139 @@
+@selectWidth: 200px;
+
+.account-settings-subpage {
+  .subheading {
+    text-transform: uppercase;
+    color: @grayLight;
+  }
+
+  input[type="submit"] {
+    .circleButton(@grayLighter);
+  }
+
+  .alert {
+    margin: 2em;
+  }
+
+  .card {
+    padding: 0;
+
+    form {
+      margin: 0;
+      width: auto;
+    }
+
+    select.form-control {
+      .fancy-select(@arrow-margin: 6px; @color: inherit);
+      border: 1px solid @input-border;
+
+      .flex(0 0 auto);
+      width: @selectWidth;
+      font-size: inherit;
+    }
+
+    .header {
+      .flexy(center, space-between);
+      padding: 0 10px;
+      border-bottom: 1px solid #ececec;
+
+      h2 {
+        margin: 0;
+        padding: 16px 0;
+      }
+
+      label {
+        padding: 0;
+        margin: 0;
+      }
+
+      select.form-control {
+        display: inline-block;
+        margin-left: 25px;
+      }
+
+      i.material-icons {
+        margin-bottom: 0;
+      }
+    }
+
+    .body {
+      padding: 0 15px;
+
+      .section {
+        padding: 15px 0;
+
+        h3 {
+          margin-bottom: 15px;
+          font-weight: inherit;
+        }
+      }
+    }
+
+    .radio {
+      margin-left: 12px;
+
+      label {
+        font-weight: inherit;
+
+        .radio-circle[disabled] ~ .label-contents {
+            color: @grayLight;
+            cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  .table-header {
+    .flexy (center, space-between);
+    margin-top: 7px;
+    padding: 0 10px;
+
+    h4 {
+      margin: 0;
+      line-height: inherit;
+
+      &:last-child {
+        .flex(0 0 @selectWidth);
+      }
+    }
+  }
+
+  @emailPrefPadding: 10px;
+
+  .email-pref {
+    .flexy(center, space-between);
+    padding: @emailPrefPadding;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: inherit;
+
+    &:last-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .email-pref-repo-name {
+    .flexy(center, flex-start);
+
+    span {
+      margin-left: @emailPrefPadding;
+    }
+  }
+
+  .organization {
+    .flexy(center);
+
+    > .vcs-icon {
+      width: @fontSizeLarge;
+      margin-right: 10px;
+    }
+
+    .locked {
+      width: 100%;
+
+      .locked-icon {
+        display: inline-block;
+        float: right;
+      }
+    }
+  }
+}

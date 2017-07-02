@@ -1,0 +1,242 @@
+// THIS file is for overriding Bootstrap variables that live here:
+// /resources/components/bootstrap/less/variables.less
+//
+// we override the Bootstrap variables
+// by adding our variables.less after their variables.less here:
+// /resources/assets/css/bootstrap/bootstrap.less
+//
+// We should NEVER use any of the variables in this file directly in our stylesheets.
+// --------------------------------------------------
+
+//
+// Bootstrap Variables
+// --------------------------------------------------
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+@gray-darker:            @grayDark;
+@gray-dark:              @grayDarker;
+@gray-light:             @grayLight;
+
+@brand-primary:         @blue;
+@brand-success:         @green;
+@brand-info:            @blueLight;
+@brand-warning:         @orange;
+@brand-danger:          @red;
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Global text color on `<body>`.
+@text-color:            @grayDarker;
+
+//** Global textual link color.
+@link-color:            @linkColor;
+@link-hover-color:      darken(@linkColor, 15%);
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+@font-family-sans-serif:  @sansSerifFontFamily;
+@font-family-monospace:   @monoFontFamily;
+@font-family-base:        @sansSerifFontFamily;
+
+@font-size-large:         @fontSizeLarge; // 18
+@font-size-small:         @fontSizeSmall; // 12
+
+@headings-font-weight:    400;
+@headings-color:          @grayDark;
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.5;
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+@padding-xl-vertical:       16px;
+@padding-xl-horizontal:     22px;
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+@btn-primary-border:             @btn-primary-bg;
+@btn-success-border:             @btn-success-bg;
+@btn-info-border:                @btn-info-bg;
+@btn-warning-border:             @btn-warning-bg;
+@btn-danger-border:              @btn-danger-bg;
+@btn-link-disabled-color:        @grayLight;
+
+//== Forms
+//
+//##
+
+//** `<input>` border color
+@input-border:                   #ddd;
+
+@legend-color:                   @grayDarker;
+
+//== Dropdowns
+//
+//## Dropdown menu container and contents.
+
+@dropdown-border:                @grayLighter;
+@dropdown-link-color:            @grayDark;
+@dropdown-link-hover-color:      @linkColor;
+@dropdown-link-disabled-color:   @grayLight;
+@dropdown-header-color:          @grayLight;
+
+//== Container sizes
+//
+//## Define the maximum width of `.container` for different screen sizes.
+// Small screen / tablet
+@container-tablet:             (768px + @grid-gutter-width);
+// Medium screen / desktop
+@container-desktop:            (1024px + @grid-gutter-width);
+// Large screen / wide desktop
+@container-large-desktop:      (1200px + @grid-gutter-width);
+
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+// @grid-gutter-width:         30px;
+
+//== Navbar
+//
+//##
+
+// Basics of a navbar
+@navbar-height:                    70px;
+@navbar-default-bg:                #fff;
+@navbar-default-border:            #ddd;
+
+// Navbar links
+@navbar-default-link-color:                #343434;
+@navbar-default-link-hover-color:          @linkColor;
+@navbar-default-link-active-color:         @linkColor;
+@navbar-default-link-active-bg:            transparent;
+
+//=== Inverted navbar
+// Reset inverted navbar basics@navbar-inverse-color:                      @grayLighter;
+@navbar-inverse-link-color:                 @grayLighter;
+
+//== Navs
+//
+//##
+
+//=== Shared nav styles@nav-link-padding:                          10px 20px;
+@nav-disabled-link-color:                   @grayLight;
+@nav-disabled-link-hover-color:             @grayLight;
+
+//== Pagination
+//
+//##
+@pagination-disabled-color:            @grayLight;
+
+//== Form states and alerts
+//
+//## Define colors for form feedback states and, by default, alerts.
+
+@state-success-text:             @grayDarker;
+@state-success-bg:               lighten(@green, @brand-lighten-ratio-v2);
+@state-success-border:           @state-success-bg;
+@state-info-text:                @grayDarker;
+@state-info-bg:                  lighten(@blueLight, @brand-lighten-ratio-v2);
+@state-info-border:              @state-info-bg;
+@state-warning-text:             @grayDarker;
+@state-warning-bg:               lighten(@orange, @brand-lighten-ratio-v2);
+@state-warning-border:           @state-warning-bg;
+@state-danger-text:              @grayDarker;
+@state-danger-bg:                lighten(@red, @brand-lighten-ratio-v2);
+@state-danger-border:            @state-danger-bg;
+
+//== Labels
+//
+//##
+
+//** Default label background color
+@label-default-bg:            @grayLight;
+
+
+//== Alerts
+//
+//## Define alert colors, border radius, and padding.
+
+@alert-border-radius:         0;
+
+//== List group
+//
+//##
+
+//** Background color on `.list-group-item`
+@list-group-disabled-color:   @grayLight;
+
+//== Panels
+//
+//##
+
+@panel-default-text:          @grayDarker;
+
+//== Badges
+//
+//##
+
+@badge-bg:                    @grayLight;
+
+//== Breadcrumbs
+//
+//##
+
+@breadcrumb-padding-vertical:   0;
+@breadcrumb-padding-horizontal: 0;
+@breadcrumb-bg:                 transparent;
+@breadcrumb-color:              @grayDarker;
+@breadcrumb-active-color:       @grayLight;
+@breadcrumb-separator:          '»';
+
+//== Code
+//
+//##
+
+@pre-color:                   @grayDarker;
+
+//== Type
+//
+//##
+
+//** Text muted color
+@text-muted:                  @grayLight;
+//** Abbreviations and acronyms border color
+@abbr-border-color:           @grayLight;
+//** Headings small color
+@headings-small-color:        @grayLight;
+//** Blockquote small color
+@blockquote-small-color:      @grayLight;
+
+//** Misc
+// Other Bootstrap Mixins and Variables that we are using in our code
+//##
+
+// .make-sm-column(6) {}
+// .make-sm-column-offset(1) {}
+// .make-sm-column(4) {}
+
+// .row {}
+
+// .table {}
+// .table-striped {}
+// .table-condensed {}
+// .well {}
+
+// .clearfix {}
+// .selected-quote(...) {}
+// .text-center {}
+// .transition(...) {}
+// .text-overflow {}
+// .btn-xs {}

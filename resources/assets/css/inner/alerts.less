@@ -1,0 +1,96 @@
+.alert {
+  margin-bottom: 15px;
+
+  .alert-icon {
+    margin-left: 0;
+    margin-right: 1em;
+
+    &.warning {
+      color: @yellow;
+    }
+  }
+
+  &.expanded {
+    padding: 0;
+    border: none;
+
+    &.alert-danger {
+      .alert-header {
+        .flexy();
+        background: lighten(@red, @brand-lighten-ratio-v2 * 0.66);
+        border-bottom: 1px solid @red;
+      }
+
+      .source-name:after {
+        content: "—";
+        padding: 0 4px;
+      }
+
+      hr {
+        border-top-color: @red;
+      }
+    }
+
+    .alert-header {
+      padding: ((2 / 3) * 15px) 15px;
+      text-transform: uppercase;
+    }
+
+    .alert-body {
+      padding: 15px;
+      overflow: auto;
+      
+      .bottom-right-cta {
+        float: right;
+      }
+    }
+  }
+
+  &.alert-default {
+    background-color: @grayLightest;
+    border-color: @grayLightest;
+  }
+
+  &.alert-info {
+    background-color: @blueLightest;
+    border-color: @blueLightest;
+  }
+
+  &.alert-success {
+    background-color: @greenLightest;
+    border-color: @greenLightest;
+  }
+
+  &.alert-warning {
+    background-color: @yellowLightest;
+    border-color: @yellowLightest;
+    position: relative;
+  }
+
+  &.alert-danger {
+    background-color: @redLightest;
+    border: 1px solid fade(@black, 10%);
+    min-height: 38px;
+  }
+
+  &.offer {
+    position: relative;
+    background-color: @greenLightest;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  .dismiss {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
+  &.iconified {
+    .flexy(row);
+  }
+}
+

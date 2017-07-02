@@ -1,0 +1,11 @@
+window.stefon_hack_for_om =
+  data_uris:
+    "/img/status-logos/success.svg": '(data-uri "img/status-logos/success.svg")'
+    "/img/logos/salesforce.png": '(data-uri "img/logos/salesforce.png")'
+    "/img/logos/samsung.png": '(data-uri "img/logos/samsung.png")'
+    "/img/logos/kickstarter.png": '(data-uri "img/logos/kickstarter.png")'
+    "/img/logos/cisco.png": '(data-uri "img/logos/cisco.png")'
+    "/img/logos/shopify.png": '(data-uri "img/logos/shopify.png")'
+
+  asset_paths:
+    "/img/container-oriented.png": '(asset-path "img/container-oriented.png")'

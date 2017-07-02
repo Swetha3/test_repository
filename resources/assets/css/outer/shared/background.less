@@ -1,0 +1,88 @@
+.background {
+  position: absolute;
+  z-index: -1;
+}
+
+.background.language {
+  height: 200px;
+
+  &.rails-1 {
+    height: 200px;
+    bottom: -85px;
+    left: 10%;
+  }
+
+  &.clojure-1 {
+    bottom: -120px;
+    right: 50px;
+  }
+
+  &.java-1 {
+    top: -100px;
+    right: 20%;
+  }
+
+  &.php-1 {
+    bottom: -115px;
+    left: 50%;
+  }
+
+  &.python-1 {
+    top: 30%;
+    left: -100px;
+  }
+
+  &.ruby-1 {
+    top: -100px;
+    left: 100px;
+  }
+
+  &.javascript-1 {
+    top: -100px;
+    right: -110px;
+  }
+
+  &.node-1 {
+    top: -170px;
+    right: 40%;
+  }
+}
+
+.outer-section-condensed {
+
+  .background.language {
+
+    &.java-1 {
+      top: -150px;
+    }
+
+    &.python-1 {
+      left: -150px;
+      top: 15%;
+    }
+  }
+}
+
+
+// Background implemented as an after so we can set its opacity.
+// Important! The element this is applied to should have a z-index (so it forms
+// a stacking context). Set z-index: 0 if it doesn't already have one. We don't
+// do that in the mixin so we don't override another value.
+.background-after-element(@rules) {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    display: block;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+
+    content: "";
+
+    @rules();
+  }
+}

@@ -1,0 +1,560 @@
+@aside-menu-width: (@tile * 3);
+
+@new-aside-menu-width: 285px;
+
+@aside-nav-width: @tile;
+
+@em: @baseFontSize;
+@aside-transition-speed: 200ms;
+@border-width: 1px;
+@aside-color: @gray;
+
+.inner {
+  .app-main {
+    .flexy(column);
+    transition: margin @aside-transition-speed;
+    transition-timing-function: cubic-bezier(0.5, -0.25, 0.5, 1.25);
+  }
+}
+
+.aside-icon {
+  margin: auto;
+}
+
+.aside-left-nav {
+  .flex(0 0 auto);
+
+  width: @aside-nav-width;
+  background: @aside-color;
+  overflow: visible;
+
+  a {
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+
+    &:hover, &:active {
+        color: @white;
+    }
+
+    &:not(:hover) {
+      color: @grayLightest;
+    }
+
+    &.aside-item.current {
+      background-color: @whiteBackground;
+      color: @aside-color;
+      border-right: 1px solid @grayLighter;
+
+      i {
+        opacity: 1;
+      }
+    }
+  }
+
+  .tooltip {
+    font-size: @baseFontSize;
+    visibility: hidden;
+    min-width: 12em;
+    .tooltip-inner {
+      border-radius: (@em * 2);
+      padding: (@em / 2) @em;   // BS RESET
+    }
+    .tooltip-arrow {
+      display: none;
+    }
+    @media screen and ( max-height: 650px ){
+      visibility: visible;
+    }
+  }
+
+  hr {
+    margin: 0;
+    border-top: 1px solid @gray;
+  }
+}
+
+.app-aside {
+  .flex(0 0 auto);
+  .flexy(column);
+}
+
+.aside-left-nav,
+.aside-left-menu {
+  .flexy(column);
+}
+
+.aside-left-menu {
+  .flex(1 0 1px);
+  width: @aside-menu-width;
+  overflow: hidden;
+
+  background-color: @white;
+  transition: @aside-transition-speed;
+  transition-timing-function: cubic-bezier(0.5, -.25, 0.5, 1.25);
+
+  .aside-activity {
+    color: @grayLight;
+
+    header {
+      .box-sizing(border-box);
+      .flex(0 0 auto);
+      .flexy(baseline, space-between);
+
+      padding: 10px 0;
+      border-bottom: solid 1px @grayLighter;
+
+      .toggle-sorting {
+        .fancy-select();
+
+        color: @grayDark;
+      }
+
+      .toggle-all-branches {
+        .flexy;
+
+        input[type=radio] {
+          display: none;
+
+          &:checked + label {
+            background-color: rgba(0,0,0, 0.1);
+          }
+        }
+
+        label {
+          width: @toggle-aside-width;
+          height: @toggle-aside-height;
+          margin: 0;
+
+          line-height: 22px;
+          font-weight: normal;
+          color: @grayDark;
+          text-align: center;
+
+          border-radius: 3px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  width: @new-aside-menu-width;
+}
+
+.aside-activity {
+
+  .flexy(column);
+  .flex(1 0 1px);
+
+  font-size: @aside-font-size;
+
+  margin-left: 15px;
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  // Opt out all <a>s in here from the normal link styles.
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  span {
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 0ms (@aside-transition-speed / 2), opacity (@aside-transition-speed * 2) 0ms;
+  }
+
+  // <ul>s at this level scroll.
+  > ul {
+    .flex(1 0 1px);
+    overflow-y: auto;
+  }
+
+  .projects {
+    > li {
+      border-top: solid @border-width #c5c5c5;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+  }
+
+  .add-private-project-card, .no-projects-followed-card {
+    text-align: center;
+    color: black;
+    margin: 20px;
+    font-size: 14px;
+
+    span > i {
+      margin: 0 5px 0 0;
+    }
+  }
+
+  .selectable() {
+    &:hover {
+      background-color: fade(@white, 60%);
+    }
+
+    &.selected {
+      background-color: @white;
+    }
+  }
+
+  .project-heading {
+    .flexy;
+    .selectable;
+
+    padding: 10px;
+    background-color: #eaeaea;
+
+    > .project-name {
+      .flex(1 1 auto);
+      font-size: 12px;
+      line-height: 20px;
+      font-weight: 600;
+      color: @grayDark;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+
+    .rotating-chevron {
+      margin-right: 10px;
+      font-size: 14px;
+
+      &:before {
+        vertical-align: middle;
+        line-height: 20px;
+        width:18px;
+        text-align: center
+      }
+    }
+  }
+
+  .branches > li {
+    @border-color-between-branches: #dcdcdc;
+    @border-color-above-selected-branch: #e5e5e5;
+    @border-color-below-selected-branch: #c5c5c5;
+
+    .selectable;
+    position: relative;
+
+    border-top: @border-width solid @border-color-between-branches;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &.selected {
+      border-top-color: @border-color-above-selected-branch;
+
+      & + li {
+        border-top-color: @border-color-below-selected-branch;
+      }
+    }
+
+    &:hover {
+      .branch-name {
+        text-decoration: underline;
+      }
+    }
+
+    .branch {
+      .flexy;
+
+      padding: 10px;
+
+      .last-build-status {
+        margin-right: 10px;
+      }
+
+      .project-name {
+        color: @grayDark;
+        font-weight: 600;
+      }
+
+      .branch-name {
+        color: @grayDark;
+      }
+
+      .last-build-info {
+        color: @grayLight;
+      }
+    }
+
+    .project-settings-icon {
+      position: absolute;
+      top: 10px + @border-width;
+      right: 10px;
+    }
+  }
+}
+
+.aside-activity .when {
+  font-family: @monoFontFamily;
+}
+
+.aside-left-menu {
+  background-color: transparent;
+}
+
+.aside-user {
+  .flex(1 0 1px);
+  width: @new-aside-menu-width;
+}
+
+.aside-user .close-menu {
+  // TODO a magic number. the close menu should be removed on completion of v2 anyways.
+  height: 47px;
+}
+
+.aside-user {
+  .flex(1 0 1px);
+  .flexy(column);
+
+  position: relative;
+
+  width: @new-aside-menu-width;
+  height: 100%;
+
+  background: @white;
+  color: @gray;
+  overflow: hidden;
+
+  .aside-item {
+    padding: @grid-gutter-width / 2 @grid-gutter-width / 1.5;
+  }
+
+  header {
+    .flex(0 0 auto);
+    .justify-content(center);
+    padding: 0 0 @grid-gutter-width / 1.5;
+  }
+
+  h4 {
+    font-weight: normal;
+    color: @black;
+    white-space: nowrap;
+    transition: (@aside-transition-speed / 2);
+    transition-timing-function: cubic-bezier(0.5, -.25, 0.5, 1.25);
+    width: 100%;
+    height: @tile / 1.5;
+    line-height: (@tile * 1.1);
+    margin: 0;
+    padding: 0 @grid-gutter-width / 1.5;
+  }
+
+  .close-menu {
+    .flexy(center);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 @em;
+
+    z-index: 1060;
+
+    &:hover {
+      path {
+        stroke: @black;
+      }
+    }
+
+    path {
+      stroke: @grayLight;
+      stroke-width: 5;
+    }
+  }
+}
+
+.aside-user-options {
+  .flex(1);
+  .flexy(column);
+  overflow-y: auto;
+
+  .aside-item {
+    max-height: 3em;
+    align-items: flex-start;
+
+    color: @grayDarker;
+    text-decoration: none;
+
+    &:not(.aside-heading):hover {
+      background: @grayLightest;
+    }
+
+    &a:active {
+      &:not(.active) {
+        color: inherit;
+        background: @grayLightest;
+      }
+    }
+
+    &a.active {
+      color: @grayDark;
+      background: @grayLightest;
+      cursor: default;
+    }
+  }
+}
+
+.aside-item {
+  .flex(0 1 @tile);
+  .flexy(center, center, column);
+
+  white-space: nowrap;
+  transition: (@aside-transition-speed / 2) ease-in-out;
+  min-height: 1.5em;
+
+  &:hover,
+  &:focus {
+    transition-duration: 0;
+  }
+
+  &.active {
+    background: @grayLightest;
+    transition-duration: 0;
+  }
+
+  &.aside-heading {
+    align-items: flex-start;
+    background: @white;
+    font-size: @fontSizeSmallest;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    line-height: 3.2;
+    padding-bottom: 1em;
+    text-transform: uppercase;
+
+    &:first-child {
+      margin-top: 0.75em;
+    }
+
+    &:not(:first-child) {
+      margin-top: 1.5em;
+    }
+  }
+
+
+  &:last-child {
+      margin-bottom: 1em;
+  }
+
+  &.logo {
+    .justify-content(center);
+
+    min-height: @tile;
+
+    &:hover, &:focus {
+      background: @gray;
+    }
+
+    .logomark {
+      .flexy(center, center);
+      .icon-style(@white, (@em * 2));
+      width: @tile;
+      min-height: @tile;
+      i {
+        opacity: 1;
+      }
+    }
+  }
+
+  .nav-label {
+    font-size: 10px;
+    margin-top: 6px;
+    text-align: center;
+    white-space: normal;
+    text-transform: uppercase;
+
+    @media screen and ( max-height: 650px ){
+      display: none;
+    }
+  }
+
+  &.avatar {
+    opacity: 1;
+  }
+
+  &.push-to-bottom {
+    margin-top: auto;
+  }
+
+  > svg {
+    width: @fontSizeLarge; // We should really rethink these variables
+
+    @media screen and ( min-height: 650px ){
+      width: 24px;
+    }
+  }
+
+  > i {
+    margin: 0;
+    color: inherit;
+    font-size: 24px;
+
+    transition: (@aside-transition-speed / 2) ease-in-out;
+
+    @media screen and ( max-height: 650px ){
+      font-size: @fontSizeLarge;
+    }
+  }
+
+  &.unread > i {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: -3px;
+      right: -5px;
+
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+
+      content: ' ';
+      background-color: @white;
+    }
+  }
+
+  .account-avatar {
+    @s: (@tile / 2);
+    min-width: @s;
+    height: @s;
+    margin: 0 @baseFontSize 0 ((@tile - @s) / 2);
+    border-radius: (@s / 2);
+    transition: margin (@aside-transition-speed * 2);
+    pointer-events: none;
+  }
+
+  span {
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 0ms (@aside-transition-speed / 2), opacity (@aside-transition-speed * 2) 0ms;
+  }
+}
+
+@media (max-width: 500px) {
+    .app-dominant {
+        // TODO Using !important this much isn't good.
+        // We should really get a handle on our CSS layers
+        display: inline !important;
+        overflow-y: scroll !important;
+    }
+    .app-aside {
+        width: 95%;
+        height: 30vh;
+    }
+
+    .app-aside .aside-left-menu {
+        width: 100%;
+    }
+}

@@ -1,0 +1,564 @@
+.rotating-chevron {
+  margin-right: 6px; // magic number
+
+  &:before {
+    display: inline-block;
+    transition: all 0.2s ease;
+    content: "\f054";
+    font-family: FontAwesome;
+    font-size: @build-failure-chevron-size;
+    color: @grayLight;
+    cursor: pointer;
+    pointer-events: all;
+  }
+
+  &.expanded:before {
+    .rotate(90);
+  }
+}
+
+#container_parent {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  margin-left: 8.5%;
+  margin-right: 8.5%;
+}
+
+// Used by om frontend to hide scrollers it needs for find in firefox
+#container_scroll_parent {
+  // hides scrollbar on container_parent
+  overflow: hidden;
+
+  // TODO: move this into the main #container_parent when om is fully shipped
+  #container_parent {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    // hides scrollbar
+    margin-bottom: -25px;
+    padding-bottom: 25px;
+  }
+}
+
+.containers {
+  z-index: 2;
+}
+
+// V2 from here on !!!!
+
+@pills-breakpoint: @screen-xs-max;
+
+.build-info-v2 {
+  margin-top: 15px;
+
+  a:not(.exception):hover {
+    text-decoration: underline;
+  }
+
+  .container-selector:hover {
+    text-decoration: none;
+  }
+
+  .resource-class {
+    display: inline-block;
+    padding-left: 5px;
+  }
+}
+
+.container-pills-container {
+  .controls {
+    .flexy(stretch, flex-start, row);
+
+    margin-bottom: 3px;
+
+    @media (max-width: @pills-breakpoint) {
+      .flexy(stretch, flex-start, row);
+
+      label {
+        display: block
+      };
+    }
+
+    .filtering {
+      .fancy-radio();
+
+      font-size: 13px;
+
+      .filter-help {
+        margin-right: 10px;
+      }
+
+      label {
+        padding: 6px 8px;
+        margin: 0 0 12px 0;
+      }
+    }
+  }
+}
+
+.container-list {
+  display: flex;
+
+  @media (max-width: @pills-breakpoint) {
+    .flexy(flex-start, space-between, row, wrap);
+
+    &.prev-and-next {
+      .page-container-pills {
+        .flex(0 0 ~"calc(50% - 1px)");
+      }
+    }
+
+    .page-container-pills {
+      order: -1;
+      .flex(0, 0, 100%);
+    }
+  }
+}
+
+.container-selector {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 40px;
+  cursor: pointer;
+
+  background: @grayLightest;
+  color: @grayDarker;
+  font-size: 11px;
+  padding: 5px;
+
+  & + .container-selector:not(.page-container-pills) {
+    margin-left: 1px;
+  }
+
+  &:not(.active) {
+    &.success .status-icon {
+      color: @green;
+    }
+
+    &.waiting .status-icon {
+      color: @purple;
+    }
+
+    &.running .status-icon {
+      color: @blueLight;
+    }
+
+    &.failed .status-icon {
+      color: @red;
+    }
+
+    &.canceled .status-icon {
+      color: @grayLight;
+    }
+  }
+
+  &.active {
+    color: @white;
+
+    &.success {
+      background-color: @green;
+    }
+
+    &.waiting {
+      background-color: @purple;
+    }
+
+    &.running {
+      background-color: @blueLight;
+    }
+
+    &.failed {
+      background-color: @red;
+    }
+
+    &.canceled {
+      background-color: @grayLight;
+    }
+  }
+
+  &:hover {
+    background: @whiten;
+  }
+
+  &.add-containers {
+    .flexy(center, center);
+    font-size: 18px;
+    color: @white;
+    background: @blueLight;
+
+    &.upsell {
+      flex-grow: 0.85;
+    }
+
+    &:hover {
+      background: @blueLightest;
+    }
+  }
+
+  &.page-container-pills {
+    @caret-padding: 10px;
+
+    .flexy(center, flex-start, row);
+
+    color: @white;
+    background: @gray;
+
+    .pill-details {
+      @media (max-width: @pills-breakpoint) {
+        text-align: right;
+      }
+    }
+
+    .nav-caret, .pill-details {
+      flex-grow: 1;
+    }
+
+    .nav-caret + .pill-details {
+      text-align: left;
+    }
+
+    .pill-details + .nav-caret {
+      text-align: right;
+
+      @media (max-width: @pills-breakpoint) {
+        padding-left: @caret-padding;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: @pills-breakpoint) {
+      .nav-caret {
+        &:first-child {
+          text-align: right;
+          padding-right: @caret-padding;
+        }
+      }
+    }
+  }
+
+  .upper-pill-section {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+
+    > .container-index {
+      .flex(1 1 auto);
+    }
+
+    > .status-icon {
+      .flex(0 0 auto);
+      width: 14px;
+    }
+
+    @media (max-width: @pills-breakpoint) {
+      > .status-icon {
+        .flex(1 1 auto);
+      }
+    }
+  }
+
+  @media (max-width: @pills-breakpoint) {
+    padding: 1px;
+
+    .upper-pill-section {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lower-pill-section {
+      display: none;
+    }
+
+    &.page-container-pills, &.add-containers {
+      @container-pill-vertical-spacing: 5px;
+
+      padding: 3px;
+
+      text-align: center;
+
+      &:first-child {
+        margin-bottom: @container-pill-vertical-spacing;
+      }
+
+      &:last-child {
+        margin-bottom: @container-pill-vertical-spacing;
+      }
+    }
+  }
+}
+
+.build-tests-info {
+  margin-bottom: 0;
+}
+
+#container_parent {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.alert {
+  a {
+    color: @blueDark;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.build-tests-summary {
+  margin-bottom: 8px;
+}
+
+.build-tests-list-container {
+  padding-top: 0;
+
+  .filename {
+    margin: 10px 0;
+  }
+}
+
+.build-tests-list {
+  margin: 0;
+  counter-reset: test-list;
+
+  li {
+    margin-top: 10px;
+  }
+}
+
+.build-test {
+  .properties {
+    .flexy(center, row);
+    flex-wrap: wrap;
+  }
+}
+
+.test-name {
+
+  &:before {
+    margin-left: 5px;
+    content: counter(test-list) ". ";
+    counter-increment: test-list;
+  }
+}
+
+.test-file {
+  text-align: right;
+  margin-left: auto;
+  padding-left: 10px;
+  margin-right: 0;
+  .wrap-words;
+}
+
+.build-test-output {
+  margin: 10px 0;
+  .wrap-words;
+
+  .expander {
+    float: right;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    color: @grayLighter;
+    background-color: rgba(255,255,255, 0.2);
+    .user-select(none);
+  }
+}
+
+.alert {
+  .build-tests-toggle {
+    margin: 0;
+    padding: 0;
+    color: @gray;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.build-tests-toggle-icon {
+  .rotating-chevron;
+}
+
+// TODO Generalized whitespace tweak. Should be moved to
+// global bootstrap override file or something.
+ul:last-child {
+  margin-bottom: 0;
+}
+
+.test-results {
+  dl {
+    padding-top: 0.2em;
+    margin-bottom: 0;
+  }
+
+  dt {
+    clear: both;
+    float: left;
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  dd {
+    float: left;
+    padding-left: 0.5em;
+  }
+
+  .alert {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.queued-builds {
+  .build {
+    margin-top: (@grid-gutter-width / 2);
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .build-info {
+    padding-right: 0;
+  }
+}
+
+.sub-head-ssh-info {
+  p {
+    margin: 0px;
+    line-height: 20px;
+  }
+}
+
+.ssh-nodes-list {
+  list-style: none;
+  padding-left: 0px;
+  padding-top: 5px;
+}
+
+.ssh-node {
+  @ssh-node-padding: 10px;
+
+  .flexy(center, flex-start, row);
+  border-bottom: solid 1px @grayLightest;
+  padding-top:    @ssh-node-padding;
+  padding-bottom: @ssh-node-padding;
+}
+
+.ssh-node:last-child {
+  border-bottom: none;
+}
+
+.ssh-node-container {
+  min-width: 110px;
+  font-family: @monoFontFamily;
+}
+
+.ssh-node-command {
+  min-width: 310px;
+  font-family: @monoFontFamily;
+}
+
+.ssh-node-disabled {
+  color: @grayLight;
+}
+
+.circle-yml-highlight {
+  color: @red;
+}
+
+.config-errors {
+
+  .dang {
+    margin-bottom: 15px;
+  }
+
+  ol {
+    padding-left: 20px;
+    margin-bottom: 0;
+
+    li {
+
+      > pre {
+        margin: 10px 0 20px -20px;
+
+        code {
+          color: @red;
+        }
+      }
+
+      &:last-child > pre {
+        margin: 10px 0 0 -20px;
+      }
+    }
+  }
+}
+
+
+.build-timings {
+  .container-step-succeeded {
+    fill: @green;
+  }
+
+  .container-step-failed {
+    fill: @red;
+  }
+
+  .container-step-stopped {
+    fill: @grayLight;
+  }
+
+  .container-step-start-line {
+    stroke: @gray;
+    stroke-width: 1;
+  }
+
+  .x-axis {
+    path, line {
+      fill: none;
+      stroke: @grayLightest;
+    }
+  }
+
+  .x-axis text {
+      font-size: @fontSizeSmallest;
+  }
+
+  .y-axis {
+    path, line {
+      display: none;
+    }
+  }
+
+  .y-axis text {
+      fill: @gray;
+      font-size: round((@baseFontSize * 0.65), 0); // 9px
+  }
+
+  .y-axis-label {
+    font-size: @fontSizeSmallest;
+    fill: @gray;
+  }
+}
+
+
+.build-config-string {
+  pre {
+    word-wrap: normal;
+
+    code {
+      white-space: pre;
+    }
+  }
+
+}

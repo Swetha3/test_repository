@@ -1,0 +1,107 @@
+.ns("frontend.components.pieces.empty-state", {
+  .ui("important", {
+    font-weight: 600;
+  });
+
+  .ui("empty-state", {
+    padding: 15px;
+    text-align: center;
+
+    > .icon {
+      margin: 0 auto 20px;
+      width: 60px;
+      color: @grayLighter;
+    }
+
+    > .heading {
+      font-size: @fontSizeLargest;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    > .subheading {
+      font-size: @fontSizeMedium;
+    }
+
+    > .action {
+      margin-top: 30px;
+    }
+  });
+
+  .ui("avatar-icons", {
+    // Enough space for three avatars, overlapping.
+    width: 200%;
+
+    // Re-center.
+    margin-left: -50%;
+
+    > img {
+      // 50% of 200% = 100% of the avatar width.
+      width: 50%;
+      height: 50%;
+      // -75% of 200% = -150% of the avatar width; this slides each avatar back
+      // across the previous one.
+      margin-right: -75%;
+
+      border-radius: 50%;
+      border: 3px solid @white;
+      background-color: @white;
+
+      &:last-child {
+        // Remove the negative margin from the last one, so the group still
+        // centers correctly.
+        margin-right: 0;
+      }
+    }
+  });
+
+  .ui("full-page-empty-state", {
+    margin-top: @main-body-padding;
+  });
+
+  .ui("empty-state-header", {
+    @icon-size: 60px;
+    @icon-inner-size: 25px;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      > .icon-container {
+        margin: 15px 0 10px;
+        height: @icon-size;
+        width: @icon-size;
+        border-radius: 50%;
+        background: @grayLighter;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        > .icon {
+          color: @grayDark;
+          width: @icon-inner-size;
+          height: @icon-inner-size;
+        }
+      }
+
+      > .description-text {
+        text-align: center;
+        width: 70%;
+
+        @media (max-width: @screen-xs-max) {
+          width: 100%;
+        }
+      }
+    }
+  });
+
+  .ui("empty-state-footer", {
+    .ctas {
+      > a {
+        margin: 10px 10px 0 0;
+      }
+    }
+  });
+});

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="24px" height="25px" viewBox="0 0 24 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15588) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-add-projects</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="1.0-Builds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="00-main-nav-icons-assets" sketch:type="MSArtboardGroup" transform="translate(-23.000000, -303.000000)" fill="#FFFFFF">
+            <g id="Group" sketch:type="MSLayerGroup">
+                <g id="Layout/Sidebar" sketch:type="MSShapeGroup">
+                    <g id="Nav" transform="translate(0.000000, 70.387597)">
+                        <g id="Add" transform="translate(0.000000, 210.000000)">
+                            <path d="M40,34 L36,34 L36,30 C36,29.451 35.55,29 35,29 C34.45,29 34,29.451 34,30 L34,34 L30,34 C29.45,34 29,34.45 29,35 C29,35.55 29.45,36 30,36 L34,36 L34,40 C34,40.551 34.45,41 35,41 C35.55,41 36,40.551 36,40 L36,36 L40,36 C40.55,36 41,35.55 41,35 C41,34.45 40.55,34 40,34 L40,34 Z M35,23 C28.383,23 23,28.383 23,35 C23,41.617 28.383,47 35,47 C41.617,47 47,41.617 47,35 C47,28.383 41.617,23 35,23 L35,23 Z M35,45 C29.486,45 25,40.514 25,35 C25,29.486 29.486,25 35,25 C40.514,25 45,29.486 45,35 C45,40.514 40.514,45 35,45 L35,45 Z" id="icon-add-projects"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,210 @@
+.prefixer(@property; @value; @rest...) {
+  .prefix(@property; @value; @rest; @counter: length(@rest)) when (@counter > 0) {
+    .prefix(@property; @value; @rest; (@counter - 1));
+    @prefix: extract(@rest, @counter);
+    -@{prefix}-@{property}: @value;
+  }.prefix(@property; @value; @rest);
+  @{property}: @value;
+}
+.prefixer_value(@property; @value; @rest...) {
+  .prefix(@property; @value; @rest; @counter: length(@rest)) when (@counter > 0) {
+    .prefix(@property; @value; @rest; (@counter - 1));
+    @prefix: extract(@rest, @counter);
+    @{property}: ~"-@{prefix}-@{value}";
+  }.prefix(@property; @value; @rest);
+  @{property}: @value;
+}
+
+// Misc.
+// odds and ends
+
+.roundedOff {
+  border-radius: 100em; // big enough to ensure btn rounds completely
+}
+.stretchOutBkg {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.icon-style(@color) {
+  i {
+    &.ico {
+      path {
+        fill: @color;
+      }
+    }
+  }
+}
+.icon-style(@color, @size) {
+  i {
+    &.ico {
+      svg {
+        width: @size;
+        height: @size;
+      }
+      path {
+        fill: @color;
+      }
+    }
+  }
+}
+.box-sizing(...) {
+  .prefixer(box-sizing, @arguments, webkit moz);
+}
+.user-select(...) {
+  .prefixer(user-select, @arguments, webkit moz);
+}
+
+// .for
+// see: https://github.com/seven-phases-max/less.curious/blob/master/src/for.less
+
+.for(@i, @n) {.-each(@i)}
+.for(@n)     when (isnumber(@n)) {.for(1, @n)}
+.for(@i, @n) when not (@i = @n)  {
+    .for((@i + (@n - @i) / abs(@n - @i)), @n);
+}
+
+// .for-each
+// see: https://github.com/seven-phases-max/less.curious/blob/master/src/for.less
+
+.for(@array)   when (default()) {.for-impl-(length(@array))}
+.for-impl-(@i) when (@i > 1)    {.for-impl-((@i - 1))}
+.for-impl-(@i) when (@i > 0)    {.-each(extract(@array, @i))}
+
+// Outline
+// same effect as "border" w/o increasing object size
+
+.outlineEmboss(@color) {
+  border: none;
+  @topHighlightColor: lighten(@color,     5);
+  @outlineColor:       darken(@color, 11.75);
+  box-shadow:  0    1px @outlineColor inset,
+               0   -1px @outlineColor inset,
+               1px  0   @outlineColor inset,
+              -1px  0   @outlineColor inset,
+               0    2px @topHighlightColor inset;
+}
+.outlineFlat(@color: @grayBoxBorder) {
+  border: none;
+  box-shadow:  0    1px @color,
+               0   -1px @color,
+               1px  0   @color,
+              -1px  0   @color;
+}
+.outlineInside(@color) {
+  border: none;
+  box-shadow:  0    1px @color inset,
+               0   -1px @color inset,
+               1px  0   @color inset,
+              -1px  0   @color inset;
+}
+.outlinePress(@color) {
+  border: none;
+  @topShadowColor: darken(@color, 5);
+  box-shadow:  0    1px @color,
+               0   -1px @color,
+               1px  0   @color,
+              -1px  0   @color,
+               0    2px @topShadowColor inset;
+}
+
+// Gradients
+// all three accept infinite number of colors and stops
+
+.vertGradient(...) {
+  @joined: ~`"@{arguments}".slice(1,-1)`;
+  background-image: linear-gradient(to bottom, @joined);
+}
+
+.radiGradient(...) {
+  @joined: ~`"@{arguments}".slice(1,-1)`;
+  background-image: radial-gradient(ellipse at center, @joined);
+}
+
+.font-face(@font-filename, @font-family, @font-weight, @font-style: normal){
+  @font-face {
+    font-family: @font-family;
+    src:url('../../webfonts/@{font-filename}.eot');
+    src:url('../../webfonts/@{font-filename}.eot?#iefix') format('embedded-opentype'),
+        url('../../webfonts/@{font-filename}.woff') format('woff'),
+        url('../../webfonts/@{font-filename}.ttf') format('truetype'),
+        url('../../webfonts/@{font-filename}.svg#icon') format('svg');
+    font-weight: @font-weight;
+    font-style: @font-style;
+  }
+}
+
+.filter(...) {
+    .for(@arguments); .-each(@argument) {
+        -webkit-filter+_: @argument;
+                filter+_: @argument;
+    }
+}
+
+.backface-visibility(...) {
+  -webkit-backface-visibility: @arguments;
+          backface-visibility: @arguments;
+}
+
+.fancy-select(@arrow-margin: 4px; // Margin between the selector text and the arrow.
+              @color: @grayDarker ) {
+  // Width of the arrow itself.
+  @arrow-width: 12px;
+
+  // Space to the right of the arrow that's still clickable.
+  @extra-click-target: 10px;
+
+  margin: 0;
+  padding-right: @arrow-margin + @arrow-width + @extra-click-target;
+
+  -webkit-appearance: none; // gets rid of ugly shadow in safari
+  -moz-appearance: none; // gets rid of extra arrow in FF
+  border: none;
+
+  background-image: url('@{imgPath}/inner/icons/UI-DropdownArrow.svg');
+  background-size: @arrow-width;
+  background-repeat: no-repeat;
+  background-position: ~"calc(100% - @{extra-click-target})" ~"calc(50% + 1px)";
+  background-color: transparent;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.fancy-radio() {
+
+  color: @grayDarker;
+
+  input[type=radio] {
+    display: none;
+
+    &:checked + label {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+    }
+
+    &:disabled + label {
+      color: @grayLight;
+      cursor: text;
+    }
+  }
+
+  label {
+    padding: 5px;
+    margin: 0 10px 0 0;
+    font-weight: inherit;
+    cursor: pointer;
+  }
+
+}
+
+@import "mixins/transforms.less";
+@import "mixins/skins.less";
+@import "mixins/buttons.less";
+@import "mixins/animations.less";
+@import "mixins/flex.less";
+@import "mixins/forms.less";
+@import "mixins/tip.less";

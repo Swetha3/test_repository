@@ -1,0 +1,135 @@
+.drawing {
+  @color_subtle: @grayBoxBorder;
+  @color_normal: @grayLight;
+  @color_heroic: @grayDark;
+
+  @font_subtle: 14px;
+  @font_normal: 16px;
+
+  text {
+    fill: @color_normal;
+    font-size: @font_normal;
+  }
+  line {
+    fill: none;
+    stroke: @color_subtle;
+  }
+  .draw-nav {
+    rect {
+      fill: @color_heroic;
+    }
+    circle {
+      fill: lighten(@color_heroic, 5);
+    }
+    path {
+      fill: @color_subtle;
+    }
+  }
+  .draw-menu {
+    > text {
+      fill: @color_heroic;
+    }
+    path,
+    polyline {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+    path {
+      stroke: @redLight;
+    }
+    polyline {
+      stroke: @green;
+      stroke-linejoin: round;
+    }
+  }
+  .draw-main {
+    path {
+      fill: @color_subtle;
+    }
+    .draw-th {
+      fill: @color_heroic;
+    }
+  }
+  .draw-build {
+    .draw-crumbs {
+      path {
+        fill: none;
+        stroke: @color_normal;
+        &:last-of-type {
+          stroke-width: 5;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+      }
+    }
+    .draw-stats {
+      text {
+        &:nth-child(4n+6) {
+          fill: @blueLight; // link color
+        }
+      }
+    }
+    .draw-buttons {
+      path {
+        fill: none;
+        stroke: @color_subtle;
+      }
+      text {
+        fill: @color_heroic;
+      }
+    }
+    .draw-action {
+      text {
+        &:nth-last-of-type(4) {
+          font-size: @font_subtle;
+          fill: @color_subtle;
+        }
+      }
+      polyline {
+        fill: none;
+        stroke: @color_normal;
+      }
+    }
+    .draw-output {
+      rect {
+        fill: @color_heroic;
+      }
+      g {
+        &:not(:nth-of-type(7n+1)) {
+          text {
+            fill: @green;
+          }
+        }
+      }
+      text {
+        font-size: @font_subtle;
+        font-family: @monoFontFamily;
+      }
+    }
+  }
+  .draw-status-background {
+    rect,
+    circle {
+      fill: @green;
+    }
+  }
+  .draw-status-icon {
+    path {
+      fill: @white;
+    }
+    .draw-status-turn {
+      circle {
+        fill: none;
+      }
+    }
+    .draw-status-check {
+      fill: fade(@white, 0);
+    }
+  }
+  .draw-status-text {
+    path {
+      fill: @white;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+// The width of a status icon.
+@frontend-components-pieces-status--width: 18px;
+
+.ns("frontend.components.pieces.status", {
+  .ui("badge", {
+    @badge-height: 25px;
+
+    .flexy(center, flex-start);
+
+    height: @badge-height;
+    min-width: 118px;
+    border-radius: @badge-height / 2;
+
+    color: @white;
+    text-align: left;
+
+    > .status-icon {
+      @badge-icon-margin: 4px;
+      @badge-icon-size: @badge-height - (2 * @badge-icon-margin);
+
+      width: @badge-icon-size;
+      margin: @badge-icon-margin (2 * @badge-icon-margin) @badge-icon-margin @badge-icon-margin;
+    }
+
+    > .badge-label {
+      .flex(1 0 auto);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    &.on-hold {
+      color: @purple;
+      background: @purpleLight;
+    }
+
+    &.succeeded {
+      background: @green;
+    }
+
+    &.failed {
+      background: @red;
+    }
+
+    &.running {
+      background: @blueLight;
+    }
+
+    &.stopped {
+      background: @grayLight;
+    }
+
+    &.waiting {
+      background: @purple;
+    }
+  });
+
+  .ui("icon", {
+    width: @frontend-components-pieces-status--width;
+
+    &.on-hold {
+      color: @purple;
+    }
+
+    &.succeeded {
+      color: @green;
+    }
+
+    &.failed {
+      color: @red;
+    }
+
+    &.running {
+      color: @blueLight;
+    }
+
+    &.stopped {
+      color: @grayLight;
+    }
+
+    &.waiting {
+      color: @purple;
+    }
+  });
+});

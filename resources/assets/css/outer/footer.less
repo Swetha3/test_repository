@@ -1,0 +1,137 @@
+.footer-nav {
+  .header {
+    margin-bottom: 10px;
+  }
+
+  li > a {
+    color: black;
+  }
+
+  .fa-twitter {
+    color: #00acee;
+  }
+}
+
+/**
+ * Footer
+ * */
+
+.footer {
+  font-size: 14px;
+  padding-top: 85px;
+  padding-bottom: 85px;
+  color: #cccccc;
+  background-color: #343434;
+
+  .container {
+    @media (min-width: 768px) {
+      width: 750px;
+    }
+
+    @media (min-width: 992px) {
+      width: 970px;
+    }
+
+    @media (min-width: 1200px) {
+      width: 1170px;
+    }
+  }
+
+  p.lead {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  a {
+    color: #898989;
+
+    &:hover {
+      text-decoration: none;
+      color: #eeeeee;
+      transition: all 100ms ease-in-out;
+    }
+  }
+
+  nav {
+    text-transform: uppercase;
+
+    h6 {
+      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 2;
+      margin: 0 0 12px;
+      color: #cccccc;
+
+      @media (max-width: @screen-sm-max) {
+        margin-top: 30px;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .social-btns {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    white-space: nowrap;
+  }
+
+  .social-btns > * {
+    font-size: 25px;
+    font-weight: normal;
+    display: inline-block;
+    overflow: hidden;
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    text-align: center;
+    vertical-align: top;
+    color: #979c9f;
+  }
+
+  .social-btns > *:first-child {
+    margin-left: 0;
+  }
+
+  .additional-links {
+    font-size: 14px;
+    padding-top: 16px;
+    color: #898989;
+    border-top: 1px solid #555555;
+
+    @media (max-width: @screen-sm-max) {
+      margin-top: 17px;
+      margin-bottom: 0;
+    }
+
+    a {
+      margin-right: 10px;
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    padding-top: 35px;
+    padding-bottom: 35px;
+
+    nav .col-sm-2 {
+      width: 100%;
+      margin-top: 30px;
+      margin-left: 0;
+    }
+
+    .col-sm-6 {
+      margin-bottom: 20px;
+    }
+  }
+}

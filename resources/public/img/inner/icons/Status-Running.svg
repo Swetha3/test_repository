@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18px"
+    height="18px"
+    viewBox="0 0 18 18"
+    version="1.1"
+    class="status running">
+  <style>
+    /* Style applied when viewed unembedded. */
+    svg:root .circle { fill: gray; }
+    svg:root .icon { fill: white; }
+  </style>
+  <path
+      class="circle"
+      d="M 9,0 C 4.03725,0 0,4.03725 0,9 c 0,4.96275 4.03725,9 9,9 4.96275,0 9,-4.03725 9,-9 C 18,4.03725 13.96275,0 9,0" />
+  <circle
+      class="icon"
+      cx="9"
+      cy="9"
+      r="3" />
+</svg>

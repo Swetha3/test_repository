@@ -1,0 +1,9 @@
+[
+  ;; all of the resources we need to build the app
+  ;; PLUS the app code compiled in whitespace mode
+
+  "common.js.stefon"
+
+  "../../public/cljs/whitespace/frontend-whitespace.js"
+  "setup-frontend.coffee"
+]

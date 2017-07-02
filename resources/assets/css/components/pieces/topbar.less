@@ -1,0 +1,338 @@
+.ns("frontend.components.pieces.topbar", {
+  .ui("topbar", {
+    .flexy(row);
+    background-color: @grayDarker;
+    height: @top-bar-height;
+
+    @top-bar-sep-border: 1px solid @gray;
+
+    > .navs-container {
+      .flexy(center, space-between, row);
+      width: 100%;
+
+      > .logomark {
+        .flexy(center, center);
+        .icon-style(@white, (@em * 2));
+        width: 70px;
+        height: @top-bar-height;
+        margin-left: 0;
+        margin-right: 1ex;
+      }
+
+      > .navbar-toggler {
+        background: inherit;
+        border: none;
+        padding: 0 2ex;
+
+        > i.material-icons {
+          margin-left: 0;
+          font-size: @fontSizeLargest;
+          color: @whiten;
+        }
+      }
+
+      > .nav-options {
+        .flexy;
+
+        height: 100%;
+        padding-left: 0;
+
+        &.collapsing-nav {
+          &.disable {
+            pointer-events: none;
+            > .org-dropdown > .dropdown-toggle {
+                > .org-name > .selected-org-name,
+                > .org-name > .org-picker-arrow,
+                > .avatar > .gravatar {
+                    opacity: 0.5;
+                }
+            }
+          }
+        }
+
+        > .dropdown {
+          .flexy;
+
+          > button.dropdown-toggle:not(.org-button) {
+            border: none;
+            background: none;
+
+            > .gravatar {
+              min-width: 28px;
+              height: 28px;
+              background-color: @white;
+              border-radius: 50%;
+              border: 1px solid @white;
+            }
+          }
+
+          > button.dropdown-toggle:not(.org-button) {
+            display: block;
+            font-size: @fontSizeSmall;
+            font-weight: 500;
+            line-height: 30px;
+            color: @white;
+            text-decoration: none;
+            white-space: nowrap;
+            padding: 0 20px;
+
+            .transition(all .1s ease-in);
+
+            > .material-icons {
+              // OVERRIDE--ICON-STYLE
+              color: @white;
+              .transition(all .1s ease-in);
+
+              margin-top: -3px;
+            }
+
+            > .nav-label {
+              vertical-align: middle;
+            }
+          }
+
+          > .dropdown-menu:not(.org-dropdown-menu) {
+            // Bootstrap Overrides
+            margin-top: 0;
+            margin-right: 0;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            min-width: 260px;
+
+            @li-padding: 10px 20px;
+            .nav-item {
+              padding: @li-padding;
+              // OVERRIDE--BOOTSTRAP WHITE-SPACE
+              white-space: normal;
+              color: @grayDarker;
+              transition: none;
+
+              &:hover {
+                background-color: @blueDarkest;
+                color: @white;
+              }
+
+              > &.has-icon i {
+                // OVERRIDE--ICON-STYLE
+                margin-left: 8px;
+              }
+
+              > .heading {
+                font-weight: 600;
+              }
+            }
+            
+            > .hamburger-options {
+              > .hamburger {
+                list-style-type: none;
+                font-weight: 600;
+              }
+
+              > .heading {
+                padding: @li-padding;
+                font-size: @fontSizeSmaller;
+                line-height: @baseLineHeight;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: @grayLight;
+                border-bottom: 1px solid @grayLightest;
+              }
+
+              > .hamburger-list {
+                padding: 0;
+                list-style-type: none;
+
+                .nav-item {
+                  text-decoration: none;
+                  padding: 0;
+
+                  > .heading {
+                    font-weight: 400;
+                    padding: 10px 20px;
+                    color: black;
+                    
+                    &:hover {
+                      background-color: @blueDarkest;
+                      color: @white;
+                    }
+                  }
+
+                  > .description {
+                    display: none;
+                  }
+                }
+              }
+            } 
+          }
+
+          &.user-menu {
+            border-left: @top-bar-sep-border;
+          }
+
+          &.hamburger-menu {
+            @media (min-width: @screen-sm-max) {
+              display: none;
+            }
+          }
+
+          &.user-menu,
+          &.updates-menu,
+          &.support-menu {
+            @media (max-width: @screen-sm-max) {
+              display: none;
+            }
+          }
+        }
+
+      @dropdown-width: 355px;
+
+        > .org-dropdown {
+          border-radius: 0;
+          padding: 0;
+          width: @dropdown-width;
+          height: @top-bar-height;
+
+          > .dropdown-menu {
+            left: 0;
+            margin-top: 0;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            min-width: 260px;
+
+            > li >  .org-dropdown-menu__item {
+              .flexy(center, space-between, row);
+              border-bottom: 1px solid @grayLightest;
+              color: @grayDarker;
+              padding: 6px 20px 6px 6px;
+
+              > .org-icon-and-name {
+                > .leading-dot {
+                  padding-right: 5px;
+                  color: transparent;
+                  vertical-align: middle;
+                  transition: color 0.3s ease-in-out;
+                }
+
+                > .org-name {
+                  margin-left: 34px;
+                  font-weight: 500;
+                }
+
+                > .avatar {
+                  border-radius: 50%;
+                  background-color: @white;
+                  height: 30px;
+                  width: 30px;
+                }
+              }
+
+              > .vcs-icon {
+                border-radius: 50%;
+                height: 20px;
+                width: 20px;
+                color: @grayLighter;
+              }
+
+              &.selected-org {
+                font-weight: bold;
+
+                > .org-icon-and-name > .leading-dot,
+                > .vcs-icon {
+                  color: @grayDarker;
+                }
+              }
+
+              &:hover:not(.switch-org-text) {
+                cursor: pointer;
+                background-color: @blueDarkest;
+                color: @whiten;
+                border-bottom: 1px solid @blueDarkest;
+
+                > .org-icon-and-name > .leading-dot,
+                > .vcs-icon {
+                  color: @white;
+                }
+
+                > .org-icon-and-name > .avatar {
+                  background-color: @white;
+                }
+              }
+            }
+
+            > .switch-org-text {
+              font-size: @fontSizeSmaller;
+              line-height: @baseLineHeight;
+              font-weight: bold;
+              text-transform: uppercase;
+              color: @grayLight;
+              border-bottom: 1px solid @grayLightest;
+              text-indent: 15px;
+              padding: 5px 0;
+            }
+          }
+
+          > .org-button {
+            .flexy(center);
+            width: @dropdown-width;
+            border: none;
+            border-right: @top-bar-sep-border;
+            background: none;
+            padding: 0;
+
+            > .avatar {
+              .flexy(center, center);
+              height: @top-bar-height;
+              width: 70px;
+            }
+
+            > .org-name {
+              .flexy(center, space-between);
+              width: 284px;
+
+              > .selected-org-name {
+                color: @white;
+                font-weight: 500;
+                font-size: @fontSizeMedium;
+                margin-left: 1em;
+              }
+
+              > .org-picker-arrow {
+                color: @white;
+                padding: 0 40px;
+              }
+            }
+
+            > .avatar > .selected-org-icon {
+              height: 40px;
+              width: 40px;
+              border-radius: 50%;
+              border: 2px solid @whiten;
+              background-color: @whiten;
+            }
+          }
+
+          @media (max-width: @screen-sm-min) {
+            width: @dropdown-width/6;
+
+            > .org-button {
+              border-right: none;
+
+              > .org-name {
+                > .selected-org-name {
+                  display: none;
+                }
+
+                > .org-picker-arrow {
+                  padding-left: 0;
+                  margin-left: -5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+});

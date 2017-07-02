@@ -1,0 +1,381 @@
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -450px 0
+  }
+
+  100% {
+    background-position: 450px 0
+  }
+}
+
+.ns("frontend.components.pieces.run-row", {
+  @mask-on: #000000;
+  @mask-off: #FFFFFF;
+
+  .ui("loading-placeholder", {
+    display: inline-block;
+    height: 1em;
+    background-color: @mask-on;
+  });
+
+  .ui("loading-circle", {
+    color: @mask-on;
+    // This copes with some CSS which erroneously targets svg elements broadly.
+    > svg { color: @mask-on !important; }
+  });
+
+  .ui("RunRow", {}, {
+    .el("content", {
+      &.loading {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: #f6f7f8;
+        background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+        color: @mask-on;
+
+        > .inner-content {
+          mix-blend-mode: screen;
+          background: @mask-off;
+
+          > .run-info, > .status-and-button {
+            border-right-color: @mask-on;
+          }
+        }
+      }
+
+      > .inner-content {
+        .flexy();
+
+        @media (max-width: @screen-md-max) {
+          .flex-direction(column);
+          .flex-wrap(nowrap);
+          min-width: 285px;
+          margin-bottom: 8px;
+        }
+
+        @media (max-width: @screen-md-max) {
+          margin-bottom: -15px;
+        }
+
+        > .run-info {
+          .flex(1 0 auto);
+          width: 0;
+          padding: (@build-padding / 2) @build-padding;
+          border-right: @build-item-inner-border;
+          line-height: 1.8;
+
+          @media (max-width: @screen-md-max) {
+            padding: 0;
+          }
+        }
+        > .status-and-button {
+          .flex(0 0 160px);
+          .flexy(column);
+
+          border-right: @build-item-inner-border;
+
+          > .status {
+            .flex(1 0 65px);
+            .flexy(center, center);
+            background-color: transparent;
+
+            > a, > div {
+              .flex(1 1 auto);
+              align-self: stretch;
+              .flexy(center, center);
+            }
+
+            @media (max-width: @screen-md-max) {
+              flex: 0 0 auto;
+              padding: 1em;
+            }
+
+            .status-icon {
+              width: 18px;
+              color: @white;
+              fill: @white;
+            }
+
+            .status-string {
+              color: @white;
+              font-weight: 600;
+              text-transform: uppercase;
+              min-width: 90px;
+              margin-left: 1em;
+            }
+
+            &.loading {
+              background-color: @mask-on;
+            }
+
+            &.succeeded {
+              background-color: @green;
+            }
+
+            &.failed {
+              background-color: @red;
+            }
+
+            &.running {
+              background-color: @blueLight;
+            }
+
+            &.stopped {
+              background-color: @grayLight;
+            }
+
+            &.waiting {
+              background-color: @purple;
+            }
+
+            &.setup-needed {
+              background-color: @yellowDark;
+            }
+
+            &.on-hold {
+              background-color: @purpleLight;
+
+              > a {
+                > .status-icon, > .status-string {
+                  color: @purple;
+                }
+              }
+            }
+          }
+
+          > .action-button {
+            .flexy(center);
+
+            > svg, > .fa {
+              color: @grayLight;
+              height: 17px;
+              width: 17px;
+              margin: 10px;
+            }
+
+            > span {
+              font-size: @fontSizeSmaller; 
+            }
+
+            > .dropdown-menu > li {
+              > a {
+                cursor: pointer;
+                padding: 3px 10px;
+                color: inherit;
+                background-color: inherit;
+                font-size: @fontSizeSmaller;
+              }
+              
+              &:hover {
+                background: rgba(0, 0, 0, 0.05);
+              }
+            }
+
+            > ul.dropdown {
+              position: absolute;
+              bottom: -100%;
+              background-color: white;
+              margin: 0;            
+            }
+          }
+
+          > .rebuild-button > .dropdown-toggle {
+            cursor: pointer;
+          }
+
+          > .cancel-button {
+            cursor: pointer;
+            
+            &:hover {
+              > span {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
+        @build-padding: 12px;
+        @build-item-inner-border: 1px solid rgba(0, 0, 0, 0.1);
+
+        > .run-info {
+          .flexy(flex-start center column);
+
+          padding: (@build-padding / 2) @build-padding;
+          border-right: @build-item-inner-border;
+          line-height: 1.8;
+
+          .recent-commit-msg {
+            // TODO: Make these fiddly margins unnecessary.
+            margin-top: 6px;
+            margin-bottom: 2px;
+
+            color: @gray;
+            font-size: @fontSizeSmaller;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            // TODO: Instead of this, use flexboxes to make the .recent-commit-msg
+            // take up the remaining space.
+            @media (max-width: @screen-lg-min) {
+              max-width: 440px;
+            }
+
+            @media (min-width: 1200px) {
+              max-width: 440px;
+            }
+
+            @media (min-width: 1400px) {
+              max-width: 640px;
+            }
+          }
+
+          @media (max-width: @screen-md-max) {
+            width: 100%;
+            border-right: 0;
+            border-bottom: @build-item-inner-border;
+          }
+
+          .build-info-header {
+            .flexy;
+            .justify-content(space-between);
+            .flex-wrap(wrap);
+          }
+
+          .contextual-identifier {
+            font-size: @baseFontSize;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: @grayDarker;
+
+            > a {
+              color: inherit;
+            }
+          }
+
+          .dashboard-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            opacity: 0.4;
+          }
+
+          @avatar-size: 20px;
+          .recent-user {
+            display: inline-block;
+
+            width: @avatar-size;
+            height: @avatar-size;
+
+            margin-right: 8px;
+
+            .material-icons {
+              margin-left: 0;
+            }
+
+            .dashboard-icon {
+              width: @avatar-size;
+              height: @avatar-size;
+              margin: 0;
+
+              vertical-align: bottom;
+
+              border-radius: 50%;
+              opacity: 1;
+            }
+          }
+
+          .recent-time {
+            font-family: @sansSerifFontFamily;
+            color: @grayDark;
+          }
+
+          .recent-log {
+            font-family: @monoFontFamily;
+            word-break: normal;
+          }
+        }
+
+        > .metadata {
+          .flexy(stretch center column);
+
+          width: 214px;
+
+          @media (max-width: @screen-md-max) {
+            width: 100%;
+            border-right: none;
+          }
+
+          .metadata-row {
+            .flexy(row, flex-end);
+            padding-left: @build-padding;
+            padding-right: @build-padding;
+
+            &:first-of-type {
+              margin-top: 3px;
+            }
+
+            @media (max-width: @screen-md-max) {
+              border-bottom: @build-item-inner-border;
+              padding: 0;
+
+              &:first-of-type {
+                margin-top: 0;
+              }
+            }
+
+            .metadata-item {
+              .flexy(center);
+              .flex(1 0 auto);
+              padding-top: 5px;
+              padding-bottom: 3px;
+
+              font-size: @fontSizeSmaller;
+
+              &:last-child {
+                .flex(0 0 40%);
+              }
+
+              @media (max-width: @screen-md-max) {
+                padding: 8px;
+
+                &:last-child {
+                  .flex(0 0 50%);
+                  border-left: @build-item-inner-border;
+                }
+              }
+
+              &.start-time,
+              &.duration,
+              &.pull-requests,
+              &.revision {
+                i, svg {
+                  font-size: @fontSizeLarge;
+                  height: 19px; // magic number to make all the things the same height
+                  width: 18px;
+                  margin-right: 8px;
+                  margin-left: 0;
+                  padding-top: 1px;
+                  color: @grayLighter;
+                  max-width: @fontSizeLarge;
+                  display: inline;
+                  text-align: center;
+                }
+              }
+
+              &.pull-requests,
+              &.revision {
+                padding-top: 8px;
+                padding-bottom: 8px;
+              }
+            }
+          }
+        }
+      }
+    });
+  });
+});

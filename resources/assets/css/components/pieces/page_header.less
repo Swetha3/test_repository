@@ -1,0 +1,92 @@
+.ns("frontend.components.pieces.page-header", {
+  .ui("crumb-node", {
+    display: inline;
+
+    // NOTE: Using :first-child and :last-child on the root node of a component
+    // is pretty fishy, but then, a lot of the implementation of breadcrumbs is
+    // still a bit fishy. The whole thing needs some reworking, but for now the
+    // weirdness is at least contained to this namespace, as it\'s a private
+    // component.
+
+    &:not(:first-child):before {
+      content: "»\00a0";
+      padding: 0 5px;
+      color: @grayDarker;
+    }
+
+    &:last-child {
+      pointer-events: none;
+    }
+
+    > a {
+      text-decoration: none;
+
+      &:not(:hover) {
+        color: @grayDark;
+      }
+
+      &:hover {
+        color: @grayDark;
+        text-decoration: underline;
+      }
+
+      &[disabled] {
+        pointer-events: none;
+      }
+    }
+  });
+
+  .ui("header", {
+    .flexy(center, space-between);
+
+    box-sizing: border-box;
+    height: @tile;
+    padding: 20px;
+    border-bottom: solid 1px @grayLighter;
+
+    > .breadcrumbs {
+      .text-overflow();
+      padding: 0;
+      font-size: @fontSizeLarger;
+    }
+
+    > .actions {
+      .flexy(center, space-between);
+
+      .feedback {
+        margin-right: 10px;
+      }
+
+      >:not(:first-child) {
+        margin-left: 1em;
+      }
+    }
+
+    @media (max-width: @screen-sm-max) {
+      .flexy(stretch, flex-start, column);
+      height: auto;
+
+      > .breadcrumbs {
+        margin-bottom: 0;
+      }
+    }
+  });
+
+  .ui("engine-2", {
+    display: block;
+    margin: 0 12px;
+    width: 40px;
+
+    .rect {
+      fill: @white;
+      width: 40px;
+      height: 23px;
+    }
+
+    .text {
+      fill: @blue;
+      font-family: "RobotoMono";
+      font-size: 14px;
+    }
+  })
+});

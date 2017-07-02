@@ -1,0 +1,188 @@
+.inner {
+  font-family: @sansSerifFontFamily;
+  background-color: @whiteBackground;
+
+  .flexy(column);
+  height: 100vh;
+
+  // Establish a stacking context.
+  position: relative;
+  z-index: 0;
+
+  > .top {
+    // Establish a stacking context above the rest of parent's content.
+    position: relative;
+    z-index: 1;
+
+    > .bar {
+      // Within the .top, stack the .bar over everything.
+      position: relative;
+      z-index: 2;
+    }
+
+    > .flash-presenter {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: translateY(100%);
+
+      // Within the .top, stack the .flash-presenter below the .bar.
+      z-index: 1;
+    }
+  }
+
+  > .below-top {
+    .flexy;
+    .flex(1 1 auto);
+
+    // This looks weird, but it keeps the .below-top from taking up any more
+    // than the remaining vertical space. Without this, .below-top will compute
+    // its intrinsic height. Depending on its contents, this can be bigger than
+    // the space its parent would like to allot for it, and it will overflow. By
+    // setting the height explicitly to 0, we disable the intrinsic height. The
+    // flex-grow will then allow it to grow to the size its parent allots, but
+    // it will have no reason to grow any *bigger* than that. Then, any
+    // descendents which would have liked to render something bigger will be
+    // forced into this height (which is what we want).
+    //
+    // http://stackoverflow.com/questions/7813783/firefox-and-flexbox-when-using-white-space-nowrap-on-child-element-the-flexib#9737602
+    height: 0;
+
+    // Explicitly set the z-index of the entire .below-top so the .top dropdowns
+    // will always appear above the .below-top, even children with z-indexes > 1.
+    z-index: 0;
+  }
+
+  span.strikeout {
+    text-decoration: line-through;
+    align: right;
+  }
+
+  .app-dominant {
+    .flexy();
+    .flex(1 1 auto);
+    overflow: hidden;
+  }
+
+  .main-display {
+    width: 100%;
+  }
+
+  .main-body {
+    padding: 0 @main-body-padding 100px;
+
+    legend {
+      padding: .5em 0 1em;
+      line-height: 21px;
+    }
+  }
+
+  @import "terminal.less";
+  @import "builds.less";
+  @import "new-build.less";
+  @import "billing.less";
+  @import "settings.less";
+  @import "add-projects.less";
+  @import "dashboard.less";
+  @import "admin.less";
+  @import "org.less";
+  @import "invites.less";
+  @import "insights.less";
+  @import "icons.less";
+  @import "alerts.less";
+
+  &.modal-contents {
+    // This hack formats the cancel-plan-modal until we switch to Component-Oriented Style (COS)
+    // Instead of applying the cancel-reason formatting on modal.less (COS), the class .inner
+    //   in the cancel-plan-modal function forces the formatting to compile here, on inner.less,
+    //   as opposed to within org.less
+
+    background-color: initial;
+    display: initial;
+    height: initial;
+    position: initial;
+    z-index: initial;
+
+    .org-cancel {
+      .premium-feature {
+        font-weight: bold;
+      }
+      .bottom-value {
+        margin-top: 10px;
+      }
+    }
+
+    .cancel-reason {
+      display: block;
+      font-weight: normal;
+
+      span, input {
+        margin: 0 10px 0 0;
+        line-height: 1em;
+      }
+
+      span {
+        padding-left: 4px;
+      }
+    }
+  }
+}
+
+@import "above-main-content.less";
+@import "aside.less";
+@import "edit-project-settings.less";
+
+#elevio-widget,
+#intercom-container {
+  display: none;
+}
+
+body.circle-elevio {
+  #elevio-widget {
+    display: block;
+  }
+
+  #intercom-container {
+    .intercom-conversations-new-conversation-button {
+      display: none;
+    }
+
+    .intercom-composer-container {
+      display: none;
+    }
+  }
+
+  #intercom-launcher {
+    display: none !important;
+  }
+}
+
+#elevio-widget .support {
+  p > a {
+    color: @blueDark;
+  }
+
+  .elevio-box-warning .action-btn {
+    display: none;
+  }
+}
+
+body.circle-intercom {
+  #intercom-container {
+    display: block;
+  }
+
+  &:not(.circle-elevio) {
+    #intercom-container #intercom-launcher {
+      display: block !important;
+    }
+  }
+}
+
+.small-emphasis() {
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+}

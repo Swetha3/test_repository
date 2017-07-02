@@ -1,0 +1,575 @@
+#add-projects {
+
+  .overview {
+    vertical-align: middle;
+    text-align: justify;
+    margin-right: 1ex;
+    padding: 10px 0 30px;
+  }
+
+  @content: {
+    display: inline-block;
+    width: 100%;
+  };
+
+  @big-number-width: 32px;
+  @big-number-margin-right: 8px;
+  .big-number {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    width: @big-number-width;
+    height: @big-number-width;
+    padding: 4px 6px;
+    margin-right: @big-number-margin-right;
+
+    font-size: @fontSizeMedium;
+    font-weight: 400;
+    text-align: center;
+    color: @white;
+
+    background: @blueLight;
+    border-radius: 50%;
+  }
+
+  .instruction {
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    @offset: @big-number-width + @big-number-margin-right;
+    width: ~"calc(100% - @{offset})";
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 300;
+    color: @gray;
+  }
+
+  .repoButtonColor(@color) {
+    button, [data-component="frontend.components.pieces.button/link"] {
+      .subtleButton(@color);
+      &:not(.disabled) {
+        &:hover {
+          background-color: @color;
+          color: @white;
+          text-shadow: none;
+          svg {
+            > * {
+              fill: @white;
+            }
+          }
+          &:active {
+            box-shadow: 0 3px (darken(@color, 5)) inset;
+            text-shadow: none;
+          }
+        }
+      }
+    }
+
+    a {
+      font-weight: normal;
+    }
+  }
+
+  .org-repo-container {
+    .flexy();
+    overflow: hidden;
+
+    .project-listing {
+      .flex(1 1 50%);
+    }
+
+    .gh-permissions {
+       margin: 15px 0;
+       padding: 15px;
+       background-color: @white;
+    }
+
+    @media (max-width: @screen-xs-max) {
+      display: block;
+    }
+  }
+
+  .filter-row {
+    display: flex;
+    border-bottom: 1px solid @grayLightest;
+    justify-content: space-between;
+    padding: .5em;
+
+    .repo-filter {
+
+      input {
+        margin-right: 10px;
+      }
+
+      & > .material-icons {
+        font-size: 1.2em;
+      }
+    }
+
+    .unfollow-repos {
+      .repoButtonColor(@redLight);
+
+      button, [data-component="frontend.components.pieces.button/link"] {
+        min-width: 180px;
+
+        svg {
+          height: 1em;
+          width: 1em;
+          margin: auto;
+          > * {
+            fill: @grayDark;
+          }
+        }
+
+        i {
+          .scale3d(.75, .75);
+        }
+      }
+    }
+  }
+
+  .unobtrusive-search {
+    /* this needs to fit exactly one line of text, so I think it
+       makes more sense to use content-box. */
+    .box-sizing(content-box);
+
+    width: 206px;
+    height: 1.4em;
+    margin: 5px;
+    padding: 5px 15px;
+    border: 1px solid @blueLight;
+  }
+
+  @new-aside-menu-width: 285px;
+
+  .org-listing {
+    width: @new-aside-menu-width;
+    padding-right: 15px;
+
+    .nav-header {
+      background: #d7dce3;
+      color: #455C78;
+    }
+
+    .btn {display: block;}
+
+    @media (max-width: @screen-xs-max) {
+      width: 100%;
+    }
+  }
+
+  #inviteForm {
+    input {
+      width: 270px;
+    }
+  }
+
+  .add-repos {
+    text-align: center;
+    font-size: 1.231em; // 16px
+    margin: 25vh 0;
+    color: @grayLight;
+
+    ul {
+      padding: 2em;
+      list-style: none;
+
+      li {
+        margin-bottom: 20px;
+      }
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .no-plan-empty-state {
+    margin-top: 2em;
+    text-align: center;
+
+    .title {
+      font-size: @fontSizeLargest;
+    }
+
+    .info {
+      margin-top: 10px;
+      margin-bottom: 15px;
+
+      font-size: @fontSizeMedium;
+    }
+
+    .bold {
+      font-weight: 600;
+    }
+
+    .apple-logo {
+      margin-bottom: 20px;
+
+      font-size: 60px;
+    }
+
+    .buttons {
+      margin-bottom: 30px;
+
+      .plan {
+        min-width: 180px;
+        background: @blue;
+        border: 1px solid @button-border;
+
+        &:hover {
+          background: @blueDark;
+        }
+      }
+
+      .trial {
+        min-width: 180px;
+        margin-left: 15px;
+        border-radius: 3px;
+        border: 1px solid @button-border;
+        background: @grayLightest;
+        color: @gray;
+
+        &:hover {
+          background: @whiten;
+        }
+      }
+    }
+  }
+
+  .overview {
+    h3 {
+      margin-top: 0;
+      font-weight: normal;
+      color: #555;
+      line-height: 1.25em;
+    }
+
+    p {
+      color: @grayDark;
+    }
+  }
+
+  .proj-wrapper {
+    @content();
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    .loading-spinner {
+      margin: 1.5em auto;
+    }
+  }
+
+  & > span {
+    text-align: center;
+    display: block;
+    line-height: 13em;
+  }
+
+  .empty-placeholder {
+    margin: 1em;
+    max-height: 100px;
+  }
+
+  p.missing-org-info {
+    margin-top: 5px;
+    font-style: italic;
+
+    > a {
+      font-weight: 500;
+    }
+  }
+
+  .inaccessible-notice {
+    margin-top: 15px;
+
+    .inaccessible-org-wrapper {
+      @content();
+      box-sizing: border-box;
+      border-radius: 4px;
+      border: 1px solid darken(@grayLightest, 5.7);
+
+      .loading-spinner {
+        margin: 1.5em auto;
+      }
+
+      .orgname {
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 24px;
+
+        span {
+          padding-left: 8px;
+        }
+      }
+
+      .material-icons {
+        padding: 0 8px 0 4px;
+        display: inline-block;
+        color: #fbfbfb;
+        text-shadow: 1px 0   @gray,
+                    -1px 0   @gray,
+                     0   1px @gray,
+                     0  -1px @gray;
+      }
+    }
+  }
+
+  .add-orgs,
+  .add-collabs,
+  .add-you {
+    color: @gray;
+    font-weight: 600;
+  }
+
+  .wordy-hr {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+
+    & > span {
+      position: relative;
+      display: inline-block;
+    }
+
+    span:before, span:after {
+      position: absolute;
+      content: "";
+      height: 1px;
+      width: 1000%;
+      top: 50%;
+      background: @grayLighter;
+    }
+
+    span:before {
+      right: 100%;
+      margin-right: 5px;
+    }
+
+    span:after {
+      left: 100%;
+      margin-left: 5px;
+    }
+  }
+
+  .proj-list {
+
+    li {
+      .flexy();
+      .align-items(center);
+      .justify-content(space-between);
+      border-top: solid 1px lighten(@grayLightest, .5);
+      line-height: 1.5em;
+      position: relative;
+      height: 3em;
+      padding: 1em 0.5em 1em 1em;
+
+      &:hover {
+        background-color: darken(@whiten, 1);
+        box-shadow: none;
+      }
+
+      &:first-child {
+        border-top: none;
+      }
+
+      .material-icons.lock {
+        font-size: @fontSizeLarge;
+        margin-right: .5ex;
+        color: @grayLight;
+      }
+    }
+
+    button, [data-component="frontend.components.pieces.button/link"] {
+      &.disabled {
+        position: relative;
+        span {
+          display: none;
+        }
+      }
+
+      min-width: 180px;
+
+      svg {
+        height: 1em;
+        width: 1em;
+        margin: auto;
+        > * {
+          fill: @grayDark;
+        }
+      }
+
+      i {
+        .scale3d(.75, .75);
+      }
+    }
+
+    .repo-unfollow {
+      .repoButtonColor(@redLight);
+    }
+
+    .repo-nofollow {
+      .notice {
+        .flexy();
+        .align-items(center);
+        color: @gray;
+        min-width: 180px;
+      }
+    }
+
+    .repo-follow {
+      .repoButtonColor(@green);
+      .building {
+        white-space: nowrap;
+        margin-right: 1em;
+        color: @grayLight;
+      }
+
+      // override button link height
+      [data-component="frontend.components.pieces.button/link"] {
+        height: 30px;
+      }
+    }
+  }
+
+  .proj-name {
+    .flexy();
+    .align-items(center);
+
+    margin-right: auto;
+
+    i {
+      margin-left: 1ex;
+      font-size: @fontSizeLarge;
+      vertical-align: middle;
+    }
+  }
+
+  .tooltip {
+    font-size: @baseFontSize;
+    .tooltip-inner {
+      border-radius: (@em * 2);
+      padding: (@em / 2) @em;   // BS RESET
+    }
+  }
+  .tooltip.right .tooltip-arrow {
+    display: none;
+  }
+
+  .project-listing {
+    .flex(auto);
+
+    margin: 0;
+    padding: 0 0 100px 0;
+
+    @media (max-width: @screen-xs-max) {
+      padding: 20px 0 100px;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      width: 100%;
+    }
+  }
+
+  .fork-filter {
+    margin: 10px 20px 0 0;
+  }
+
+  .text-card {
+    padding: 10px 0;
+  }
+
+  i {
+    vertical-align: text-bottom;
+    opacity: 1;
+    color: @grayLight;
+  }
+
+  .payment-plan {
+    margin-top: 30px;
+
+    .table-container {
+      display: inline-block;
+      width: 100%
+    }
+
+    .table {
+      float: left;
+      width: 48%;
+      margin-top: 20px;
+      line-height: 40px;
+      color: @grayDark;
+      border-radius: 5px;
+      border-collapse: separate;
+      border: 1px solid darken(@grayLightest, 5.7);
+      font-size: 14px;
+
+      @media (max-width: @screen-sm-max) {
+        width: 100%;
+      }
+
+      &.comparison {
+        min-width: 48%;
+      }
+
+      &.payment-plan {
+        margin-right: 4%;
+
+        .row:not(.top):hover {
+          background-color: darken(@whiten, 1);
+        }
+      }
+
+      .cell {
+        padding-left: 20px;
+        border-top: none;
+
+        &.container-amount {
+          text-align: center;
+        }
+
+        &.paid, &.unpaid {
+          text-align: center;
+        }
+
+        .material-icons {
+          font-size: @fontSizeLarge;
+          vertical-align: middle;
+
+          &.check {
+            color: @green;
+          }
+
+          &.ex {
+            color: @red;
+          }
+        }
+      }
+
+      tr:nth-of-type(odd) {
+        background-color: @grayLightest;
+      }
+
+      .row.top {
+        background-color: lighten(@grayLightest, 0.5);
+        font-weight: 600;
+
+        .cell {
+          border-bottom: solid 1px @grayLighter;
+
+          &.first {
+            border-radius: 5px 0 0 0;
+          }
+
+          &.last {
+            border-radius: 0 5px 0 0;
+          }
+        }
+      }
+    }
+  }
+}

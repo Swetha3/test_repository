@@ -1,0 +1,104 @@
+.ns("frontend.components.pages.build.head", {
+  .ui("summary-item", {
+    @media (max-width: 767px) {
+      margin-top: 1em;
+      margin-right: 0;
+    }
+
+    > .summary-label {
+      font-weight: 500;
+      display: block;
+      color: @gray;
+    }
+  });
+
+  .ui("summary-header", {
+    @status-badge-height: 25px;
+
+    .flexy();
+
+    font-size: 13px;
+    line-height: @status-badge-height;
+
+    > .right-side {
+      .flexy(stretch, flex-end, row);
+      flex-grow: 1;
+    }
+
+    > *, > .right-side > * {
+      margin-right: 20px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .flexy(stretch, space-around, column);
+
+      > .right-side {
+        .flexy(stretch, flex-start, column);
+      }
+    }
+  });
+
+  .ui("build-head-content", {
+    > .summary-header {
+      margin-bottom: 15px;
+    }
+
+    .el("commits", {
+      color: @gray;
+
+      > .heading {
+        .small-emphasis;
+      }
+     });
+  });
+
+  .ui("commit-line", {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    > .metadata-item, > .commit-message {
+      font-size: 13px;
+      margin-right: 20px;
+    }
+
+    > .commit-message, > .sha-one {
+      font-family: @monoFontFamily;
+    }
+
+    > .octicon-git-commit {
+      margin-right: 8px;
+      font-size: @fontSizeLarge;
+      vertical-align: middle;
+      color: @grayLighter;
+    }
+
+    // Rendered by Boostrap tooltip. Remove when we upgrade to our own tooltip.
+    > .tooltip-inner {
+      max-width: 350px;
+      white-space: normal;
+    }
+  });
+
+  .ui("build-commits", {
+    > .build-commits-list {
+      > hr {
+        margin: 10px 0;
+      }
+
+      > .chevron-label {
+        color: @gray;
+      }
+    }
+  });
+
+  .ui("build-head", {
+    > .build-sub-head {
+      margin: 15px 0;
+    }
+  });
+});

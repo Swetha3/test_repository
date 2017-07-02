@@ -1,0 +1,146 @@
+.docs {
+  line-height: 1.5;
+  @aside-width: 20%;
+  @aside-bg: #fbfbfb;
+
+  .content {
+    padding: 0;
+    .flexy();
+  }
+
+  .front-page-categories {
+    .flexy(wrap);
+  }
+
+  .front-page-category {
+    width: 300px;
+    padding: 15px;
+    text-align: center;
+
+    .logo {
+      width: 60px;
+    }
+  }
+
+  aside {
+    .active {
+      font-weight: 600;
+    }
+
+    width: @aside-width;
+    min-width: 320px;
+    -webkit-flex-grow: 0;
+    -webkit-flex-shrink: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    padding: 20px;
+
+    border-right: 1px solid @grayLighter;
+    background-color: @aside-bg;
+
+    .nav li {
+      & > a:hover, & > a:focus {
+        background: none;
+      }
+    }
+  }
+
+  .article-container {
+    max-width: 1400px;
+    width: 100%;
+
+    padding: 0 40px;
+  }
+
+  article {
+    color: @gray;
+
+    h2 > a, h3 > a, h4 > a, h5 > a, h6 > a {
+      color: @grayDark;
+      text-decoration: none;
+    }
+
+    .markdown {
+      li {
+        margin: 10px 0;
+      }
+      pre {
+        margin: 30px 0;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+      iframe {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .articles-query {
+      color: @grayDark;
+  }
+
+  .article-list {
+    list-style: none;
+    padding-left: 0;
+    li {
+      margin: 20px 0;
+    }
+  }
+
+  @search-left-padding: 45px;
+
+  .doc-search {
+    @input-width: 100%;
+    @dropdown-padding: 10px;
+
+    margin: 40px 0;
+    position: relative;
+
+    input {
+      width: @input-width;
+      margin: 0;
+      font-size: 16px;
+      color: @grayDark;
+      &:focus {
+        border-color: #99bcdb;
+        box-shadow: 0 0 0 3px #cbddec !important;
+        transition-duration: 200ms;
+      }
+    }
+
+    .typeahead {
+      // overriding default typeahead style directly on element
+      top: 50px !important;
+      left: @search-left-padding - @dropdown-padding !important;
+      right: @search-left-padding - @dropdown-padding !important;;
+      a {
+        padding-left: @dropdown-padding;
+      }
+    }
+  }
+
+  h1 {
+    margin: 10px 0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .embed-responsive {
+    margin-bottom: 10px;
+  }
+
+  .nav {
+    h4 {
+      color: @grayDark;
+    }
+
+    & > li > a {
+      padding: 6px 10px;
+    }
+  }
+}

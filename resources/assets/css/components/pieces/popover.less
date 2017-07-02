@@ -1,0 +1,177 @@
+.ns("frontend.components.pieces.popover", {
+  .ui("with-positioned-element", {
+    position: relative;
+    cursor: pointer;
+
+    > .positioned-element {
+      position: absolute;
+      z-index: 3;
+
+      &.top {
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -100%);
+      }
+
+      &.top-left {
+        top: 0;
+        left: 0;
+        transform: translate(0, -100%);
+      }
+
+      &.right {
+        top: 50%;
+        right: 0;
+        transform: translate(100%, -50%);
+      }
+
+      &.bottom {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 100%);
+      }
+
+      &.left {
+        top: 50%;
+        left: 0;
+        transform: translate(-100%, -50%);
+      }
+    }
+  });
+
+  .ui("card", {
+    @popover-width-min: 177px;
+    @popover-width-max: 276px;
+    @popover-padding: 8px;
+
+    > .cci-popover {
+      // these reset various inheritable properties that could be inherited
+      // from the location where the popover is placed.
+      cursor: auto;
+      white-space: normal;
+      font-size: @fontSizeSmaller;
+      line-height: 1.5;
+      font-weight: normal;
+      text-align: left;
+
+      > .popover-inner {
+        display: flex;
+        max-width: @popover-width-max;
+        min-width: @popover-width-min;
+        justify-content: center;
+        align-items: center;
+        -webkit-filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.2));
+        filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.2));
+
+        > .content {
+          width: 100%;
+          background-color: @grayDark;
+          border-radius: 3px;
+
+          > .title {
+            margin: 0 @popover-padding;
+            padding: @popover-padding @popover-padding;
+            border-bottom: 1px solid @grayLightest;
+            color: @white;
+            font-weight: 500;
+          }
+
+          > .body {
+            padding: @popover-padding @popover-padding*2;
+            color: @white;
+          }
+
+          a:not(.exception) {
+            color: @blueLight;
+          }
+        }
+
+        &::after {
+          content: "";
+
+          width: 0;
+          border-style: solid;
+          border-width: 5px;
+          border-color: transparent;
+        }
+      }
+
+      &.bottom > .popover-inner {
+        flex-direction: column-reverse;
+
+        &::after {
+          border-bottom-color: @grayDark;
+        }
+      }
+
+      &.left > .popover-inner {
+        flex-direction: row;
+
+        &::after {
+          border-left-color: @grayDark;
+        }
+      }
+
+      &.top > .popover-inner {
+        flex-direction: column;
+
+        &::after {
+          border-top-color: @grayDark;
+        }
+      }
+
+      &.top-left > .popover-inner {
+        flex-direction: column;
+
+        &::after {
+          border-top-color: @grayDark;
+          align-self: left;
+          margin-left: 5px;
+        }
+      }
+
+
+      &.right > .popover-inner {
+        flex-direction: row-reverse;
+
+        &::after {
+          border-right-color: @grayDark;
+        }
+      }
+    }
+
+    > .transition-enter > .popover-inner,
+    > .transition-appear > .popover-inner {
+      animation-duration: 0.2s;
+      animation-fill-mode: both;
+      animation-play-state: paused;
+    }
+
+    > .transition-leave > .popover-inner {
+      animation-duration: 0.2s;
+      animation-fill-mode: both;
+      animation-play-state: paused;
+    }
+
+    > .transition-enter.transition-enter-active > .popover-inner,
+    > .transition-appear.transition-appear-active > .popover-inner {
+      animation-name: zoomBigIn;
+      animation-play-state: running;
+    }
+
+    > .transition-leave.transition-leave-active > .popover-inner {
+      animation-name: zoomBigOut;
+      animation-play-state: running;
+    }
+
+    > .transition-enter > .popover-inner,
+    > .transition-appear > .popover-inner {
+      transform: scale(0);
+      animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+    }
+
+    > .transition-leave > .popover-inner {
+      animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    }
+  });
+});

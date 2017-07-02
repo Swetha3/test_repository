@@ -1,0 +1,36 @@
+.ns("frontend.components.pieces.top-banner", {
+  .ui("banner", {
+    position: relative;
+    padding: 15px;
+
+    &.success {
+      background-color: @greenLightest;
+    }
+
+    &.warning {
+      background-color: @yellowLightest;
+    }
+
+    &.danger {
+      background-color: @redLightest;
+    }
+
+    > .text {
+      // TODO This is a bad componentization. When icons are
+      // componentized we should give them this styling, but until then ...
+
+      .flexy(row, space-between);
+
+      font-size: @baseFontSize;
+      font-weight: 500;
+
+      > div > .banner-alert-icon {
+        margin-right: .5em;
+      }
+
+      > .banner-dismiss {
+        cursor: pointer;
+      }
+    }
+  });
+});

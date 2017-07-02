@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>default-avatar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="01-build-list-avatars-20x20" sketch:type="MSArtboardGroup" transform="translate(-1000.000000, -783.000000)">
+            <g id="default-avatar" sketch:type="MSLayerGroup" transform="translate(1001.000000, 784.000000)">
+                <circle id="Oval-74" stroke="#DEDEDD" sketch:type="MSShapeGroup" cx="10" cy="10" r="10"></circle>
+                <g id="Fill-152-+-Oval-75-+-Oval-75-Copy" transform="translate(2.000000, 2.000000)" fill="#DEDEDD" sketch:type="MSShapeGroup">
+                    <path d="M4.00266489,5.33333333 C4.00266489,3.12733333 5.79546969,1.33333333 8,1.33333333 C10.2045303,1.33333333 11.9973351,3.12733333 11.9973351,5.33333333 C11.9973351,7.53933333 10.2045303,9.33333333 8,9.33333333 C5.79546969,9.33333333 4.00266489,7.53933333 4.00266489,5.33333333 M13.3297801,5.33333333 C13.3297801,2.39266667 10.9387075,0 8,0 C5.06129247,0 2.67021985,2.39266667 2.67021985,5.33333333 C2.67021985,7.238 3.68021319,8.90466667 5.18587608,9.84733333 C2.95633747,10.6710275 1.18443765,12.4387907 0.3634322,14.6708366 C0.206307637,15.098007 0.341640454,14.5344921 0.257629395,14.9923096 L1.35842771,16 C2.03597602,12.9533333 4.75416389,10.6666667 8,10.6666667 C11.2458361,10.6666667 13.964024,12.9533333 14.6415723,16 L15.71698,14.965332 C15.6380052,14.5355513 15.8083591,15.1524176 15.6648475,14.7493926 C14.8555792,12.4767169 13.0654609,10.6739226 10.8047968,9.84266667 C12.3151233,8.90133333 13.3297801,7.24066667 13.3297801,5.33333333 Z" id="Fill-152"></path>
+                    <circle id="Oval-75" cx="8" cy="5" r="5"></circle>
+                    <path d="M14.4394074,15.4532192 C14.2145462,12.0640266 11.4323531,9.64644661 7.87322722,9.64644661 C4.31410132,9.64644661 1.6140665,12.122706 1.58885271,15.4839342 C1.56363891,18.8451623 14.6642686,18.8424117 14.4394074,15.4532192 Z" id="Oval-75-Copy"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

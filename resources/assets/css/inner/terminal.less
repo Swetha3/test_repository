@@ -1,0 +1,118 @@
+@import "../shared/variables.less";
+
+.pre {
+  white-space: pre-wrap;
+}
+
+// TODO, probably can just use bootstrap variables once v2 ships
+@standard-color-lighten-factor: 13%;
+
+pre {
+  background: @terminalBackground;
+  color: @terminalText;
+
+  // temporary? bootstrap override
+  border: none;
+  border-radius: 0;
+
+  // TODO We have to lie about the color scheme for precedence reasons.
+  .white {
+    color: @terminalText;
+  }
+
+  .blue {
+    color: @blueLight;
+  }
+
+  .brblue {
+    color: saturate(@blueLight, 10%);
+  }
+
+  .cyan {
+    color: #65d8ee;
+  }
+
+  .brcyan {
+    color: saturate(#65d8ee, 10%);
+  }
+
+  .green {
+    color: @green;
+  }
+
+  .brgreen {
+    color: saturate(@green, 10%);
+  }
+
+  .yellow {
+    color: #d6cc75;
+  }
+
+  .bryellow {
+    color: saturate(#d6cc75, 10%);
+  }
+
+  .red {
+    color: @red;
+  }
+
+  .brred {
+    color: saturate(@red, 10%);
+  }
+
+  .magenta {
+    color: @purple;
+  }
+
+  .brmagenta {
+    color: saturate(@purple, 10%);
+  }
+
+  .bg-white {
+    background: @terminalText;
+  }
+
+  .bg-red {
+    background: @red;
+  }
+
+  .bg-green {
+    background: @green;
+  }
+
+  .bg-yellow {
+    background: #d6cc75;
+  }
+
+  .bg-blue {
+    background: @blueLight;
+  }
+
+  .bg-magenta {
+    background: @purple;
+  }
+
+  .bg-cyan {
+    background: #65d8ee;
+  }
+
+  .bg-brblack {
+    background: @terminalBackground;
+  }
+
+  .key {
+    .yellow();
+  }
+
+  .boolean {
+    .green();
+  }
+
+  .string {
+    .cyan();
+  }
+
+  .comment {
+    color: @grayLight;
+  }
+}

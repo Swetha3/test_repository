@@ -1,0 +1,102 @@
+.stories-procedure {
+  @color: @gray;
+  @text-slide: 18px;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  .slot {
+    fill: @color;
+  }
+
+  .touch {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 50; // increases hover area
+    cursor: pointer;
+  }
+
+  .track {
+    fill: none;
+    stroke: @color;
+    stroke-width: 2;
+    transition: stroke-width 400ms;
+    stroke-linecap: round;
+  }
+
+  .direction {
+    fill: @color;
+    stroke: @color;
+    stroke-width: 0;
+    transition: stroke-width 400ms;
+  }
+
+  .pin {
+    stroke-width: 0;
+    transition: stroke-width 400ms;
+  }
+
+  .passing {
+    .track,
+    .direction {
+      stroke: @green;
+    }
+
+    .direction,
+    .pin {
+      fill: @green;
+      stroke: @green;
+    }
+  }
+
+  .failing {
+    .track,
+    .direction {
+      stroke: @redLight;
+    }
+
+    .direction,
+    .pin {
+      fill: @redLight;
+      stroke: @redLight;
+    }
+  }
+
+  .mask {
+    fill: @white;
+  }
+
+  .caption {
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 300ms, opacity 300ms;
+
+    p {
+      .flexy(center);
+
+      color: @color;
+      text-align: center;
+    }
+  }
+
+  .step:hover {
+    .track,
+    .direction,
+    .pin {
+      stroke-width: 10;
+      transition: stroke-width 200ms;
+      transition-timing-function: cubic-bezier(0.5, -1, 0.5, 2);
+    }
+
+    .caption {
+      opacity: 1;
+      transform: translate(@text-slide);
+      transition: transform 200ms, opacity 200ms;
+
+      &.right {
+        transform: translate(-@text-slide);
+      }
+    }
+  }
+}

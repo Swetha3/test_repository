@@ -1,0 +1,49 @@
+.ns("frontend.components.project-settings", {
+  .ui("jira-empty-state", {
+    > p.intro {
+      margin-bottom: 0; // setting the margin at 0 until we harden the style
+      padding-bottom: 15px;
+      border-bottom: 1px solid @grayLightest;
+    }
+
+    .el("column-group", {
+      .flexy();
+      > .column {
+        .flex(1, 1, 0);
+        .flexy(column);
+        margin-right: 29px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        > .title {
+          .flex(0, 0, auto);
+          margin: 15px 0;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+
+        > p {
+          .flex(1, 1, auto);
+          margin-bottom: 15px;
+        }
+      }
+    });
+  });
+
+  .ui("import-env-vars-modal", {
+    .env-vars-table-container {
+      max-height: 27vh;
+      overflow-y: scroll;
+
+      th {
+        min-width: 100px;
+      }
+    }
+
+    select {
+      width: 100%;
+    }
+  })
+});

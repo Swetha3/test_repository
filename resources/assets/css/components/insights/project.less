@@ -1,0 +1,80 @@
+.ns("frontend.components.insights.project", {
+  .ui("build-status-bar-chart-hovercard", {
+    .flexy(column);
+
+    width: 180px;
+    padding: 10px;
+    empty-cells: show;
+    border-spacing: 0;
+    border-collapse: initial;
+    opacity: .9;
+    background-color: @grayDark;
+    box-shadow: none;
+
+    > .insights-metadata {
+      @build-padding: 6px;
+      @build-item-inner-border: 1px solid rgba(255, 255, 255, 0.1);
+
+      > .metadata-row {
+        .flexy(column, flex-end);
+
+        padding-left: @build-padding;
+        padding-right: @build-padding;
+
+        > .metadata-item {
+          .flexy(center);
+          .flex(1 0 auto);
+
+          padding-top: 5px;
+          padding-bottom: 5px;
+
+          .text-overflow();
+
+          font-size: @fontSizeSmaller;
+          color: @grayLightest;
+
+          &:first-of-type {
+            padding-top: 0;
+          }
+
+          &:last-of-type {
+            padding-bottom: 2px;
+          }
+
+          > i {
+            font-size: @fontSizeLarge;
+            height: 19px; // magic number to make all the things the same height
+            margin-right: 6px;
+            margin-left: 0;
+            padding-top: 1px;
+            vertical-align: bottom;
+            color: @grayLight;
+          }
+        }
+      }
+    }
+  });
+
+  .ui("build-status-bar-chart", {
+    height: 100%;
+    margin: 0 auto;
+
+    > .hovercard {
+      display: none;
+    }
+
+    &:hover > .hovercard {
+      display: block;
+      margin-left: 20px; // Offsets the hovercard from the pointer.
+    }
+
+    // Reaching into another component to restyle a piece of it is a smell, but we
+    // do want this component to look different in this context. This should not
+    // be considered exemplary code.
+    [data-component="frontend.components.insights/build-status-bar-chart"] {
+      > svg .y-axis .tick text {
+        font-size: @baseFontSize;
+      }
+    }
+  });
+});

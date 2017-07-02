@@ -1,0 +1,110 @@
+/*
+A customer quote provides a quote style themed for a specific customer.
+
+.customer-quote-colors: A mixin for creating quotes themed in a company's primary logo color.
+customer-header
+.customer-quote
+.customer-citation
+  .customer-employee-name
+  .customer-company-name
+  .customer-story
+.quote-shopify: Shopify quote
+.quote-sincerely: Sincerely quote
+.quote-kickstarter: Kickstarter quote
+
+Example:
+
+<div class="testimonial">
+  <img class="customer-header" src="circleci.png">
+  <div class="customer-quote quote-circlei">
+    <blockquote>We love CircleCI!</blockquote>
+  </div>
+  <div class="customer-citation">
+    <div class="customer-employee-name">
+      CircleCI
+    </div>
+    Director of Awesome Life Choices at <span class="customer-company-name">CircleCI</span> &emdash; <a class="customer-story">Read the story</a>
+  </div>
+</div>
+*/
+
+.testimonial {
+  .text-center();
+  color: @grayDark;
+
+  .customer-quote-colors(@quote-color) {
+    &:before, &:after {
+      color: @quote-color;
+    }
+  }
+
+  .customer-header {
+    max-height: 40px;
+  }
+
+  .customer-quote {
+    @quotation-mark-size:  75px;
+    position: relative;
+    padding: @quotation-mark-size / 2;
+
+
+    // Bootstrap override
+    & > blockquote {
+      padding: 0;
+      border-left: none;
+      margin: 0;
+    }
+
+    &:before, &:after {
+      width: 0;
+      height: 0;
+      position: absolute;
+
+      font-size: @quotation-mark-size;
+    }
+
+    &:before {
+      left: 0;
+      top: 0;
+      content: "“";
+    }
+
+    &:after {
+      right: @quotation-mark-size / 2;
+      bottom: @quotation-mark-size;
+      content: "”";
+    }
+  }
+
+  .customer-citation {
+    .customer-employee-name, .customer-company-name {
+      font-weight: bold;
+    }
+
+    .customer-story {
+      color: #0096c8;
+      font-weight: bold;
+    }
+  }
+
+  .quote-shopify {
+    .customer-quote-colors(#7bb460);
+  }
+
+  .quote-sincerely {
+    .customer-quote-colors(#e80d1c);
+  }
+
+  .quote-kickstarter {
+    .customer-quote-colors(#39dc78);
+  }
+
+  .quote-wit {
+    .customer-quote-colors(#4183c4);
+  }
+
+  // bleacher report
+  .quote-br {
+    .customer-quote-colors(#f04f38);
+  }
+}

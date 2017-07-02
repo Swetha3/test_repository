@@ -1,0 +1,515 @@
+.ns("frontend.components.org-settings", {
+  .org-page {
+    margin: 0;
+    padding-top: (@grid-gutter-width / 2);
+
+    .pricing-plans {
+      margin-top: 0;
+    }
+
+    // When showing tables of numeric data we want to
+    // align the values to the right margin.
+    td.numeric {
+      text-align: right;
+    }
+
+    #subpage {
+      .spinner-container {
+        text-align: center;
+        font-size: 26px;
+        margin-top: 20px;
+      }
+
+      .update-plan {
+        margin-right: 10px;
+      }
+
+      .well {
+        position: relative;
+        padding: 0;
+        border-radius: 0;
+        background-color: white;
+        border: none;
+        border-bottom: #e5e5e5 1px solid;
+      }
+
+      ul { list-style-type: none; }
+
+      .followed-projects {
+        margin-bottom: 20px;
+      }
+
+      .followers-container {
+        border-top: 1px solid #eee;
+        padding: 15px;
+      }
+
+      .follower-container {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        width: 140px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .overview-cards {
+        h1 {
+          margin-top: 4px;
+          font-weight: 500;
+        }
+      }
+
+      .title-icon {
+        margin-right: 1ex;
+      }
+
+      .organizations {
+
+        .org-lists {
+          .flexy(flex-start);
+          margin-bottom: 1em;
+        }
+
+        .controls {
+          width: 20%;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          h4 {
+            margin-bottom: 15px;
+            font-weight: bold;
+          }
+        }
+
+        .form-actions {
+          margin-top: 10px;
+          margin-bottom: 15px;
+        }
+      }
+
+      .users {
+        .row-fluid {
+          .well:nth-of-type(odd) {
+            margin-left: 0
+          }
+        }
+        .om-org-user {
+          display: flex;
+        }
+        .om-org-user-projects-container {
+          flex: 1;
+          padding: 15px;
+
+          .heading {
+            width: 100%;
+            margin-top: 0;
+          }
+        }
+        .om-org-user-projects {
+          display: flex;
+          flex-wrap: wrap;
+          .om-org-user-project {
+            flex: 1 1 50%;
+          }
+        }
+      }
+
+      .gravatar {
+        @size: (@tile / 2);
+        min-width: @size;
+        height: @size;
+        margin-right: 8px;
+        border-radius: (@size / 2);
+      }
+
+      .controls {
+        .control {
+          .radio,
+          .checkbox {
+            margin-left: 20px;
+          }
+        }
+      }
+
+      // An intentionally terrible class name representing the fact that this
+      // margin is arbitrary. This is design debt, and will be cleaned up when
+      // this page is rebuilt.
+      .space-below {
+        margin-bottom: 21px;
+      }
+
+      .heart-emoji {
+        color: @redDarkest;
+      }
+
+      .mb-0 {
+        margin-bottom: 0;
+      }
+    }
+
+    .edit-plan {
+
+      .plan {
+        margin-bottom: 40px;
+        padding: 20px 0;
+        text-align: center;
+        background: lighten(@grayLighter, 4%);
+        border-radius: 3px;
+
+        ul {
+          list-style-type: none;
+          margin: 0 0 20px 0;
+          font-size: 13px;
+        }
+
+        h2 {
+          margin: 0;
+          font-size: 24px;
+          text-align: center;
+        }
+
+        h4 {
+          margin-top: 0;
+          font-size: 12px;
+          text-transform: uppercase;
+          font-weight: normal;
+        }
+
+        h4, p, li {
+          color: @grayLight;
+        }
+
+        p {
+          padding: 20px 0;
+          border-top: 1px solid #eee;
+          font-size: 12px;
+
+          strong {
+            font-size: 22px;
+            color: @blueDark;
+          }
+        }
+      }
+
+      legend.update-plan {
+        margin-top: 1em;
+      }
+
+      fieldset > button {
+        margin-right: 1rem;
+      }
+
+      .hint {
+        margin-top: 1em;
+        color: @gray;
+      }
+
+      .container-picker {
+        .container-slider {
+          display: flex;
+          input {
+            width: 90%;
+            .center;
+          }
+        }
+      }
+
+      .container-input {
+        .flexy(center);
+        input {
+          width: 60px;
+          text-align: center;
+          padding: 4px 2px;
+          .center;
+
+          height: 26px;
+          margin: 0 8px;
+          font-weight: 600;
+          font-size: @fontSizeMedium;
+
+          border: none;
+          border-radius: 0;
+          border-bottom: 1px dashed #555;
+        }
+      }
+
+      .help-block {
+        display: inline;
+        margin-left: 16px;
+        font-style: italic;
+      }
+
+      .upgrade, .cancel {
+        width: 110px;
+        margin-left: 0;
+      }
+
+      .cancel {
+        background-color: @red;
+        border-color: @red;
+      }
+    }
+  }
+
+  .ui("progress-bar", {
+    @progress-bar-color: @blueLight;
+    @progress-background-color: @grayLightest;
+
+    margin-top: 5px;
+    border: 0;
+    height: 13px;
+    width: 100%;
+    background-color: @progress-background-color;
+    padding: 2px;
+
+    &::-webkit-progress-bar {
+      background-color: @progress-background-color;
+    }
+
+    &::-webkit-progress-value {
+      background-color: @progress-bar-color;
+    }
+
+    &::-moz-progress-bar {
+      background-color: @progress-bar-color;
+    }
+  });
+
+  .ui("osx-usage-table", {
+    > .header {
+      font-size: @fontSizeLarge;
+    }
+
+    > .divider {
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    .over-usage {
+      color: @red;
+    }
+  });
+
+  .project-header {
+    @header-icon-color: @grayDark;
+    .flexy(center, row);
+    justify-content: center;
+
+    padding: 15px 10px 15px 10px;
+
+    .project-name {
+      font-size: @fontSizeMedium;
+    }
+
+    .octicon,
+    .material-icons {
+      font-size: @fontSizeLarge;
+      color: @grayLight;
+      margin-left: 1ex;
+      vertical-align: middle;
+    }
+  }
+
+  .project-name {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .ui("linux-plan", {
+    margin-top: 0;
+    margin-bottom: 2em;
+  });
+
+  .ui("osx-plans-list", {
+    .plan-selection {
+      padding-top: 20px;
+      min-height: 500px;
+      .flexy(flex-start, center, row);
+      @media (max-width: 1150px) {
+        // ^ magic number chosen so that things wrap into a 2x2.
+        .flex-wrap(wrap);
+      }
+    }
+  });
+
+  .ui("osx-plan", {
+    @border-color: @grayLighter;
+    @header-background-color: @grayLightest;
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+    max-width: 300px;
+
+    .selected-notice {
+      background-color: @blueLight;
+    }
+
+    .trial-expired-notice {
+      background-color: @orange;
+    }
+
+    .trial-notice {
+      background-color: @green;
+    }
+
+    .plan-notice {
+      margin-top: -5px;
+      border-radius: 6px;
+      padding: 5px;
+      color: @white;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .no-notice {
+      border: 1px solid @border-color;
+    }
+
+    .bottom {
+      padding: 10px;
+      font-size: @fontSizeMedium;
+    }
+
+    .plan {
+      color: @grayDark;
+      background-color: @white;
+      max-width: 300px;
+
+      .bold {
+        font-weight: bold;
+      }
+
+      .header {
+        border-bottom: 1px solid @border-color;
+        background: @header-background-color;
+        text-align: center;
+        padding: 20px;
+
+        .title {
+          font-weight: bold;
+          letter-spacing: 0.5px;
+        }
+
+        .price {
+          font-size: round((@baseFontSize * 2.14), 0); //30px
+          font-weight: 300;
+          letter-spacing: 0.5px;
+        }
+      }
+
+      .content {
+        text-align: center;
+        font-weight: 300;
+        padding: 20px;
+
+        .containers {
+          letter-spacing: 0.3px;
+          margin-bottom: 20px;
+        }
+
+        .daily-builds {
+          margin-bottom: 20px;
+        }
+
+        .max-minutes {
+          margin-bottom: 20px;
+        }
+
+        .support {
+          margin-bottom: 20px;
+        }
+      }
+
+      .action {
+        text-align: center;
+        padding: 20px;
+
+        .button {
+          width: 94px;
+        }
+
+        .start-trial, .cancel-plan {
+          padding-top: 20px;
+        }
+      }
+    }
+  });
+
+  .ui("limited-release-notice", {
+    .flexy(space-between);
+
+    background: @statuspage-minor-bg;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+
+    .message {
+      font-weight: 300;
+      color: @grayDark;
+      font-size: 13px;
+    }
+
+    .your-plan {
+      padding-top: 10px;
+    }
+
+    .icon {
+      padding-right: 10px;
+      padding-top: 1px;
+
+    }
+
+    .plan-name {
+      font-weight: 500;
+    }
+  });
+
+  .ui("faq", {
+    .columns {
+      .flexy();
+      justify-content: space-between;
+    }
+
+    .column {
+      width: 50%;
+
+      &:first-of-type {
+        margin-right: 15px;
+      }
+      &:last-of-type {
+        margin-left: 15px;
+      }
+    }
+
+    .faq-item {
+      padding-bottom: 20px;
+    }
+
+    .question {
+      font-size: @fontSizeLarge;
+      font-weight: 500;
+      color: @gray;
+      margin-top: 4px;
+    }
+
+    .answer-line {
+      font-weight: 300;
+      font-size: @fontSizeMedium;
+
+      &:not(:last-child) {
+        padding-bottom: 10px;
+      }
+
+      a {
+        cursor: pointer;
+      }
+    }
+
+    .overage-list {
+      list-style-type: disc !important;
+    }
+
+  });
+});

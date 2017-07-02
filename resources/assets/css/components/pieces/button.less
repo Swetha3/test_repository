@@ -1,0 +1,234 @@
+.ns("frontend.components.pieces.button", {
+  .button-styles() {
+    // NB: inline-flex must come before -webkit-inline-box so that the prefixed
+    // version wins in Safari. Safari will accept both, but inline-flex is
+    // broken (as of 9.0.1).
+    //
+    // -ms-inline-flexbox is given first so that the non-prefixed version will
+    // take over in IE/Edge, in the normal fashion for vendor-prefixed CSS.
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    display: -webkit-inline-box;
+    .align-items(center);
+    .justify-content(center);
+
+    font-size: @baseFontSize;
+
+    height: 36px;
+    padding: 4px 1em;
+    line-height: 1;
+    outline: none;
+
+    cursor: pointer;
+    white-space: nowrap;
+
+    color: @grayDark;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background-color: @grayLightest;
+    font-weight: 500;
+
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @darken-bg: 10%;
+    @darken-border: 26%;
+
+    &.fixed {
+      width: 155px;
+    }
+
+    &:hover {
+      background-color: darken(@grayLightest, @darken-bg);
+    }
+
+    &:focus {
+      border-color: darken(@grayLightest, @darken-border);
+    }
+
+    &:active {
+      background-color: darken(@grayLightest, 38%);
+      color: @white;
+    }
+
+    &[disabled] {
+      color: @grayLight;
+      background-color: @grayLightest;
+      cursor: not-allowed;
+    }
+
+    &.small {
+      height: 30px;
+      font-size: @fontSizeSmaller;
+    }
+
+    &.primary {
+      color: @white;
+      background-color: @blue;
+
+      &:hover {
+        background-color: softlight(@blue, #262626);
+      }
+
+      &:focus {
+        border: 1px solid darken(@blue, 17%);
+      }
+
+      &:active {
+        background-color: softlight(@blue, #010101);
+      }
+
+      &[disabled] {
+        background-color: screen(@blue, #474747);
+      }
+    }
+
+    &.danger {
+      color: @white;
+      background-color: @red;
+
+      &:hover {
+        background-color: softlight(@red, #262626);
+      }
+
+      &:focus {
+        border: 1px solid darken(@red, 17%);
+      }
+
+      &:active {
+        background-color: softlight(@red, #010101);
+      }
+
+      &[disabled] {
+        background-color: screen(@red, #474747);
+      }
+    }
+
+    &.flat {
+      color: @blueDarkest;
+      background-color: transparent;
+
+      &:hover {
+        background-color: @grayLightest;
+      }
+
+      &:focus {
+        border-color: darken(@grayLightest, @darken-border);
+      }
+
+      &:active {
+        background-color: darken(@grayLightest, @darken-bg);
+      }
+
+      &[disabled] {
+        color: @blueLight;
+        background-color: transparent;
+
+        &:hover {
+          background-color: screen(@grayLightest, #474747);
+        }
+      }
+    }
+  }
+
+  .icon-button-styles() {
+    width: 30px;
+    height: 30px;
+    padding: 4px 6px;
+
+    // OVERRIDE--ICON-STYLE
+    i {
+      margin-left: 0;
+      color: inherit;
+    }
+
+    &[disabled] {
+      i {
+        color: inherit;
+      }
+    }
+
+    &:hover {
+      background-color: darken(@grayLightest, @darken-bg);
+    }
+
+    &:focus {
+      border: 1px solid darken(@grayLightest, @darken-border);
+    }
+
+    &:active {
+      background-color: darken(@grayLightest, 38%);
+      color: @white;
+    }
+
+    &[disabled] {
+      color: @grayLight;
+      background-color: @grayLightest;
+      cursor: not-allowed;
+    }
+  }
+
+  .link-button-styles() {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .border-styles() {
+    border: 1px solid @grayLighter;
+    border-radius: 3px;
+  }
+
+  .ui("button", {
+    .button-styles();
+  });
+
+  .ui("icon", {
+    .button-styles();
+    .icon-button-styles();
+
+    &.with-border {
+      .border-styles();
+
+      &:focus {
+        border-color: darken(@grayLightest, @darken-border);
+      }
+    }
+  });
+
+  .ui("managed-button", {
+    .button-styles();
+
+    &.with-border {
+      .border-styles();
+
+      &:focus {
+        border-color: darken(@grayLightest, @darken-border);
+      }
+    }
+  });
+
+  .ui("link", {
+    // We need to include the element name in the selector to get the
+    // a.exception rules to work correctly.
+    a& {
+      .button-styles();
+      .link-button-styles();
+
+      &.with-border {
+        .border-styles();
+      }
+    }
+  });
+
+  .ui("icon-link", {
+    a& {
+      .button-styles();
+      .link-button-styles();
+      .icon-button-styles();
+    }
+
+    &.with-border {
+      .border-styles();
+    }
+  });
+});

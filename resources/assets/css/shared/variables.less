@@ -1,0 +1,129 @@
+//
+// CircleCI CSS/LESS Variables
+// --------------------------------------------------
+
+// Colors
+
+@black:                 #000000;
+@blacken:               #080808;
+@grayDarkest:           #131313;
+@grayDarker:            #212121;
+@grayDark:              #333333;
+@gray:                  #555555;
+@grayLight:             #898989;
+@grayLighter:           #cccccc;
+@grayLightest:          #eeeeee;
+@whiten:                #fbfbfb;
+@white:                 #ffffff;
+@whiteBackground:       #f5f5f5;
+
+@blueDarkest:           #1d8494;
+@blueDark:              #27a0b6;
+@blue:                  #3dc1d9; // .brand-primary
+@blueLight:             #66d3e4; // .brand-info
+@blueLightest:          #d9f4f8;
+
+@green:                 #42c88a; // .brand-success
+@greenLightest:         #d0f1e2;
+
+@redDarkest:            #b81b13;
+@redDark:               #D45252;
+@red:                   #ed5c5c; // .brand-danger
+@redLight:              #f59e9e;
+@redLightest:           #fad6d6;
+
+@yellowDark:            #e4b310;
+@yellow:                #ffc031;
+@yellowLightest:        #f7ebcf;
+
+@orange:                #ff8c31; // .brand-warning
+
+@purple:                #ab7fd1;
+@purpleLight:           #e4d1f5;
+
+// Text Colors
+
+@successText:           @green;
+@errorText:             @redLight;
+
+// Link Colors
+
+@linkColor:             @blueDark;
+@linkColorHover:        @blueDark;
+
+// UI Colors
+
+@grayBoxBorder:       @grayLighter;
+@grayBorder:          @grayLightest;
+
+// Terminal colors
+@terminalBackground: @grayDarker;
+@terminalText: #edede3;
+
+@brand-lighten-ratio-v2:   29%; //FIXME: We should do this differently
+
+// Button Colors
+
+@button-border: lighten(@black, 90);
+
+// Status Colors
+
+@statuspage-major-bg:   @redLightest;
+@statuspage-minor-bg:   @yellowLightest;
+@statuspage-text-color: @gray;
+
+// Typography
+
+@sansSerifFontFamily:   "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@monoFontFamily:        "RobotoMono", Monaco, "Courier New", monospace;
+
+@baseFontSize:          14px;
+@baseLineHeight:        20px;
+
+@fontSizeLargest:       round((@baseFontSize * 2.00), 0); // 28px
+@fontSizeLarger:        round((@baseFontSize * 1.45), 0); // 20px
+@fontSizeLarge:         round((@baseFontSize * 1.25), 0); // 18px
+@fontSizeMedium:        round((@baseFontSize * 1.15), 0); // 16px
+@fontSizeSmall:         round((@baseFontSize * 0.95), 0); // 13px
+@fontSizeSmaller:       round((@baseFontSize * 0.85), 0); // 12px
+@fontSizeSmallest:      round((@baseFontSize * 0.75), 0); // 11px
+
+h1, .h1 { font-size: @fontSizeLarger    !important; } // override Bootstrap - 20px
+h2, .h2 { font-size: @fontSizeLarge     !important; } // override Bootstrap - 18px
+h3, .h3 { font-size: @fontSizeMedium    !important; } // override Bootstrap - 16px
+h4, .h4 { font-size: @baseFontSize      !important; } // override Bootstrap - 14px
+h5, .h5 { font-size: @fontSizeSmaller   !important; } // override Bootstrap - 12px
+h6, .h6 { font-size: @fontSizeSmallest  !important; } // override Bootstrap - 11px
+
+@codeFontSize:          @fontSizeSmaller;
+@codeCharacterWidth:    round((3 / 5) * @codeFontSize); // Monaco's character width is 60% of size (height)
+
+// Spacing
+
+@standardBlockSize:     250px;
+@minimumContentWidth:   960px;
+@spinnerSize:           (@baseFontSize * 3);
+@innerContentPadding:   @baseFontSize;
+@tile: 70px;
+
+@top-bar-height: 60px;
+
+// Footer
+
+@footerItemSize: 1em;
+
+// z-index
+
+@zindex-aside: 901;
+@zindex-app-main: 900;
+
+// Misc.
+
+@imgPath: "../../img";
+
+@build-failure-chevron-size: 0.8em;
+@toggle-aside-width: 80px;
+@toggle-aside-height: 22px;
+@aside-font-size: 12px;
+
+@main-body-padding: 15px;

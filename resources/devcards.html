@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Devcards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <link href="/assets/css/app.css" rel="stylesheet" type="text/css">
+    <style>
+
+     /* We use !important here because Devcards adds its own stylesheets after
+        this one. The "correct" way to override one of Devcards' default
+        stylesheets is to supply a <style> with the same id. Devcards will detect
+        this and not inject its own. We're not doing that here because we're only
+        nudging a few values around. We'll do that if/when we more thoroughly
+        redesign the Devcards pages. */
+
+     .com-rigsomelight-devcards_rendered-card {
+         /* Let our own top-level typography through. */
+         font: inherit !important;
+
+         margin: 0 !important;
+         padding: 30px !important;
+     }
+
+     .com-rigsomelight-devcards-markdown {
+        max-width: 700px;
+        margin-bottom: 2em;
+     }
+
+
+     /* Gives a devcard the backmost background color we use in the app. Most
+        components are designed to be rendered on a card component, which is
+        white, so we leave that as the default. Some components, such as the
+        card component itself, are designed to be rendered on the gray
+        background of the app. Devcards demonstrating these components use the
+        `background-gray` class. */
+
+     .com-rigsomelight-devcards_rendered-card.background-gray {
+         background-color: #f5f5f5;
+     }
+
+     /* Override Bootstrap's margins on pre elements. */
+     pre.com-rigsomelight-devcards-code-highlighting {
+         margin: 0;
+     }
+    </style>
+    <style id="com-rigsomelight-devcards-addons-css"></style>
+  </head>
+  <body>
+    <script>
+     window.renderContext = {
+       assetsRoot: '',
+       githubHttpEndpoint: "https://github.com"
+     }
+    </script>
+    <script src="/cljs/devcards-out/frontend-devcards.js" type="text/javascript"></script>
+  </body>
+</html>

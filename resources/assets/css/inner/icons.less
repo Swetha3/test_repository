@@ -1,0 +1,53 @@
+svg.status {
+  .icon {
+    fill: @white;
+  }
+
+  &.passed .circle {
+    fill: @green;
+  }
+
+  &.failed .circle {
+    fill: @red;
+  }
+
+  &.canceled .circle {
+    fill: @grayLight;
+  }
+
+  &.running .circle {
+    fill: @blueLight;
+  }
+
+  &.queued .circle {
+    fill: @purple;
+  }
+}
+
+.invert-status-icons {
+  svg.status {
+    .circle {
+      fill: @white;
+    }
+
+    &.passed .icon {
+      fill: @green;
+    }
+
+    &.failed .icon {
+      fill: @red;
+    }
+
+    &.canceled .icon {
+      fill: @grayLight;
+    }
+
+    &.running .icon {
+      fill: @blueLight;
+    }
+
+    &.queued .icon {
+      fill: @purple;
+    }
+  }
+}

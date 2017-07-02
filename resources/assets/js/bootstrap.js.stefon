@@ -1,0 +1,14 @@
+[
+  ;; use the order from the Makefile build task
+  ;; prefix "../" paths with "./", because that makes the stefon regexes slightly less broken, and avoids triggering a file-ordering bug
+
+  "../../components/bootstrap/js/affix.js"
+  "../../components/bootstrap/js/alert.js"
+  "../../components/bootstrap/js/button.js"
+  "../../components/bootstrap/js/dropdown.js"
+  "../../components/bootstrap/js/modal.js"
+  "../../components/bootstrap/js/scrollspy.js"
+  "../../components/bootstrap/js/tooltip.js"
+  "../../components/bootstrap/js/popover.js"
+  "../../components/bootstrap/js/transition.js"
+  ]

@@ -1,0 +1,213 @@
+@import "../c3/c3.less";
+@import "../shared/variables.less";
+
+@spinner-height: 172px;
+
+#build-insights {
+  @block-width: 425px;
+  @chart-padding-left: 30px;
+
+  background-color: @whiteBackground;
+  padding-bottom: 15px;
+  min-width: 465px;
+
+  h1 {
+    font-size: 16px;
+  }
+
+  .controls {
+
+    margin-top: 15px;
+
+    .filtering {
+      .fancy-radio();
+    }
+
+    .sorting {
+      color: @grayDark;
+
+      label {
+        font-weight: inherit;
+        margin: 0 10px 0 15px;
+      }
+
+      select {
+        .fancy-select(@arrow-margin: 34px; @color: inherit);
+
+        border-radios: 3px;
+        border: 1px solid @grayLighter;
+        height: 35px;
+        padding-left: 1em;
+      }
+    }
+  }
+
+  .no-projects-block {
+    margin: 15px;
+    padding: 10px;
+    background-color: @whiten;
+
+    .content {
+      background: url('@{imgPath}/empty-state-insights@2x.png') no-repeat center center;
+      background-size: contain;
+      height: @standardBlockSize + 40px;
+      font-size: @fontSizeLarge;
+      color: @grayDark;
+
+      .header {
+        font-weight: 600;
+        margin-top: 50px;
+      }
+
+      .details {
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        border-radius: 20px;
+        padding-left: 37px;
+        padding-right: 37px;
+      }
+    }
+  }
+
+  .blocks-container {
+    margin-top: 15px;
+  }
+
+  .project-header {
+    .flexy(center);
+
+    padding: 15px 10px 15px 10px;
+
+    .octicon,
+    .material-icons,
+    .fa-bitbucket {
+      font-size: 18px;
+      color: @grayLight;
+      margin-left: 1ex;
+      vertical-align: middle;
+    }
+
+    > .vcs-icon, > .settings-icon {
+      .flex(0 0 18px);
+      color: @grayLight;
+      margin-left: 1ex;
+    }
+  }
+
+  .project-name {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .project-block {
+    display: inline-block;
+    margin: 0 15px 15px 0;
+    vertical-align: top;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+    background-color: white;
+    min-height: 308px;
+    width: @block-width;
+
+    &.build-failed {
+      h1 {
+        background-color: @redLightest;
+      }
+    }
+
+    .last-build-status {
+      margin-right: 10px;
+    }
+
+    svg {
+      display: block;
+    }
+
+    h1 {
+      color: @grayDarker;
+      border-bottom: #e5e5e5 1px solid;
+      margin: 0;
+    }
+
+    h4 {
+      font-size: 13px;
+      color: #333;
+      margin: 0;
+      padding: 15px;
+      padding-bottom: 0;
+
+    }
+
+    .above-info, .below-info {
+      .flexy(center, flex-start, row);
+      padding: 15px;
+      width: 100%;
+      color: @gray;
+
+      &.below-info dl {
+        .flex(0 0 50%);
+
+        dt, dd {
+          display: inline;
+        }
+
+        dt {
+          padding-right: 5px;
+        }
+      }
+
+      dl {
+        .flex(0 0 33%);
+        margin: 0;
+
+        dt {
+          font-weight: inherit;
+          text-transform: uppercase;
+        }
+
+        dd {
+          font-weight: 500;
+          line-height: 1.6;
+        }
+      }
+    }
+
+    .body-info {
+      height: 100px;
+    }
+
+    .no-insights, .no-builds, .loading-spinner {
+      .flexy(center, space-around, column);
+
+      height: @spinner-height;
+      padding: 20px;
+
+      &.no-builds, &.no-insights {
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .upgrade-link:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // to override #insights .project-block
+  .insights-empty-state-content > .project-block {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.insights-project .no-chart {
+  .flexy(center, space-around, column);
+
+  .no-builds {
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+@import "insights/insights-project.less";

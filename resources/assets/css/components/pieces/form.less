@@ -1,0 +1,151 @@
+.ns("frontend.components.pieces.form", {
+  .ui("field-wrapper", {
+    > label {
+      display: block;
+      margin-bottom: 2px;
+
+      font-size: @fontSizeSmaller;
+      font-weight: 500;
+      color: @gray;
+    }
+
+    > .field {
+      position: relative;
+      font-size: @baseFontSize;
+    }
+
+    &.invalid {
+      > label {
+        color: @red;
+      }
+
+      > .field {
+        > .validation-error {
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 10px;
+          transform: ~'translateY(calc(-100% - 5px))';
+          line-height: 1;
+          color: @white;
+          background-color: @red;
+
+          &::after {
+            content: "";
+
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+            transform: translateY(100%);
+
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-top-color: @red;
+          }
+        }
+      }
+    }
+  });
+
+  // Mixin for common styles for text inputs and textareas.
+  .text-type-field() {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    line-height: 18px;
+    border: solid 1px @blueLight;
+
+    &[disabled] {
+      color: @grayLight;
+      background-color: @whiten;
+      border-color: @grayLighter;
+    }
+
+    &:focus {
+      outline: none;
+      border: solid 1px @blueLightest;
+      box-shadow: 0 0 4px 0 @blueLight;
+    }
+
+    &.invalid {
+      background-color: @redLightest;
+      border-color: @red;
+
+      &:focus {
+        background-color: @white;
+        box-shadow: 0 0 4px 0 @redLight;
+      }
+    }
+  }
+
+  .ui("text-field", {}, {
+    .el("input", {
+      .text-type-field;
+
+      &.medium {
+        padding: 5px 10px;
+      }
+    });
+  });
+
+  .ui("text-area", {}, {
+    .el("textarea", {
+      .text-type-field;
+
+      height: 100px;
+      resize: vertical;
+    });
+  });
+
+  .ui("file-selector", {}, {
+    .el("drop-zone", {
+      padding: 15px;
+      border: 1px dashed @blueLight;
+      text-align: center;
+
+      &.dragged-over {
+        border: 1px dashed @blueLightest;
+        box-shadow: 0 0 4px @blueLight;
+
+        > * {
+          // In some browsers, dragging over child elements fires drag* events
+          // which throw off the drag-and-drop logic. The simplest solution is
+          // to disable pointer events for all children during the drag.
+          pointer-events: none;
+        }
+      }
+
+      > .file-name {
+        margin-bottom: 10px;
+      }
+
+      > input {
+        display: none;
+      }
+    });
+
+    .el("button-label", {
+      // OVERRIDE--ICON-STYLE
+      > .material-icons {
+        margin-right: 2px;
+        margin-left: 0;
+        font-size: 18px;
+      }
+    });
+  });
+
+  .ui("Form", {
+    > input.prevent-enter-from-submitting {
+      display: none;
+    }
+
+    > .field {
+      margin-bottom: 25px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  });
+});

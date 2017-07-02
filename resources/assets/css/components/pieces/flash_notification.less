@@ -1,0 +1,30 @@
+.ns("frontend.components.pieces.flash-notification", {
+  .ui("Notification", {
+    display: flex;
+    height: 70px;
+    padding: 20px;
+    align-items: center;
+
+    background-color: @blueDarkest;
+    color: @white;
+    font-size: @baseFontSize;
+    font-weight: 500;
+  });
+
+  .ui("Presenter", {}, {
+    .el("notification", {
+      &.notification-appear,
+      &.notification-enter,
+      &.notification-leave {
+          transition: opacity 200ms, transform 300ms cubic-bezier(0.165,0.840,0.440,1.000);
+      }
+
+      &.notification-appear:not(.notification-appear-active),
+      &.notification-enter:not(.notification-enter-active),
+      &.notification-leave.notification-leave-active {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+    });
+  });
+});

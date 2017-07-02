@@ -1,0 +1,99 @@
+// A helper for defining component styles. Use .ns() to set the namespace of the
+// components you're styling, then a .ui() block within it for each component.
+// This is analagous to the ns and def/defrender/defui forms in ClojureScript.
+//
+// Usage:
+//
+// .ns("frontend.components.pieces.widget", {
+//   .ui("crank", {
+//     // Styles for the frontend.components.pieces.widget/crank component.
+//
+//     .el("handle", {
+//       // Styles for the :handle element in the
+//       // frontend.components.pieces.widget/crank component.
+//     })
+//   });
+// });
+
+// Workaround for Less:
+//
+// Some components render another component at their root. The root DOM node of
+// these components will have a data-component value from the subcomponent.
+// There will be no DOM node with a data-component matching the outer component.
+// For .el work correctly in these cases, the selectors it generates must not be
+// nested under a [data-component] selector. Unfortunately, Less does not let us
+// escape our parent selector. (In Sass, for comparison, this is done with
+// @at-root.)
+//
+// To get around this problem, .ui accepts a second set of rules which will be
+// applied outside of the [data-component] parent. If the component in the
+// example above were such a component, we'd style it like so:
+//
+// .ns("frontend.components.pieces.widget", {
+//   // Note the extra, empty ruleset in the .ui call.
+//   .ui("crank", {}, {
+//     .el("handle", {
+//       // Styles for the :handle element in the
+//       // frontend.components.pieces.widget/crank component.
+//     })
+//   });
+// });
+
+
+.ns(@ns, @ns-rules) {
+  @ns-rules();
+};
+
+.ui(@component, @component-rules) {
+  .ui(@component, @component-rules, {})
+}
+
+.ui(@component, @component-rules, @element-rules) {
+  [data-component="@{ns}/@{component}"] {
+    @component-rules();
+  }
+
+  @element-rules();
+};
+
+.el(@element, @element-rules) {
+  [data-element="@{ns}/@{component}/@{element}"] {
+    @element-rules();
+  }
+}
+
+
+// Each component stylesheet is imported here.
+// (Keep this list sorted alphabetically.)
+
+@import "components/insights.less";
+@import "components/insights/project.less";
+@import "components/pages/build.less";
+@import "components/pages/build/head.less";
+@import "components/pages/project_settings.less";
+@import "components/pages/projects.less";
+@import "components/pages/run.less";
+@import "components/pages/team.less";
+@import "components/pages/setup_project.less";
+@import "components/pages/user_settings.less";
+@import "components/pages/user_settings/integrations.less";
+@import "components/pages/workflow.less";
+@import "components/pieces/button.less";
+@import "components/pieces/job.less";
+@import "components/pieces/card.less";
+@import "components/pieces/dropdown.less";
+@import "components/pieces/empty_state.less";
+@import "components/pieces/flash_notification.less";
+@import "components/pieces/form.less";
+@import "components/pieces/icon.less";
+@import "components/pieces/modal.less";
+@import "components/pieces/org_picker.less";
+@import "components/pieces/page_header.less";
+@import "components/pieces/popover.less";
+@import "components/pieces/run_row.less";
+@import "components/pieces/spinner.less";
+@import "components/pieces/status.less";
+@import "components/pieces/table.less";
+@import "components/pieces/tabs.less";
+@import "components/pieces/top_banner.less";
+@import "components/pieces/topbar.less";

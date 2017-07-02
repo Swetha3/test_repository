@@ -1,0 +1,32 @@
+i {
+  &.ico {
+    .flexy(center, center);
+    svg {
+      width: @baseFontSize;
+      height: @baseFontSize;
+      &.repo {
+        width: 18px;
+        height: auto;
+        fill: @grayDark;
+        stroke: @grayDark;
+      }
+      fill: none;
+    }
+    .ico-logo {
+      fill: @blueDark;
+    }
+    .ico-pass {
+      fill: @green;
+    }
+    .ico-fail {
+      fill: @redLight;
+    }
+    .ico-queued {
+      fill: @grayLight;
+    }
+    .slim_circle {
+      stroke-linecap: round;
+      stroke-width: 20;
+    }
+  }
+}

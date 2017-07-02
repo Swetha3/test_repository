@@ -1,0 +1,24 @@
+[
+  "../vendor/console-shim.js" ;; TODO: necessary?
+  "../../components/jquery/dist/jquery.min.js" ;; TODO: used by bootstrap
+  "../../components/bootstrap3-typeahead/bootstrap3-typeahead.min.js" ;; docs typeahead
+  "../../components/jquery-placeholder/jquery.placeholder.min.js" ;; TODO: necessary?
+  "../../components/d3/d3.min.js" ;; used by build time visualization; FIX load on demand?
+  "../../components/svg-injector/svg-injector.js"
+  "../../components/prism/prism.js" ;; syntax highlighting
+  "../../components/prism/components/prism-yaml.min.js" ;; syntax highlighting
+  "../../components/prism/plugins/line-numbers/prism-line-numbers.js" ;; line numbers
+
+  "bootstrap.js.stefon" ;; TODO: replace with the om version
+
+  "module_setup.coffee" ;; necessary, for now
+  "libs/asset-path.coffee" ;; Used by docs
+  "libs/terminal.coffee"
+  "libs/phantomjs-hack.js" ;; previously provided by ko, defines Function.prototype.bind
+                           ;; should be able to remove after upgrading om/react
+
+  "outer/versions.coffee"
+  "outer/api_data.coffee"
+
+  "stefon-hack-for-om.coffee.ref"
+]

@@ -1,0 +1,91 @@
+#invite-teammates {
+  h3 {
+    font-size: 1.846em; // 24px
+    font-weight: 300;
+    color: @gray;
+  }
+
+  .org-invites {
+    overflow: hidden;
+    margin: 1em;
+    color: @grayDark;
+  }
+
+  .invite-profile {
+    input:focus + label.no-email {
+      cursor: auto;
+    }
+    label.no-email {
+      cursor: pointer;
+    }
+  }
+
+  .side-list {
+    .flex(0 0 auto);
+    .pull-left();
+
+    width: 25%;
+    padding: 1em 0;
+    padding-left: 15px;
+    list-style-type: none;
+
+    .nav-header {
+      color: #455c78;
+      background: #d7dce3;
+    }
+
+    .orgname {
+      display: inline-block;
+      overflow: hidden;
+      width: 70%;
+      margin-left: 3%;
+      padding-top: 3px;
+    }
+
+    li {
+      line-height: 20px;
+      clear: both;
+      padding-bottom: 1em;
+    }
+
+    img {
+      .pull-left();
+
+      width: 25px;
+      height: 25px;
+      border-radius: 25px;
+    }
+
+    a {
+      cursor: pointer;
+      text-decoration: none;
+      color: @gray;
+
+      &:hover {
+        text-decoration: none;
+        color: @blueLight;
+      }
+    }
+
+    & > span {
+      line-height: 13em;
+      display: block;
+      text-align: center;
+    }
+
+    .tooltip {
+      white-space: normal;
+    }
+
+    .side-item.active {
+      a {
+        color: @blueDark;
+
+        &:hover {
+          color: @blueLight;
+        }
+      }
+    }
+  }
+}
+

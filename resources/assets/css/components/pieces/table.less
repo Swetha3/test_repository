@@ -1,0 +1,90 @@
+.ns("frontend.components.pieces.table", {
+  .ui("table", {
+    width: 100%;
+
+    // OVERRIDE--ICON-STYLE
+    .octicon, .material-icons {
+      margin-left: 0;
+    }
+
+    > thead > tr > th {
+      font-size: @fontSizeSmall;
+      font-weight: bold;
+      color: @gray;
+    }
+
+    > thead, > tbody {
+      > tr {
+        border-bottom: 1px solid @grayLighter;
+        min-height: 30px;
+
+        > th, > td {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 20px;
+          padding-right: 20px;
+
+          &:first-child {
+            padding-left: 10px;
+          }
+
+          &:last-child {
+            padding-right: 10px;
+          }
+
+          &.shrink {
+            // Does not actually make the column 1px wide, but makes the column the
+            // minimal width to contain its contents.
+            width: 1px;
+            white-space: nowrap;
+          }
+
+          &.right {
+            text-align: right;
+          }
+
+          &.insights-last-col {
+            width: 200px;
+          }
+        }
+      }
+    }
+
+    // Striped styling
+    &.striped {
+      border-color: @grayLighter;
+      > tbody > tr:nth-child(even) {
+        background-color: @white;
+      }
+      > tbody > tr:nth-child(odd) {
+        background-color: @grayLightest;
+      }
+    }
+
+    > tbody > tr:hover {
+      background-color: rgba(80, 198, 221, 0.04);
+    }
+  });
+
+  .action-button-styles() {
+    display: block;
+    width: 18px;
+    margin: 0 auto;
+    color: @grayLight;
+  }
+
+  .ui("action-button", {
+    .action-button-styles;
+    padding: 0;
+    border: none;
+    background: none;
+  });
+
+  .ui("action-link", {
+    // We need to include the element name and .exception in the selector to
+    // get the a.exception rules to work correctly.
+    a&.exception {
+      .action-button-styles;
+    }
+  });
+});

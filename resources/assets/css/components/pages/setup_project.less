@@ -1,0 +1,62 @@
+#setup-project {
+  margin-top: 10px;
+
+  ul {
+    padding-left: 0;
+  }
+
+  .projects-dropdown {
+    select {
+      width: 30%;
+      max-width: 400px;
+    }
+  }
+
+  // https://stackoverflow.com/a/30810322
+  .hidden-config {
+    // Copy to clipboard is easy with visible input.
+    // We can't select 'none' or 'hidden' text display.
+    // This is a work-around to hide the text area.
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    background: transparent;
+  }
+
+  .platform-selector {
+
+    .os-label i {
+      margin-right: 5px;
+      margin-left: 0;
+      color: @grayLight;
+    }
+
+    .platform-item {
+      display: inline-block;
+      vertical-align: top;
+      padding-right: 50px;
+      width: 30%;
+
+      p {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .new-badge::after {
+    background-color: @blueLightest;
+    color: @blueDark;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    content: 'NEW';
+    font-size: 9px;
+    font-weight: bold;
+  }
+}
